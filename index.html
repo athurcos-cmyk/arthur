@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enfermagem - Painel de Estudos</title>
     
-    <!-- Fonte e Ícones -->
+    <!-- Ícones e Fonte -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Estilos -->
+    <!-- Nossos Arquivos de Estilo e Lógica -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Biblioteca para ler os arquivos .md (Essencial!) -->
+    <!-- Bibliotecas Externas -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR -->
+    <!-- BARRA SUPERIOR (Navegação dos Semestres) -->
     <header class="navbar">
+        <!-- BOTÃO MENU MOBILE (Para celular) -->
         <button id="mobile-menu-btn" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </button>
@@ -29,18 +30,12 @@
                 <small>ESTUDOS</small>
             </div>
         </div>
-
-        <!-- BOTÃO DE TEMA (SOL/LUA) -->
-        <button id="theme-toggle" onclick="toggleTheme()" title="Mudar Tema">
-            <i class="fas fa-sun"></i>
-        </button>
-
         <nav class="semester-nav" id="semester-nav"></nav>
     </header>
 
     <div class="container">
         
-        <!-- MENU LATERAL -->
+        <!-- MENU LATERAL (Disciplinas) -->
         <aside class="sidebar-disciplines" id="sidebar-disciplines">
             <div class="sidebar-header" id="sidebar-title">Semestre</div>
             <div id="disciplines-container"></div>
@@ -72,6 +67,7 @@
                 <!-- ONDE O CONTEÚDO APARECE -->
                 <div id="tab-text" class="tab-panel active">
                     <div id="markdown-render" class="markdown-content">
+                        <!-- O texto do arquivo .md vai ser injetado AQUI -->
                         <p style="color: #666;">Carregando resumo...</p>
                     </div>
                 </div>
@@ -81,14 +77,15 @@
                 </div>
 
                 <div id="tab-video" class="tab-panel">
-                    <div id="videos-container"></div>
+                    <div id="videos-container" class="video-grid"></div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts (Ordem importa!) -->
+    <!-- Primeiro os dados, depois a lógica -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
