@@ -58,18 +58,31 @@ function renderCalendar() {
         
         if (diffDays < 0) return; // Já passou
 
-        let color = 'var(--accent)'; // Verde (Padrão do tema)
+        // Padrão (Verde)
+        let color = 'var(--accent)';
         let statusText = "dias restantes";
+        let cardClass = ""; // Sem classe extra (usa o verde padrão do CSS)
+
+        // Lógica das Cores e Classes
+        if (diffDays < 10) {
+            color = '#ff9800'; // Laranja
+            cardClass = "atencao"; // Nome da classe pro CSS
+        }
         
-        if (diffDays < 10) color = '#ff9800'; // Amarelo/Laranja (Atenção)
-        if (diffDays < 6)  color = '#ff5555'; // Vermelho (Urgente)
+        if (diffDays < 5) {
+            color = '#ff5555'; // Vermelho
+            cardClass = "perigo";
+        }
         
         if (diffDays === 0) {
             statusText = "É HOJE!";
-            color = "#ff5555"; 
+            color = "#ff5555";
+            cardClass = "perigo";
         }
+
+        // AQUI É O TRUQUE: Adicionamos a variável ${cardClass} dentro da class="card ..."
         container.innerHTML += `
-            <div class="card">
+            <div class="card ${cardClass}">
                 <h3 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:10px;">${exam.name}</h3>
                 <div style="font-size:2.5rem; color:${color}; font-weight:700; line-height:1">${diffDays}</div>
                 <small style="color:var(--text-muted)">${statusText}</small>

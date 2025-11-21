@@ -259,3 +259,17 @@ h1, h2, h3, .logo, .sidebar-header, .tab, .video-titulo {
     .video-titulo { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); /* No mobile adapta ao tema */ }
     .video-wrapper { border-radius: 12px; box-shadow: var(--shadow-card); }
 }
+
+/* --- CORES DINÂMICAS DO CALENDÁRIO --- */
+
+/* Se for Amarelo (Atenção) */
+.card.atencao:hover {
+    border-color: #ff9800;
+    box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2); /* Glow Laranja/Amarelo */
+}
+
+/* Se for Vermelho (Urgente/Hoje) */
+.card.perigo:hover {
+    border-color: #ff5555;
+    box-shadow: 0 15px 35px rgba(255, 85, 85, 0.25); /* Glow Vermelho */
+}
