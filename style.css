@@ -482,6 +482,13 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     border-left: 2px solid var(--divider);
     background: var(--bg-page);
     transition: transform 0.3s;
+
+    /* --- CORREÇÃO DE SCROLL NO PC --- */
+    /* Define que o índice não pode ser maior que 65% da altura da tela */
+    max-height: 65vh; 
+    /* Se for maior, cria uma barra de rolagem só para ele */
+    overflow-y: auto; 
+    /* ------------------------------- */
 }
 
 .toc-container.visible {
