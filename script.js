@@ -46,23 +46,37 @@ function renderCalendar() {
         
         if (diffDays < 0) return; 
 
+        // Lógica de Prioridade e Texto de Urgência
         let priorityClass = 'priority-green';
         let color = 'var(--priority-green)';
-        
-        if (diffDays < 10) {
+        let displayDays = diffDays;
+        let labelText = 'dias restantes';
+
+        if (diffDays === 0) {
+            priorityClass = 'priority-red';
+            color = 'var(--priority-red)';
+            displayDays = "HOJE";
+            labelText = "🚨 É HOJE!";
+        } else if (diffDays === 1) {
+            priorityClass = 'priority-red';
+            color = 'var(--priority-red)';
+            displayDays = "1";
+            labelText = "⚠️ É AMANHÃ!";
+        } else if (diffDays < 6) {
+            priorityClass = 'priority-red';
+            color = 'var(--priority-red)';
+        } else if (diffDays < 10) {
             priorityClass = 'priority-orange';
             color = 'var(--priority-orange)';
         }
-        if (diffDays < 6) {
-            priorityClass = 'priority-red';
-            color = 'var(--priority-red)';
-        }
+
+        const fontSize = diffDays === 0 ? '1.8rem' : '2.5rem';
 
         container.innerHTML += `
             <div class="card ${priorityClass} animate-fade-up" tabindex="0">
                 <h3>${exam.name}</h3>
-                <div class="days-left" style="color:${color}">${diffDays}</div>
-                <small>dias restantes (${examDate.toLocaleDateString('pt-BR')})</small>
+                <div class="days-left" style="color:${color}; font-size: ${fontSize}">${displayDays}</div>
+                <small>${labelText} (${examDate.toLocaleDateString('pt-BR')})</small>
             </div>
         `;
     });
@@ -175,7 +189,7 @@ function loadSemester(index) {
         sidebar.appendChild(topicList);
     });
     
-    // Re-aplica estado do sidebar desktop ao trocar semestre
+    // Re-aplica estado do sidebar desktop
     const isHidden = localStorage.getItem('sidebarHidden') === 'true';
     if(isHidden) document.body.classList.add('sidebar-hidden');
 }
@@ -231,8 +245,15 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
             const text = await response.text();
             
             textArea.innerHTML = marked.parse(text);
+            
+            // Links externos em nova aba
+            textArea.querySelectorAll('a').forEach(link => {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+
             generateTOC();
-            initTOCObserver(); // Liga observer após renderizar
+            initTOCObserver();
             
         } catch (e) {
             textArea.innerHTML = `<p style="color: var(--priority-red)">⚠️ Arquivo não encontrado: <b>${data.file}</b>.</p>`;
@@ -243,7 +264,7 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         document.getElementById('toc-content').innerHTML = '';
     }
 
-    // 2. SLIDES & 3. VÍDEOS (Mantido igual)
+    // 2. SLIDES & 3. VÍDEOS
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
     if (data.slides && data.slides.length) {
@@ -285,7 +306,7 @@ function markActiveTopic(subIdx, topIdx) {
 }
 
 // ==============================================================
-// F - GERADOR AUTOMÁTICO DE TOC & OBSERVER
+// F - GERADOR AUTOMÁTICO DE TOC
 // ==============================================================
 function generateTOC() {
     const tocContent = document.getElementById('toc-content');
@@ -299,7 +320,7 @@ function generateTOC() {
         tocContainer.style.display = 'none';
         return;
     }
-    tocContainer.style.display = 'block'; // Garante visibilidade se escondido antes
+    tocContainer.style.display = 'block';
 
     headers.forEach((header, index) => {
         if (!header.id) header.id = `heading-${index}`;
@@ -308,13 +329,13 @@ function generateTOC() {
         link.innerText = header.innerText;
         link.href = `#${header.id}`;
         link.className = 'toc-link';
-        link.dataset.target = header.id; // Para o Observer
+        link.dataset.target = header.id;
         if (header.tagName === 'H3') link.classList.add('sub-item');
 
         link.onclick = (e) => {
             e.preventDefault();
             document.getElementById(header.id).scrollIntoView({ behavior: 'smooth' });
-            // Se mobile, fecha overlay
+            // Fecha overlay no mobile ao clicar
             if(window.innerWidth <= 1024) {
                 document.getElementById('toc').classList.remove('visible');
             }
@@ -365,7 +386,6 @@ function initTOCToggle() {
 function initSidebarDesktopToggle() {
     const btn = document.getElementById('sidebar-toggle-desktop');
     
-    // Recupera estado
     if (localStorage.getItem('sidebarHidden') === 'true') {
         document.body.classList.add('sidebar-hidden');
     }
@@ -390,7 +410,6 @@ function initSearch() {
     const input = document.getElementById('global-search');
     const resultsBox = document.getElementById('search-results');
     
-    // Criar índice plano
     db.forEach((sem, sIdx) => {
         sem.subjects.forEach((mat, mIdx) => {
             mat.topics.forEach((top, tIdx) => {
@@ -428,11 +447,11 @@ function initSearch() {
                 resultsBox.appendChild(div);
             });
         } else {
-            resultsBox.style.display = 'none';
+            resultsBox.style.display = 'block';
+            resultsBox.innerHTML = '<div class="search-item" style="cursor:default; color:var(--text-muted);">Nenhum resultado encontrado.</div>';
         }
     });
 
-    // Fechar ao clicar fora
     document.addEventListener('click', (e) => {
         if(!e.target.closest('.search-container')) {
             resultsBox.style.display = 'none';
@@ -441,7 +460,7 @@ function initSearch() {
 }
 
 // ==============================================================
-// NOTAS PESSOAIS (LocalStorage)
+// NOTAS PESSOAIS
 // ==============================================================
 let currentNoteKey = '';
 
@@ -452,7 +471,7 @@ function initNotes() {
     if(txt) {
         txt.addEventListener('input', () => {
             if(notesTimeout) clearTimeout(notesTimeout);
-            notesTimeout = setTimeout(saveNotes, 400); // Debounce 400ms
+            notesTimeout = setTimeout(saveNotes, 400); 
         });
     }
     if(btnClear) {
@@ -582,28 +601,25 @@ function closeMobileSidebar() {
 }
 
 // ==============================================================
-// FOCUS MODE
+// FOCUS MODE (CORREÇÃO: Ignora memória para destravar)
 // ==============================================================
 function initFocusMode() {
     const btn = document.getElementById('focus-mode-btn');
-    const icon = btn.querySelector('i');
-    
-    if(sessionStorage.getItem('focusMode') === 'on') {
-        document.body.classList.add('focus-mode');
-        icon.classList.replace('fa-expand', 'fa-compress');
+    // Removemos a lógica que lê do sessionStorage
+    // Garantimos que começa desligado
+    document.body.classList.remove('focus-mode');
+    sessionStorage.removeItem('focusMode');
+
+    if(btn) {
+        btn.onclick = () => {
+            // Lógica mantida apenas se o botão reaparecer um dia
+            document.body.classList.toggle('focus-mode');
+            const active = document.body.classList.contains('focus-mode');
+            if(active) {
+                sessionStorage.setItem('focusMode', 'on');
+            } else {
+                sessionStorage.removeItem('focusMode');
+            }
+        };
     }
-    
-    btn.onclick = () => {
-        document.body.classList.toggle('focus-mode');
-        const active = document.body.classList.contains('focus-mode');
-        
-        if(active) {
-            icon.classList.replace('fa-expand', 'fa-compress');
-            sessionStorage.setItem('focusMode', 'on');
-            document.getElementById('topic-title').scrollIntoView();
-        } else {
-            icon.classList.replace('fa-compress', 'fa-expand');
-            sessionStorage.removeItem('focusMode');
-        }
-    };
 }
