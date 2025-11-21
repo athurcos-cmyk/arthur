@@ -9,10 +9,10 @@
     --bg-card-hover: #27272a;
     --bg-nav-glass: rgba(24, 24, 27, 0.75);
     
-    /* Texto */
-    --text-main: #f4f4f5;
-    --text-strong: #ffffff; /* Mais claro para contraste no dark */
-    --text-muted: #a1a1aa;
+    /* Texto - AJUSTADO PARA MELHOR CONTRASTE DO NEGRITO */
+    --text-main: #c4c4c7;      /* Cinza claro (não mais branco) */
+    --text-strong: #ffffff;    /* Branco puro (agora vai destacar) */
+    --text-muted: #71717a;     /* Cinza mais escuro para detalhes */
     --text-accent: #3b82f6; 
     
     /* Bordas e Divisores */
