@@ -3,7 +3,7 @@
    ========================================================================== */
 :root {
     /* Cores - Dark Mode (Default) */
-    --bg-page: #09090b;        /* Preto profundo, mas não #000 */
+    --bg-page: #09090b;        
     --bg-sidebar: #101012;
     --bg-card: #18181b;
     --bg-card-hover: #27272a;
@@ -11,41 +11,48 @@
     
     /* Texto */
     --text-main: #f4f4f5;
+    --text-strong: #ffffff; /* Mais claro para contraste no dark */
     --text-muted: #a1a1aa;
-    --text-accent: #3b82f6; /* Azul acessível */
+    --text-accent: #3b82f6; 
     
     /* Bordas e Divisores */
     --divider: #27272a;
     --border-highlight: #3f3f46;
     
-    /* Cores de Estado (Calendário) */
+    /* Cores de Estado */
     --priority-green: #22c55e;
     --priority-orange: #f59e0b;
     --priority-red: #ef4444;
     
     /* Dimensões e Efeitos */
-    --radius: 12px;
-    --radius-sm: 8px;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --radius: 10px; /* Ajustado para 10px conforme pedido */
+    --radius-sm: 6px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
     --shadow-glow: 0 0 15px rgba(0,0,0,0.3);
     --nav-height: 64px;
+    
+    --accent-light: #27272a; /* Usado no TOC dark */
 }
 
-/* TEMA CLARO (Light Mode) */
+/* TEMA CLARO - LIGHT COMFORT (Novo) */
 body.light {
-    --bg-page: #f8fafc;
-    --bg-sidebar: #ffffff;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f1f5f9;
-    --bg-nav-glass: rgba(255, 255, 255, 0.85);
-    
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    
-    --divider: #e2e8f0;
-    --border-highlight: #cbd5e1;
-    
-    --shadow-glow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --bg-page: #f6f1e7;          /* fundo bege suave */
+    --bg-sidebar: #f1ebe1;
+    --bg-card: #f3ece1;
+    --bg-card-hover: #e9e2d6;
+    --bg-nav-glass: rgba(246, 241, 231, 0.75);
+  
+    --text-main: #2c2a27;        /* preto suave */
+    --text-strong: #1d1c1a;      /* forte porém confortável */
+    --text-muted: #6c665e;
+  
+    --divider: rgba(0,0,0,0.10);
+    --border-highlight: rgba(0,0,0,0.15);
+  
+    --shadow-glow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+
+    --accent-light: #e1d7c7;     /* usado no TOC e elementos ativos */
 }
 
 /* Reset e Base */
@@ -69,7 +76,6 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.3); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(128, 128, 128, 0.5); }
 
-/* Firefox */
 * { scrollbar-width: thin; scrollbar-color: rgba(128, 128, 128, 0.3) transparent; }
 
 /* ==========================================================================
@@ -103,6 +109,70 @@ body {
 
 #mobile-menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 1.4rem; cursor: pointer; }
 
+.desktop-only-btn {
+    background: none; border: none; color: var(--text-muted); font-size: 1.1rem; cursor: pointer; transition: color 0.2s;
+}
+.desktop-only-btn:hover { color: var(--text-main); }
+
+/* BUSCA GLOBAL */
+.search-container {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 20px;
+    position: relative;
+}
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+#global-search {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px 8px 36px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+#global-search:focus {
+    outline: none;
+    border-color: var(--text-accent);
+    background: var(--bg-page);
+}
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-radius: 0 0 var(--radius) var(--radius);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 60;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.search-item {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--divider);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.search-item:hover { background: var(--bg-card-hover); }
+.search-item small { display: block; color: var(--text-muted); font-size: 0.75rem; }
+.search-item strong { color: var(--text-accent); }
+
 /* Botão de Tema */
 .theme-toggle-btn {
     background: transparent;
@@ -117,7 +187,7 @@ body {
 .theme-toggle-btn:hover { background: var(--bg-card-hover); border-color: var(--border-highlight); }
 
 /* ==========================================================================
-   NAV SEMESTRES (Sticky e Glass)
+   NAV SEMESTRES
    ========================================================================== */
 .semester-nav.centered {
     display: flex;
@@ -125,22 +195,21 @@ body {
     padding: 8px 12px;
     background: var(--bg-nav-glass);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Safari */
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--divider);
     border-radius: 999px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-glow);
     
-    position: sticky; /* Requisito A */
+    position: sticky;
     top: 10px;
     z-index: 40;
     
     margin: 10px auto;
     max-width: 95%;
     overflow-x: auto;
-    justify-content: flex-start; /* Garante scroll horizontal se estourar */
+    justify-content: flex-start;
 }
 
-/* Centralizar visualmente se couber, mas permitir scroll */
 @media (min-width: 800px) {
     .semester-nav.centered { justify-content: center; max-width: fit-content; }
 }
@@ -179,7 +248,12 @@ body {
     flex-direction: column;
     overflow-y: auto;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: margin-left 0.3s ease, transform 0.3s ease;
+}
+
+/* Sidebar Hidden (Desktop Toggle) */
+body.sidebar-hidden .sidebar-disciplines {
+    margin-left: -280px;
 }
 
 .sidebar-header {
@@ -194,7 +268,6 @@ body {
 }
 .close-btn-mobile { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 1.2rem; }
 
-/* Botões de Disciplina */
 .discipline-btn {
     width: 100%;
     padding: 16px 24px;
@@ -214,12 +287,10 @@ body {
     background: var(--bg-card-hover);
     color: var(--text-accent); 
 }
-/* Indicador lateral visual */
 .discipline-btn.active-discipline::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--text-accent);
 }
 
-/* Submenu Tópicos */
 .topic-submenu { display: none; background: var(--bg-page); }
 .topic-submenu.show { display: block; animation: slideDown 0.2s ease-out; }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
@@ -241,7 +312,10 @@ body {
     border-left-color: var(--text-accent);
 }
 
-/* Overlay Mobile */
+/* Ícones mais sofisticados */
+.icon { opacity: .75; transition: transform .18s, opacity .18s; }
+.icon:hover { opacity: 1; transform: scale(1.06); }
+
 .sidebar-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90;
     opacity: 0; pointer-events: none; transition: opacity 0.3s;
@@ -250,7 +324,7 @@ body {
 .sidebar-overlay.visible { opacity: 1; pointer-events: auto; }
 
 /* ==========================================================================
-   ÁREA PRINCIPAL DE CONTEÚDO
+   ÁREA PRINCIPAL
    ========================================================================== */
 .main-view { 
     flex: 1; 
@@ -260,7 +334,6 @@ body {
     background: var(--bg-page);
 }
 
-/* Dashboard Grid (Calendário) */
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -276,10 +349,11 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
-.card:hover { transform: translateY(-4px); }
+/* Hover sofisticado */
+.card:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 
-/* Cards Prioritários (Requisito D) */
 .card.priority-green { border-top: 4px solid var(--priority-green); box-shadow: 0 4px 20px rgba(34, 197, 94, 0.15); }
 .card.priority-orange { border-top: 4px solid var(--priority-orange); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15); }
 .card.priority-red { border-top: 4px solid var(--priority-red); box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2); }
@@ -288,7 +362,6 @@ body {
 .card .days-left { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; }
 .card small { color: var(--text-muted); font-size: 0.85rem; }
 
-/* Animações */
 .animate-fade-up { animation: fadeUp 0.4s ease-out forwards; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -297,65 +370,164 @@ body {
    ========================================================================== */
 .content-area { display: none; max-width: 1200px; margin: 0 auto; }
 .content-area.active { display: block; animation: fadeSimply 0.3s ease; }
+@keyframes fadeSimply { from { opacity: 0; } to { opacity: 1; } }
 
 .content-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.toolbar-left { display: flex; align-items: center; gap: 12px; }
+
 .breadcrumb { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-#topic-title { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 32px; color: var(--text-main); }
+#topic-title { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 32px; color: var(--text-main); outline: none; }
 
-/* Botão Focus Mode */
 .focus-toggle-btn {
     background: var(--bg-card); border: 1px solid var(--divider); color: var(--text-muted);
-    padding: 8px; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    padding: 8px; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;
 }
 .focus-toggle-btn:hover { color: var(--text-main); border-color: var(--text-main); }
 
-/* Layout Leitura com TOC */
-.content-wrapper { display: flex; gap: 40px; position: relative; }
+.content-wrapper { display: block; position: relative; } /* Layout wrapper */
 
-/* Texto Markdown */
-.reading-layout { display: flex; gap: 40px; width: 100%; }
-.markdown-content { flex: 1; min-width: 0; line-height: 1.8; font-size: 1.05rem; color: var(--text-main); }
+/* Layout Leitura */
+.reading-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    align-items: start;
+}
 
-/* Estilização Markdown */
-.markdown-content h1, .markdown-content h2, .markdown-content h3 { color: var(--text-main); margin-top: 2em; margin-bottom: 0.8em; font-weight: 600; }
+/* Markdown Content - CORREÇÕES OBRIGATÓRIAS */
+.markdown-content { 
+    min-width: 0; 
+    line-height: 1.8; 
+    font-size: 1.05rem; 
+    color: var(--text-main); 
+    opacity: 0;
+    animation: fadeSimply 180ms ease-in forwards; /* Animação suave */
+}
+
+.markdown-content h1, .markdown-content h2, .markdown-content h3 { 
+    color: var(--text-main); 
+    font-weight: 600; 
+    margin-top: 2rem; /* Espaçamento natural */
+    margin-bottom: 1rem;
+}
 .markdown-content h2 { border-bottom: 1px solid var(--divider); padding-bottom: 10px; }
-.markdown-content p { margin-bottom: 1.5em; }
-.markdown-content strong { color: var(--text-accent); font-weight: 700; }
+
+/* Espaçamento natural P e Listas - SEM <br> */
+.markdown-content p { margin: 0 0 1.2rem 0; }
+.markdown-content ul, .markdown-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+.markdown-content li { margin-bottom: 0.4rem; }
+
+/* Correção de Negrito */
+.markdown-content strong { color: var(--text-strong); font-weight: 700; }
+
 .markdown-content blockquote { 
     border-left: 4px solid var(--text-accent); 
     padding-left: 20px; margin: 20px 0; 
     color: var(--text-muted); font-style: italic;
     background: var(--bg-card-hover); padding: 15px 20px; border-radius: 0 8px 8px 0;
 }
-.markdown-content ul, .markdown-content ol { margin-bottom: 1.5em; padding-left: 1.5em; }
-.markdown-content li { margin-bottom: 0.5em; }
 .markdown-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 30px 0; border: 1px solid var(--divider); }
 
-/* TOC (Table of Contents) - Requisito F */
-.toc-container {
-    width: 240px;
-    flex-shrink: 0;
+/* Wrapper da Coluna Direita (TOC + Notas) */
+.side-panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     position: sticky;
     top: 20px;
-    height: fit-content;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    padding-left: 20px;
-    border-left: 1px solid var(--divider);
-    display: none; /* Mostra só se tiver headings */
 }
-@media (min-width: 1024px) { .toc-container { display: block; } }
-.toc-container h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
-.toc-link { display: block; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+
+/* TOC (Table of Contents) - DESKTOP & MOBILE */
+.toc-container {
+    padding: 16px;
+    border-left: 2px solid var(--divider);
+    background: var(--bg-page);
+    transition: transform 0.3s;
+}
+
+/* Overlay Mobile TOC */
+.toc-container.visible {
+    position: fixed;
+    top: 20%;
+    right: 5%;
+    left: 5%;
+    width: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 100;
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    border-left: none;
+}
+.toc-header-mobile { display: none; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--divider); padding-bottom: 10px; }
+.toc-container.visible .toc-header-mobile { display: flex; font-weight: 700; }
+
+.toc-close { background: none; border: none; color: var(--text-main); font-size: 1.2rem; cursor: pointer; }
+
+.toc-toggle-btn {
+    display: none; /* Default hidden desktop */
+    background: var(--bg-card); border: 1px solid var(--divider);
+    color: var(--text-main); padding: 6px 10px; border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.toc-container h4 { display: none; } /* Oculta titulo antigo se existir */
+.toc-link { 
+    display: block; font-size: 0.85rem; color: var(--text-muted); 
+    text-decoration: none; margin-bottom: 8px; padding: 4px 0;
+    transition: color 0.2s; 
+}
 .toc-link:hover { color: var(--text-main); }
 .toc-link.sub-item { margin-left: 12px; font-size: 0.8rem; }
 
-/* Abas */
+/* Active state TOC */
+.toc-link--active {
+    color: var(--text-accent) !important;
+    font-weight: 600;
+    border-left: 2px solid var(--text-accent);
+    padding-left: 8px;
+    margin-left: -10px; /* Compensate border */
+}
+
+/* NOTAS PANEL */
+.notes-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-top: 20px;
+    box-shadow: var(--shadow-sm);
+}
+.notes-header { font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+#notes-textarea {
+    width: 100%;
+    height: 120px;
+    background: var(--bg-page);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    color: var(--text-main);
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+#notes-textarea:focus { outline: none; border-color: var(--text-accent); }
+.notes-actions { display: flex; justify-content: space-between; align-items: center; }
+.btn-small { background: transparent; border: 1px solid var(--divider); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+.btn-small:hover { color: var(--priority-red); border-color: var(--priority-red); }
+.notes-saved-indicator { font-size: 0.75rem; color: var(--priority-green); opacity: 0; transition: opacity 0.3s; }
+.notes-saved-indicator.visible { opacity: 1; }
+
+/* Tabs */
 .tabs-container { display: flex; gap: 24px; border-bottom: 1px solid var(--divider); margin-bottom: 30px; }
 .tab {
     padding: 12px 0; background: none; border: none; color: var(--text-muted);
     cursor: pointer; font-weight: 500; position: relative; font-size: 1rem;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 .tab:hover { color: var(--text-main); }
 .tab.active { color: var(--text-main); }
@@ -363,7 +535,7 @@ body {
 .tab-panel { display: none; animation: fadeSimply 0.3s; }
 .tab-panel.active { display: block; }
 
-/* Estilos Vídeos e Slides */
+/* Slides & Vídeos */
 .slide-link { 
     display: flex; align-items: center; gap: 16px; padding: 24px; 
     background: var(--bg-card); border: 1px solid var(--divider); 
@@ -380,39 +552,54 @@ body {
 /* ==========================================================================
    MODO FOCO (Focus Mode)
    ========================================================================== */
-body.focus-mode .sidebar-disciplines { display: none; }
+body.focus-mode .sidebar-disciplines { display: none !important; } /* Força hide */
 body.focus-mode .navbar { display: none; }
-body.focus-mode .toc-container { display: none; } /* Opcional: esconder TOC no foco total */
 body.focus-mode .container { max-width: 900px; margin: 0 auto; }
 body.focus-mode .main-view { padding-top: 60px; }
 body.focus-mode .focus-toggle-btn { position: fixed; top: 20px; right: 20px; z-index: 100; background: var(--bg-page); }
+/* Esconde coluna lateral no foco (TOC e Notas) se quiser foco total, mas TOC desktop é útil. */
+/* Opção: Manter TOC desktop no focus mode, mas ajustar grid */
+body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
 
 /* ==========================================================================
    📱 MOBILE
    ========================================================================== */
+@media (max-width: 1024px) {
+    .toc-container { display: none; } /* Esconde versão desktop */
+    .toc-toggle-btn { display: inline-block; }
+    .side-panel-wrapper { display: none; } /* Painel lateral vira overlay ou bottom */
+    .notes-panel { margin-top: 40px; border-top: 1px solid var(--divider); padding-top: 20px; }
+    .reading-layout { display: block; }
+    
+    /* Re-exibir notas abaixo do texto em mobile */
+    .side-panel-wrapper { display: block; position: static; margin-top: 30px; }
+    /* Mas esconder TOC da wrapper pois é overlay */
+    .side-panel-wrapper .toc-container { display: none; }
+    .side-panel-wrapper .toc-container.visible { display: block; } /* Overlay logic */
+}
+
 @media (max-width: 768px) {
     #mobile-menu-btn { display: block; }
+    #sidebar-toggle-desktop { display: none; }
+    .search-container { display: none; } /* Simplificação Mobile: esconde busca ou move para menu */
+    
     .nav-right { gap: 10px; }
     .logo-text { display: none; }
     
-    /* Sidebar Off-canvas */
     .sidebar-disciplines {
         position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
         width: 85%; max-width: 300px;
         transform: translateX(-100%);
+        margin-left: 0;
         border-right: none;
         box-shadow: 2px 0 20px rgba(0,0,0,0.5);
     }
     .sidebar-disciplines.open { transform: translateX(0); }
     .close-btn-mobile { display: block; }
 
-    /* Ajustes Content */
     .main-view { padding: 20px 16px; }
-    .toc-container { display: none; } /* Sem TOC no mobile */
-    .content-wrapper { display: block; }
     #topic-title { font-size: 1.75rem; }
     
-    /* Tabs scrolláveis */
     .tabs-container { overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
     .tab { flex-shrink: 0; }
 }

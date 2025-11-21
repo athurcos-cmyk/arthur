@@ -25,6 +25,10 @@
                 <i class="fas fa-bars"></i>
             </button>
             
+            <button id="sidebar-toggle-desktop" class="desktop-only-btn" aria-label="Mostrar/ocultar sidebar" title="Mostrar/ocultar sidebar">
+                <i class="fas fa-columns"></i>
+            </button>
+
             <div class="logo" onclick="showDashboard()" role="button" tabindex="0">
                 <i class="fas fa-heartbeat fa-2x"></i>
                 <div class="logo-text">
@@ -32,6 +36,14 @@
                     <small>ESTUDOS</small>
                 </div>
             </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Buscar tópico..." aria-label="Buscar conteúdo">
+            </div>
+            <div id="search-results" class="search-results"></div>
         </div>
 
         <div class="nav-right">
@@ -63,7 +75,13 @@
             <div id="content-view" class="content-area">
                 
                 <div class="content-toolbar">
-                    <div class="breadcrumb" id="breadcrumb"></div>
+                    <div class="toolbar-left">
+                        <button id="toc-toggle-btn" class="toc-toggle-btn" aria-label="Índice" aria-pressed="false">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <div class="breadcrumb" id="breadcrumb"></div>
+                    </div>
+                    
                     <button id="focus-mode-btn" class="focus-toggle-btn" title="Modo Leitura (Foco)">
                         <i class="fas fa-expand"></i>
                     </button>
@@ -75,7 +93,7 @@
                     <button class="tab active" onclick="switchTab('text')" role="tab" aria-selected="true"><i class="fas fa-align-left"></i> Resumo</button>
                     <button class="tab" onclick="switchTab('slides')" role="tab" aria-selected="false"><i class="fas fa-file-pdf"></i> Slides</button>
                     <button class="tab" onclick="switchTab('video')" role="tab" aria-selected="false"><i class="fas fa-play-circle"></i> Vídeos</button>
-                </div>
+                    </div>
 
                 <div class="content-wrapper">
                     <div id="tab-text" class="tab-panel active" role="tabpanel">
@@ -83,7 +101,27 @@
                             <div id="markdown-render" class="markdown-content">
                                 <p style="color: var(--text-muted);">Carregando resumo...</p>
                             </div>
-                            <nav id="toc" class="toc-container" aria-label="Índice do conteúdo"></nav>
+                            
+                            <div class="side-panel-wrapper">
+                                <nav id="toc" class="toc-container" aria-label="Índice do conteúdo">
+                                    <div class="toc-header-mobile">
+                                        <span>Nesta página</span>
+                                        <button id="toc-close-mobile" class="toc-close"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <div id="toc-content"></div>
+                                </nav>
+
+                                <div id="notes-panel" class="notes-panel" aria-label="Notas do tópico">
+                                    <div class="notes-header">
+                                        <span><i class="fas fa-sticky-note"></i> Minhas Notas</span>
+                                    </div>
+                                    <textarea id="notes-textarea" placeholder="Anote aqui pontos importantes..."></textarea>
+                                    <div class="notes-actions">
+                                        <button id="notes-clear" class="btn-small">Limpar</button>
+                                        <span id="notes-saved-indicator" class="notes-saved-indicator" aria-hidden="true">Salvo</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -2,6 +2,8 @@
 // VARIÁVEIS GLOBAIS DE ESTADO
 // ==============================================================
 let currentSemIndex = 0;
+let notesTimeout = null;
+let tocObserver = null;
 
 // ==============================================================
 // INICIALIZAÇÃO (BOOTSTRAP)
@@ -11,11 +13,17 @@ window.onload = () => {
     renderCalendar();
     renderSemesterNav();
     
-    // 2. Inicializar funcionalidades novas
-    initTheme();        // Tema Claro/Escuro
-    initHashRouting();  // Roteamento via URL (#)
-    handleMobileSidebar(); // Eventos do menu mobile
-    initFocusMode();    // Modo leitura
+    // 2. Inicializar funcionalidades
+    initTheme();        
+    initHashRouting();  
+    handleMobileSidebar(); 
+    initFocusMode();    
+    
+    // 3. Novas Features
+    initSidebarDesktopToggle();
+    initTOCToggle();
+    initSearch();
+    initNotes();
 };
 
 // ==============================================================
@@ -25,21 +33,19 @@ function renderCalendar() {
     const container = document.getElementById('calendar-container');
     if(!container) return;
 
-    container.innerHTML = ''; // Limpa antes de renderizar
+    container.innerHTML = ''; 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
     exams.forEach(exam => {
-        // Parse data brasileira
         const parts = exam.date.split('/');
         const examDate = new Date(parts[2], parts[1] - 1, parts[0]);
 
         const diffTime = examDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
-        if (diffDays < 0) return; // Já passou
+        if (diffDays < 0) return; 
 
-        // Definição de prioridade e cor (Requisito D)
         let priorityClass = 'priority-green';
         let color = 'var(--priority-green)';
         
@@ -52,7 +58,6 @@ function renderCalendar() {
             color = 'var(--priority-red)';
         }
 
-        // Glow effect e animação via classe
         container.innerHTML += `
             <div class="card ${priorityClass} animate-fade-up" tabindex="0">
                 <h3>${exam.name}</h3>
@@ -66,50 +71,38 @@ function renderCalendar() {
 // ==============================================================
 // B - NAVEGAÇÃO E ROTEAMENTO
 // ==============================================================
-
-// Inicializa o listener de Hash
 function initHashRouting() {
     window.addEventListener('hashchange', parseHash);
-    parseHash(); // Executa na carga inicial
+    parseHash(); 
 }
 
-// Interpreta a URL: #sem-0/mat-1/top-2
 function parseHash() {
-    const hash = location.hash.slice(1); // remove #
+    const hash = location.hash.slice(1); 
     
-    // Se vazio, carrega default (semestre 0) e dashboard
     if(!hash) {
         loadSemester(0);
-        showDashboard(false); // false = não mudar hash
+        showDashboard(false); 
         return;
     }
 
     const [semPart, matPart, topPart] = hash.split('/');
     
-    // Extrai índices usando Regex
     const semIdx = semPart?.match(/sem-(\d+)/)?.[1];
     const matIdx = matPart?.match(/mat-(\d+)/)?.[1];
     const topIdx = topPart?.match(/top-(\d+)/)?.[1];
 
     if (semIdx !== undefined) {
         const sIdx = parseInt(semIdx);
-        // Carrega semestre se mudou
         if (sIdx !== currentSemIndex || document.getElementById('disciplines-container').innerHTML === '') {
             loadSemester(sIdx);
         }
         
-        // Se tiver matéria, abre o acordeão
         if (matIdx !== undefined) {
             const mIdx = parseInt(matIdx);
-            setTimeout(() => { // Pequeno delay para garantir DOM
+            setTimeout(() => { 
                 expandDiscipline(mIdx);
-                
-                // Se tiver tópico, abre o conteúdo
                 if (topIdx !== undefined) {
                     openTopic(sIdx, mIdx, parseInt(topIdx), false);
-                } else {
-                    // Se só tem matéria na hash, talvez mostrar dashboard? 
-                    // Por padrão mantemos o estado atual.
                 }
             }, 50);
         } else {
@@ -120,7 +113,7 @@ function parseHash() {
 
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
-    nav.innerHTML = ''; // Limpa para evitar duplicatas
+    nav.innerHTML = ''; 
     db.forEach((sem, index) => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
@@ -128,19 +121,16 @@ function renderSemesterNav() {
         btn.innerText = sem.semester;
         btn.onclick = () => {
             location.hash = `#sem-${index}`;
-            // loadSemester chamado pelo hashchange
         };
         nav.appendChild(btn);
     });
 }
 
 function loadSemester(index) {
-    // Validação de índice
     if (index < 0 || index >= db.length) return;
     
     currentSemIndex = index;
     
-    // Atualiza UI visual do Semestre (Requisito C)
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active-semester', i === index);
     });
@@ -151,37 +141,30 @@ function loadSemester(index) {
     title.innerText = db[index].semester;
 
     db[index].subjects.forEach((sub, subIdx) => {
-        // Botão Matéria
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
         btn.id = `disc-btn-${subIdx}`;
         btn.innerHTML = `<span>${sub.name}</span> <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px"></i>`;
         
-        // Container Tópicos (Gaveta)
         const topicList = document.createElement('div');
         topicList.className = 'topic-submenu'; 
         topicList.id = `submenu-${subIdx}`; 
         
-        // Click na Matéria (Expandir/Recolher)
         btn.onclick = () => {
-            // Atualiza Hash se necessário ou apenas expande UI visual
-            // Opção: ao clicar na matéria, não muda hash do tópico, apenas expande visualmente
             expandDiscipline(subIdx);
         };
         
         sidebar.appendChild(btn);
 
-        // Tópicos
         if (sub.topics.length > 0) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.id = `topic-link-${subIdx}-${topicIdx}`;
                 link.innerText = topic.title;
-                link.href = "javascript:void(0)"; // Evita reload padrão
+                link.href = "javascript:void(0)"; 
                 link.onclick = (e) => {
                     e.preventDefault();
-                    // Atualiza Hash -> Dispara openTopic via listener
                     location.hash = `#sem-${index}/mat-${subIdx}/top-${topicIdx}`;
                 };
                 topicList.appendChild(link);
@@ -191,17 +174,18 @@ function loadSemester(index) {
         }
         sidebar.appendChild(topicList);
     });
+    
+    // Re-aplica estado do sidebar desktop ao trocar semestre
+    const isHidden = localStorage.getItem('sidebarHidden') === 'true';
+    if(isHidden) document.body.classList.add('sidebar-hidden');
 }
 
-// Função auxiliar para expandir visualmente a disciplina
 function expandDiscipline(subIdx) {
-    // Fecha outros
     document.querySelectorAll('.topic-submenu').forEach(el => {
         if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
     });
     document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active-discipline'));
     
-    // Abre atual
     const targetSubmenu = document.getElementById(`submenu-${subIdx}`);
     const targetBtn = document.getElementById(`disc-btn-${subIdx}`);
     
@@ -215,26 +199,26 @@ function expandDiscipline(subIdx) {
 async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     if (updateHash) {
         location.hash = `#sem-${semIdx}/mat-${subIdx}/top-${topIdx}`;
-        return; // Deixa o hashchange chamar de novo com false
+        return; 
     }
 
-    // UI Updates
     markActiveTopic(subIdx, topIdx);
     closeMobileSidebar();
 
     const data = db[semIdx]?.subjects[subIdx]?.topics[topIdx];
     if (!data) return;
 
-    // Troca visualização
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
     
-    // Breadcrumb e Título
     document.getElementById('breadcrumb').innerText = `${db[semIdx].semester}  /  ${db[semIdx].subjects[subIdx].name}`;
-    document.getElementById('topic-title').innerText = data.title;
-    
-    // Foco para acessibilidade (Requisito J/K)
-    document.getElementById('topic-title').focus();
+    const titleEl = document.getElementById('topic-title');
+    titleEl.innerText = data.title;
+    titleEl.setAttribute('tabindex', '-1');
+    titleEl.focus();
+
+    // Carregar Notas
+    loadNotes(semIdx, subIdx, topIdx);
 
     // 1. TEXTO (Markdown)
     const textArea = document.getElementById('markdown-render');
@@ -246,22 +230,20 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
             if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
             
-            // Parse Markdown
             textArea.innerHTML = marked.parse(text);
-            
-            // Gerar TOC após renderizar (Requisito F)
             generateTOC();
+            initTOCObserver(); // Liga observer após renderizar
             
         } catch (e) {
             textArea.innerHTML = `<p style="color: var(--priority-red)">⚠️ Arquivo não encontrado: <b>${data.file}</b>.</p>`;
-            document.getElementById('toc').innerHTML = '';
+            document.getElementById('toc-content').innerHTML = '';
         }
     } else {
         textArea.innerHTML = '<p style="opacity:0.5">Sem resumo cadastrado.</p>';
-        document.getElementById('toc').innerHTML = '';
+        document.getElementById('toc-content').innerHTML = '';
     }
 
-    // 2. SLIDES
+    // 2. SLIDES & 3. VÍDEOS (Mantido igual)
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
     if (data.slides && data.slides.length) {
@@ -276,12 +258,10 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         slideArea.innerHTML = '<p style="color:var(--text-muted)">Nenhum slide disponível.</p>';
     }
 
-    // 3. VÍDEOS
     const videoArea = document.getElementById('videos-container');
     videoArea.innerHTML = '';
     if (data.videos && data.videos.length) {
         data.videos.forEach(v => {
-            // Valida se tem URL e Título
             if(!v.url) return;
             videoArea.innerHTML += `
                 <div class="video-container">
@@ -295,11 +275,9 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         videoArea.innerHTML = '<p style="color:var(--text-muted)">Nenhum vídeo disponível.</p>';
     }
 
-    // Volta para aba texto por padrão
     switchTab('text');
 }
 
-// Marca visualmente o link do tópico ativo na sidebar
 function markActiveTopic(subIdx, topIdx) {
     document.querySelectorAll('.topic-link').forEach(l => l.classList.remove('active-topic'));
     const activeLink = document.getElementById(`topic-link-${subIdx}-${topIdx}`);
@@ -307,48 +285,206 @@ function markActiveTopic(subIdx, topIdx) {
 }
 
 // ==============================================================
-// F - GERADOR AUTOMÁTICO DE TOC
+// F - GERADOR AUTOMÁTICO DE TOC & OBSERVER
 // ==============================================================
 function generateTOC() {
+    const tocContent = document.getElementById('toc-content');
     const tocContainer = document.getElementById('toc');
     const content = document.getElementById('markdown-render');
     const headers = content.querySelectorAll('h1, h2, h3');
     
-    tocContainer.innerHTML = ''; // Limpa
+    tocContent.innerHTML = ''; 
     
-    if (headers.length < 2) { // Se tiver muito pouco conteúdo, esconde TOC
+    if (headers.length < 2) { 
         tocContainer.style.display = 'none';
         return;
     }
-    tocContainer.style.display = 'block';
-
-    const title = document.createElement('h4');
-    title.innerText = 'NESTA PÁGINA';
-    tocContainer.appendChild(title);
+    tocContainer.style.display = 'block'; // Garante visibilidade se escondido antes
 
     headers.forEach((header, index) => {
-        // Cria ID se não existir para ancoragem
-        if (!header.id) {
-            header.id = `heading-${index}`;
-        }
+        if (!header.id) header.id = `heading-${index}`;
 
         const link = document.createElement('a');
         link.innerText = header.innerText;
         link.href = `#${header.id}`;
         link.className = 'toc-link';
+        link.dataset.target = header.id; // Para o Observer
         if (header.tagName === 'H3') link.classList.add('sub-item');
 
         link.onclick = (e) => {
             e.preventDefault();
             document.getElementById(header.id).scrollIntoView({ behavior: 'smooth' });
+            // Se mobile, fecha overlay
+            if(window.innerWidth <= 1024) {
+                document.getElementById('toc').classList.remove('visible');
+            }
         };
+        tocContent.appendChild(link);
+    });
+}
 
-        tocContainer.appendChild(link);
+function initTOCObserver() {
+    if (tocObserver) tocObserver.disconnect();
+
+    const options = { root: null, rootMargin: '-100px 0px -60% 0px', threshold: 0 };
+    
+    tocObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                document.querySelectorAll('.toc-link').forEach(link => {
+                    link.classList.toggle('toc-link--active', link.dataset.target === id);
+                });
+            }
+        });
+    }, options);
+
+    document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3').forEach(h => {
+        tocObserver.observe(h);
+    });
+}
+
+function initTOCToggle() {
+    const btn = document.getElementById('toc-toggle-btn');
+    const toc = document.getElementById('toc');
+    const close = document.getElementById('toc-close-mobile');
+    
+    if(btn) {
+        btn.onclick = () => {
+            toc.classList.toggle('visible');
+        };
+    }
+    if(close) {
+        close.onclick = () => toc.classList.remove('visible');
+    }
+}
+
+// ==============================================================
+// SIDEBAR DESKTOP TOGGLE
+// ==============================================================
+function initSidebarDesktopToggle() {
+    const btn = document.getElementById('sidebar-toggle-desktop');
+    
+    // Recupera estado
+    if (localStorage.getItem('sidebarHidden') === 'true') {
+        document.body.classList.add('sidebar-hidden');
+    }
+
+    if (btn) {
+        btn.onclick = toggleSidebarDesktop;
+    }
+}
+
+function toggleSidebarDesktop() {
+    document.body.classList.toggle('sidebar-hidden');
+    const isHidden = document.body.classList.contains('sidebar-hidden');
+    localStorage.setItem('sidebarHidden', isHidden);
+}
+
+// ==============================================================
+// BUSCA GLOBAL SIMPLES
+// ==============================================================
+let searchIndex = [];
+
+function initSearch() {
+    const input = document.getElementById('global-search');
+    const resultsBox = document.getElementById('search-results');
+    
+    // Criar índice plano
+    db.forEach((sem, sIdx) => {
+        sem.subjects.forEach((mat, mIdx) => {
+            mat.topics.forEach((top, tIdx) => {
+                searchIndex.push({
+                    label: `${mat.name}: ${top.title}`,
+                    keywords: `${sem.semester} ${mat.name} ${top.title}`.toLowerCase(),
+                    hash: `#sem-${sIdx}/mat-${mIdx}/top-${tIdx}`
+                });
+            });
+        });
+    });
+
+    input.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        resultsBox.innerHTML = '';
+        
+        if(term.length < 2) {
+            resultsBox.style.display = 'none';
+            return;
+        }
+
+        const filtered = searchIndex.filter(item => item.keywords.includes(term));
+        
+        if(filtered.length > 0) {
+            resultsBox.style.display = 'block';
+            filtered.slice(0, 10).forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'search-item';
+                div.innerHTML = `<strong>${item.label.split(':')[1]}</strong><small>${item.label.split(':')[0]}</small>`;
+                div.onclick = () => {
+                    location.hash = item.hash;
+                    input.value = '';
+                    resultsBox.style.display = 'none';
+                };
+                resultsBox.appendChild(div);
+            });
+        } else {
+            resultsBox.style.display = 'none';
+        }
+    });
+
+    // Fechar ao clicar fora
+    document.addEventListener('click', (e) => {
+        if(!e.target.closest('.search-container')) {
+            resultsBox.style.display = 'none';
+        }
     });
 }
 
 // ==============================================================
-// UI UTILS (Abas, Dashboard, Mobile)
+// NOTAS PESSOAIS (LocalStorage)
+// ==============================================================
+let currentNoteKey = '';
+
+function initNotes() {
+    const txt = document.getElementById('notes-textarea');
+    const btnClear = document.getElementById('notes-clear');
+    
+    if(txt) {
+        txt.addEventListener('input', () => {
+            if(notesTimeout) clearTimeout(notesTimeout);
+            notesTimeout = setTimeout(saveNotes, 400); // Debounce 400ms
+        });
+    }
+    if(btnClear) {
+        btnClear.onclick = () => {
+            if(confirm('Apagar notas deste tópico?')) {
+                txt.value = '';
+                saveNotes();
+            }
+        };
+    }
+}
+
+function loadNotes(s, m, t) {
+    currentNoteKey = `notes::sem-${s}::mat-${m}::top-${t}`;
+    const saved = localStorage.getItem(currentNoteKey) || '';
+    const txt = document.getElementById('notes-textarea');
+    if(txt) txt.value = saved;
+    document.getElementById('notes-saved-indicator').classList.remove('visible');
+}
+
+function saveNotes() {
+    if(!currentNoteKey) return;
+    const txt = document.getElementById('notes-textarea');
+    localStorage.setItem(currentNoteKey, txt.value);
+    
+    const indicator = document.getElementById('notes-saved-indicator');
+    indicator.classList.add('visible');
+    setTimeout(() => indicator.classList.remove('visible'), 2000);
+}
+
+// ==============================================================
+// UI UTILS
 // ==============================================================
 function switchTab(name) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -360,7 +496,6 @@ function switchTab(name) {
     const panel = document.getElementById(`tab-${name}`);
     if(panel) panel.classList.add('active');
     
-    // Mapeamento de botões
     const tabIndex = name === 'text' ? 0 : name === 'slides' ? 1 : 2;
     const btn = document.querySelectorAll('.tab')[tabIndex];
     if(btn) {
@@ -370,18 +505,17 @@ function switchTab(name) {
 }
 
 function showDashboard(updateHash = true) {
-    if(updateHash) location.hash = `#sem-${currentSemIndex}`; // Volta para a raiz do semestre
+    if(updateHash) location.hash = `#sem-${currentSemIndex}`; 
     
     document.getElementById('dashboard-view').style.display = 'block';
     document.getElementById('content-view').classList.remove('active');
     
-    // Limpa seleção lateral
     document.querySelectorAll('.topic-link').forEach(l => l.classList.remove('active-topic'));
     closeMobileSidebar();
 }
 
 // ==============================================================
-// E - TEMA CLARO/ESCURO
+// TEMA CLARO/ESCURO
 // ==============================================================
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -398,7 +532,6 @@ function initTheme() {
         document.body.classList.toggle('light');
         const isLight = document.body.classList.contains('light');
         
-        // Troca Ícone
         if (isLight) {
             icon.classList.replace('fa-moon', 'fa-sun');
             localStorage.setItem('theme', 'light');
@@ -410,7 +543,7 @@ function initTheme() {
 }
 
 // ==============================================================
-// K - MENU MOBILE (Off-canvas)
+// MENU MOBILE
 // ==============================================================
 function handleMobileSidebar() {
     const btn = document.getElementById('mobile-menu-btn');
@@ -421,7 +554,7 @@ function handleMobileSidebar() {
     function open() {
         sidebar.classList.add('open');
         overlay.classList.add('visible');
-        document.body.style.overflow = 'hidden'; // Bloqueia scroll fundo
+        document.body.style.overflow = 'hidden'; 
     }
     
     function close() {
@@ -434,7 +567,6 @@ function handleMobileSidebar() {
     closeBtn.onclick = close;
     overlay.onclick = close;
     
-    // Fecha com ESC
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && sidebar.classList.contains('open')) close();
     });
@@ -450,13 +582,12 @@ function closeMobileSidebar() {
 }
 
 // ==============================================================
-// G - FOCUS MODE (Modo Leitura)
+// FOCUS MODE
 // ==============================================================
 function initFocusMode() {
     const btn = document.getElementById('focus-mode-btn');
     const icon = btn.querySelector('i');
     
-    // Check session persistence
     if(sessionStorage.getItem('focusMode') === 'on') {
         document.body.classList.add('focus-mode');
         icon.classList.replace('fa-expand', 'fa-compress');
