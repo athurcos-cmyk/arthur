@@ -207,14 +207,13 @@ function renderSemesterNav() {
     });
 }
 
-// Carrega a lista de disciplinas na barra lateral esquerda
+// Carrega a lista de disciplinas na barra lateral
 function loadSemester(index) {
-    // Validação de segurança
     if (index < 0 || index >= db.length) return;
     
     currentSemIndex = index;
     
-    // Atualiza visualmente qual botão de semestre está "ativo"
+    // Atualiza estilo do botão ativo no topo
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active-semester', i === index);
     });
@@ -223,37 +222,38 @@ function loadSemester(index) {
     const title = document.getElementById('sidebar-title');
     
     sidebar.innerHTML = ''; // Limpa sidebar antiga
-    title.innerText = db[index].semester; // Atualiza título da sidebar
+    title.innerText = db[index].semester; // Atualiza título
 
-    // Gera os botões das matérias (Acordeões)
+    // Gera os botões das matérias
     db[index].subjects.forEach((sub, subIdx) => {
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
         btn.id = `disc-btn-${subIdx}`;
-        // Adiciona ícone de seta para baixo
         btn.innerHTML = `<span>${sub.name}</span> <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px"></i>`;
         
-        // Cria o container (div) que vai guardar os tópicos (inicialmente oculto)
+        // Cria o container oculto para os tópicos
         const topicList = document.createElement('div');
         topicList.className = 'topic-submenu'; 
         topicList.id = `submenu-${subIdx}`; 
         
-        // Ao clicar no botão da matéria, chama a função de expandir
-        // Aqui não passamos 'true', então ele vai funcionar como Toggle (Abrir/Fechar)
         btn.onclick = () => {
             expandDiscipline(subIdx);
         };
         
         sidebar.appendChild(btn);
 
-        // Se a matéria tiver tópicos, cria os links
+        // Gera os links dos tópicos dentro do submenu
         if (sub.topics.length > 0) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.id = `topic-link-${subIdx}-${topicIdx}`;
                 link.innerText = topic.title;
-                link.href = `#sem-${index}/mat-${subIdx}/top-${topicIdx}`;
+                
+                // --- CORREÇÃO AQUI (Linha que estava errada) ---
+                // Agora aponta para o endereço real, permitindo abrir em nova aba
+                link.href = `#sem-${index}/mat-${subIdx}/top-${topicIdx}`; 
+                // -----------------------------------------------
                 
                 link.onclick = (e) => {
                     e.preventDefault();
@@ -263,13 +263,13 @@ function loadSemester(index) {
                 topicList.appendChild(link);
             });
         } else {
-            // Se não tiver tópicos, mostra mensagem "Em breve"
+                        // Se não tiver tópicos, mostra mensagem "Em breve"
             topicList.innerHTML = '<div style="padding:10px 24px; font-size:0.85em; color:var(--text-muted)">Em breve...</div>';
         }
         sidebar.appendChild(topicList);
     });
     
-    // Verifica se o usuário tinha fechado a sidebar no Desktop e restaura o estado
+    // Restaura preferência de sidebar oculta se existir
     const isHidden = localStorage.getItem('sidebarHidden') === 'true';
     if(isHidden) document.body.classList.add('sidebar-hidden');
 }
