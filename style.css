@@ -41,8 +41,8 @@
 /* TEMA CLARO - PAPER / BEIGE AESTHETIC (Atualizado) */
 body.light {
     /* Fundos: Tons de creme e papel */
-    --bg-page: #fafad2;          /* Bege suave (Linho) */
-    --bg-sidebar: #ffffcd;       /* Um tom levemente mais escuro */
+    --bg-page: #F5F2EB;          /* Bege suave (Linho) */
+    --bg-sidebar: #EBE7DE;       /* Um tom levemente mais escuro */
     --bg-card: #FFFFFF;          
     --bg-card-hover: #FAF9F6;    
     --bg-nav-glass: rgba(245, 242, 235, 0.85);
