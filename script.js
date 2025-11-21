@@ -58,12 +58,16 @@ function renderCalendar() {
         
         if (diffDays < 0) return; // Já passou
 
-        let color = 'var(--accent)';
+        let color = 'var(--accent)'; // Verde (Padrão do tema)
         let statusText = "dias restantes";
         
-        if (diffDays === 0) { statusText = "É HOJE!"; color = "#ff5555"; }
-        else if (diffDays < 5) color = "#ff9800"; 
-
+        if (diffDays < 10) color = '#ff9800'; // Amarelo/Laranja (Atenção)
+        if (diffDays < 6)  color = '#ff5555'; // Vermelho (Urgente)
+        
+        if (diffDays === 0) {
+            statusText = "É HOJE!";
+            color = "#ff5555"; 
+        }
         container.innerHTML += `
             <div class="card">
                 <h3 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:10px;">${exam.name}</h3>
