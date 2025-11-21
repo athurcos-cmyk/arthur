@@ -3,10 +3,43 @@ let currentSemIndex = 0;
 
 // Inicialização
 window.onload = () => {
+    loadTheme(); // Carrega o tema salvo (Escuro ou Claro)
     renderCalendar();
     renderSemesterNav();
     loadSemester(0);
 };
+
+// --- LÓGICA DE TEMA (NOVO!) ---
+function loadTheme() {
+    const savedTheme = localStorage.getItem('siteTheme');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        updateThemeIcon(true);
+    }
+}
+
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    
+    if (current === 'light') {
+        html.removeAttribute('data-theme'); // Volta pro escuro
+        localStorage.setItem('siteTheme', 'dark');
+        updateThemeIcon(false);
+    } else {
+        html.setAttribute('data-theme', 'light'); // Vai pro claro
+        localStorage.setItem('siteTheme', 'light');
+        updateThemeIcon(true);
+    }
+}
+
+function updateThemeIcon(isLight) {
+    const icon = document.querySelector('#theme-toggle i');
+    if(icon) {
+        // Se for claro mostra Lua, se for escuro mostra Sol
+        icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
+    }
+}
 
 // --- LÓGICA DO CALENDÁRIO ---
 function renderCalendar() {
@@ -14,25 +47,31 @@ function renderCalendar() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
+    // Limpa antes de renderizar
+    container.innerHTML = '';
+
     exams.forEach(exam => {
-        // Converte data brasileira (dd/mm/yyyy)
         const parts = exam.date.split('/');
         const examDate = new Date(parts[2], parts[1] - 1, parts[0]);
-
         const diffTime = examDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
-        if (diffDays < 0) return;
+        if (diffDays < 0) return; // Já passou
 
-        let color = '#4caf50'; // Verde
-        if (diffDays < 10) color = '#ff9800'; // Laranja
-        if (diffDays < 6) color = '#d32f2f';  // Vermelho
+        let color = 'var(--accent)';
+        let statusText = "dias restantes";
+        
+        if (diffDays === 0) { statusText = "É HOJE!"; color = "#ff5555"; }
+        else if (diffDays < 5) color = "#ff9800"; 
 
         container.innerHTML += `
             <div class="card">
-                <h3 style="color:white">${exam.name}</h3>
-                <div style="font-size:2em; color:${color}; margin:10px 0; font-weight:bold">${diffDays}</div>
-                <small>${examDate.toLocaleDateString('pt-BR')}</small>
+                <h3 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:10px;">${exam.name}</h3>
+                <div style="font-size:2.5rem; color:${color}; font-weight:700; line-height:1">${diffDays}</div>
+                <small style="color:var(--text-muted)">${statusText}</small>
+                <div style="margin-top:15px; font-size:0.85rem; color:var(--text-main); border-top:1px solid var(--divider); padding-top:10px;">
+                    <i class="far fa-calendar-alt"></i> ${examDate.toLocaleDateString('pt-BR')}
+                </div>
             </div>
         `;
     });
@@ -41,6 +80,8 @@ function renderCalendar() {
 // --- LÓGICA DE NAVEGAÇÃO ---
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
+    nav.innerHTML = ''; // Limpa
+    
     db.forEach((sem, index) => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
@@ -52,6 +93,8 @@ function renderSemesterNav() {
 
 function loadSemester(index) {
     currentSemIndex = index;
+    
+    // Atualiza botões do topo
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
     });
@@ -64,14 +107,14 @@ function loadSemester(index) {
     db[index].subjects.forEach((sub, subIdx) => {
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
-        btn.innerHTML = `<b>${sub.name}</b>`;
+        btn.innerHTML = `${sub.name} <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px; opacity:0.5"></i>`;
         
-        // Gaveta de tópicos
         const topicList = document.createElement('div');
         topicList.className = 'topic-submenu'; 
         topicList.id = `submenu-${subIdx}`; 
         
         btn.onclick = () => {
+            // Fecha os outros
             document.querySelectorAll('.topic-submenu').forEach(el => {
                 if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
             });
@@ -88,22 +131,22 @@ function loadSemester(index) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
-                link.innerHTML = `${topic.title}`;
-                // NOVO TRECHO ATUALIZADO
+                link.innerHTML = `<i class="fas fa-circle" style="font-size:0.4em; margin-right:10px; opacity:0.6"></i> ${topic.title}`;
+                
+                // Lógica de Clique + Destaque
                 link.onclick = () => {
-                // 1. Remove o destaque de TODOS os outros tópicos
-                document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
-    
-                // 2. Adiciona o destaque SÓ nesse que foi clicado
-                link.classList.add('active');
-
-                // 3. Carrega o conteúdo normal
-                openTopic(index, subIdx, topicIdx);
+                    document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
+                    link.classList.add('active');
+                    openTopic(index, subIdx, topicIdx);
+                    
+                    // Fecha menu no celular ao clicar
+                    if(window.innerWidth <= 768) toggleSidebar();
                 };
+                
                 topicList.appendChild(link);
             });
         } else {
-            topicList.innerHTML = '<div style="padding:10px 20px; font-size:0.8em; color:#555">Em breve...</div>';
+            topicList.innerHTML = '<div style="padding:15px 25px; font-size:0.85em; color:var(--text-muted); font-style:italic">Conteúdo em breve...</div>';
         }
         sidebar.appendChild(topicList);
     });
@@ -111,21 +154,23 @@ function loadSemester(index) {
 
 // --- CARREGAR CONTEÚDO ---
 async function openTopic(semIdx, subIdx, topIdx) {
-    // 1. FECHA O MENU NO CELULAR (Se estiver aberto)
-    const sidebar = document.querySelector('.sidebar-disciplines');
-    if (sidebar) sidebar.classList.remove('open');
-
-    // 2. CARREGA OS DADOS
     const data = db[semIdx].subjects[subIdx].topics[topIdx];
     
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
-    document.getElementById('breadcrumb').innerText = `${db[semIdx].semester} > ${db[semIdx].subjects[subIdx].name}`;
+    
+    // Breadcrumb chique
+    document.getElementById('breadcrumb').innerHTML = `
+        <span style="opacity:0.6">${db[semIdx].subjects[subIdx].name}</span> 
+        <i class="fas fa-chevron-right" style="font-size:0.7em; margin:0 5px"></i> 
+        <span>${data.title}</span>
+    `;
+    
     document.getElementById('topic-title').innerText = data.title;
 
     // Texto
     const textArea = document.getElementById('markdown-render');
-    textArea.innerHTML = '<p>Carregando...</p>';
+    textArea.innerHTML = '<div style="padding:40px; text-align:center; color:var(--text-muted)"><i class="fas fa-spinner fa-spin fa-2x"></i><br><br>Carregando resumo...</div>';
     
     if (data.file) {
         try {
@@ -134,7 +179,7 @@ async function openTopic(semIdx, subIdx, topIdx) {
             const text = await response.text();
             textArea.innerHTML = marked.parse(text);
         } catch (e) {
-            textArea.innerHTML = `<p style="color: #ff5555">⚠️ Não achei: <b>${data.file}</b>.</p>`;
+            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Arquivo não encontrado: <b>${data.file}</b></div>`;
         }
     } else {
         textArea.innerHTML = '<p style="opacity:0.5">Sem resumo cadastrado.</p>';
@@ -147,27 +192,32 @@ async function openTopic(semIdx, subIdx, topIdx) {
         data.slides.forEach(s => {
             slideArea.innerHTML += `
                 <a href="${s.url}" target="_blank" class="slide-link">
-                    <i class="fas fa-file-pdf fa-2x"></i>
-                    <div><strong>${s.title}</strong><br><small>Abrir</small></div>
+                    <div style="background:#f40f02; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:8px; color:white">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <strong style="display:block; color:var(--text-main)">${s.title}</strong>
+                        <small style="color:var(--text-muted)">Clique para abrir</small>
+                    </div>
+                    <i class="fas fa-external-link-alt" style="margin-left:auto; opacity:0.5"></i>
                 </a>`;
         });
     }
 
     // Videos
-const videoArea = document.getElementById('videos-container');
-videoArea.innerHTML = '';
-if (data.videos) {
-    data.videos.forEach(v => {
-        videoArea.innerHTML += `
-            <div class="video-container">
-                <p class="video-titulo">${v.title}</p>
-                
-                <div class="video-wrapper">
-                    <iframe src="${v.url}" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>`;
-    });
-}
+    const videoArea = document.getElementById('videos-container');
+    videoArea.innerHTML = '';
+    if (data.videos) {
+        data.videos.forEach(v => {
+            videoArea.innerHTML += `
+                <div class="video-container">
+                    <p class="video-titulo"><i class="fas fa-play-circle"></i> ${v.title}</p>
+                    <div class="video-wrapper">
+                        <iframe src="${v.url}" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>`;
+        });
+    }
     switchTab('text');
 }
 
@@ -187,9 +237,7 @@ function showDashboard() {
     document.getElementById('content-view').classList.remove('active');
 }
 
-// --- FUNÇÃO DO MENU MOBILE ---
 function toggleSidebar() {
-    const sidebar = document.getElementById('disciplines-container').parentElement;
+    const sidebar = document.querySelector('.sidebar-disciplines');
     sidebar.classList.toggle('open');
 }
-
