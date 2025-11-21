@@ -19,7 +19,7 @@
 
 ### Articulações Fibrosas <br>
 
-* Tecido fibroso interposto entre as superfícies [consultar aqui](https://anatomiaefisioterapia.com/20-classificacao-das-articulacoes/). que se articulam, tem baixa mobilidade. <br>
+* Tecido fibroso interposto entre as superfícies que se articulam, tem baixa mobilidade. <br>
 * **Suturas** — apenas em ossos do crânio.
     * Ex.: sutura palatina mediana <br>
     * Ex.: sutura sagital / sutura coronal <br>
