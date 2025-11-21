@@ -25,7 +25,7 @@
     --priority-red: #ef4444;
     
     /* Dimensões e Efeitos */
-    --radius: 10px; /* Ajustado para 10px conforme pedido */
+    --radius: 10px; 
     --radius-sm: 6px;
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
     --shadow-glow: 0 0 15px rgba(0,0,0,0.3);
@@ -34,7 +34,7 @@
     --accent-light: #27272a; /* Usado no TOC dark */
 }
 
-/* TEMA CLARO - LIGHT COMFORT (Novo) */
+/* TEMA CLARO - LIGHT COMFORT */
 body.light {
     --bg-page: #f6f1e7;          /* fundo bege suave */
     --bg-sidebar: #f1ebe1;
@@ -91,6 +91,7 @@ body {
     padding: 0 24px;
     flex-shrink: 0;
     z-index: 50;
+    transition: height 0.3s ease; /* Animação suave se altura mudar */
 }
 
 .nav-left, .nav-right { display: flex; align-items: center; gap: 16px; }
@@ -385,7 +386,7 @@ body.sidebar-hidden .sidebar-disciplines {
 }
 .focus-toggle-btn:hover { color: var(--text-main); border-color: var(--text-main); }
 
-.content-wrapper { display: block; position: relative; } /* Layout wrapper */
+.content-wrapper { display: block; position: relative; } 
 
 /* Layout Leitura */
 .reading-layout {
@@ -395,25 +396,25 @@ body.sidebar-hidden .sidebar-disciplines {
     align-items: start;
 }
 
-/* Markdown Content - CORREÇÕES OBRIGATÓRIAS */
+/* Markdown Content - CORREÇÕES */
 .markdown-content { 
     min-width: 0; 
     line-height: 1.8; 
     font-size: 1.05rem; 
     color: var(--text-main); 
     opacity: 0;
-    animation: fadeSimply 180ms ease-in forwards; /* Animação suave */
+    animation: fadeSimply 180ms ease-in forwards; 
 }
 
 .markdown-content h1, .markdown-content h2, .markdown-content h3 { 
     color: var(--text-main); 
     font-weight: 600; 
-    margin-top: 2rem; /* Espaçamento natural */
+    margin-top: 2rem; 
     margin-bottom: 1rem;
 }
 .markdown-content h2 { border-bottom: 1px solid var(--divider); padding-bottom: 10px; }
 
-/* Espaçamento natural P e Listas - SEM <br> */
+/* Espaçamento natural P e Listas */
 .markdown-content p { margin: 0 0 1.2rem 0; }
 .markdown-content ul, .markdown-content ol { margin: 1rem 0; padding-left: 1.5rem; }
 .markdown-content li { margin-bottom: 0.4rem; }
@@ -429,7 +430,7 @@ body.sidebar-hidden .sidebar-disciplines {
 }
 .markdown-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 30px 0; border: 1px solid var(--divider); }
 
-/* Wrapper da Coluna Direita (TOC + Notas) */
+/* Wrapper da Coluna Direita */
 .side-panel-wrapper {
     display: flex;
     flex-direction: column;
@@ -438,7 +439,7 @@ body.sidebar-hidden .sidebar-disciplines {
     top: 20px;
 }
 
-/* TOC (Table of Contents) - DESKTOP & MOBILE */
+/* TOC (Table of Contents) */
 .toc-container {
     padding: 16px;
     border-left: 2px solid var(--divider);
@@ -469,13 +470,13 @@ body.sidebar-hidden .sidebar-disciplines {
 .toc-close { background: none; border: none; color: var(--text-main); font-size: 1.2rem; cursor: pointer; }
 
 .toc-toggle-btn {
-    display: none; /* Default hidden desktop */
+    display: none; 
     background: var(--bg-card); border: 1px solid var(--divider);
     color: var(--text-main); padding: 6px 10px; border-radius: var(--radius-sm);
     cursor: pointer;
 }
 
-.toc-container h4 { display: none; } /* Oculta titulo antigo se existir */
+.toc-container h4 { display: none; } 
 .toc-link { 
     display: block; font-size: 0.85rem; color: var(--text-muted); 
     text-decoration: none; margin-bottom: 8px; padding: 4px 0;
@@ -484,13 +485,12 @@ body.sidebar-hidden .sidebar-disciplines {
 .toc-link:hover { color: var(--text-main); }
 .toc-link.sub-item { margin-left: 12px; font-size: 0.8rem; }
 
-/* Active state TOC */
 .toc-link--active {
     color: var(--text-accent) !important;
     font-weight: 600;
     border-left: 2px solid var(--text-accent);
     padding-left: 8px;
-    margin-left: -10px; /* Compensate border */
+    margin-left: -10px; 
 }
 
 /* NOTAS PANEL */
@@ -550,40 +550,57 @@ body.sidebar-hidden .sidebar-disciplines {
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 /* ==========================================================================
-   MODO FOCO (Focus Mode)
+   MODO FOCO
    ========================================================================== */
-body.focus-mode .sidebar-disciplines { display: none !important; } /* Força hide */
+body.focus-mode .sidebar-disciplines { display: none !important; } 
 body.focus-mode .navbar { display: none; }
 body.focus-mode .container { max-width: 900px; margin: 0 auto; }
 body.focus-mode .main-view { padding-top: 60px; }
 body.focus-mode .focus-toggle-btn { position: fixed; top: 20px; right: 20px; z-index: 100; background: var(--bg-page); }
-/* Esconde coluna lateral no foco (TOC e Notas) se quiser foco total, mas TOC desktop é útil. */
-/* Opção: Manter TOC desktop no focus mode, mas ajustar grid */
 body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
 
 /* ==========================================================================
    📱 MOBILE
    ========================================================================== */
 @media (max-width: 1024px) {
-    .toc-container { display: none; } /* Esconde versão desktop */
+    .toc-container { display: none; } 
     .toc-toggle-btn { display: inline-block; }
-    .side-panel-wrapper { display: none; } /* Painel lateral vira overlay ou bottom */
+    .side-panel-wrapper { display: none; } 
     .notes-panel { margin-top: 40px; border-top: 1px solid var(--divider); padding-top: 20px; }
     .reading-layout { display: block; }
     
-    /* Re-exibir notas abaixo do texto em mobile */
+    /* Re-exibir notas abaixo do texto */
     .side-panel-wrapper { display: block; position: static; margin-top: 30px; }
-    /* Mas esconder TOC da wrapper pois é overlay */
     .side-panel-wrapper .toc-container { display: none; }
-    .side-panel-wrapper .toc-container.visible { display: block; } /* Overlay logic */
+    .side-panel-wrapper .toc-container.visible { display: block; } 
 }
 
+/* CORREÇÃO PARA CELULARES PEQUENOS */
 @media (max-width: 768px) {
     #mobile-menu-btn { display: block; }
     #sidebar-toggle-desktop { display: none; }
-    .search-container { display: none; } /* Simplificação Mobile: esconde busca ou move para menu */
+
+    /* Ajuste Navbar: Permitir quebra para mostrar busca */
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
     
-    .nav-right { gap: 10px; }
+    /* Busca aparece abaixo dos botões */
+    .search-container {
+        display: block; /* Garante visibilidade */
+        order: 3; /* Força ir para a próxima linha */
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+    
     .logo-text { display: none; }
     
     .sidebar-disciplines {
