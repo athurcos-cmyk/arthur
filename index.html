@@ -5,68 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enfermagem - Painel de Estudos</title>
     
-    <!-- Ícones e Fonte -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Nossos Arquivos de Estilo e Lógica -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Bibliotecas Externas -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR (Navegação dos Semestres) -->
-   <header class="navbar">
-    <button id="mobile-menu-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="logo" onclick="showDashboard()">
-        <i class="fas fa-heartbeat fa-2x"></i>
-        <div>
-            <span>ENFERMAGEM</span><br>
-            <small>ESTUDOS</small>
+    <header class="navbar">
+        <button id="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="logo" onclick="showDashboard()">
+            <i class="fas fa-heartbeat fa-2x"></i>
+            <div>
+                <span>ENFERMAGEM</span><br>
+                <small>ESTUDOS</small>
+            </div>
         </div>
-    </div>
+
+        <button id="theme-toggle" onclick="toggleTheme()" title="Mudar Tema">
+            <i class="fas fa-sun"></i>
+        </button>
+
         <nav class="semester-nav" id="semester-nav"></nav>
     </header>
 
     <div class="container">
         
-        <!-- MENU LATERAL (Disciplinas) -->
         <aside class="sidebar-disciplines" id="sidebar-disciplines">
             <div class="sidebar-header" id="sidebar-title">Semestre</div>
             <div id="disciplines-container"></div>
         </aside>
 
-        <!-- ÁREA PRINCIPAL -->
         <main class="main-view">
             
-            <!-- TELA 1: Dashboard (Calendário) -->
             <div id="dashboard-view">
                 <h2>Próximas Provas</h2>
                 <div class="dashboard-grid" id="calendar-container"></div>
             </div>
 
-            <!-- TELA 2: Conteúdo da Matéria -->
             <div id="content-view" class="content-area">
                 <div class="content-header">
                     <div class="breadcrumb" id="breadcrumb"></div>
                     <h1 id="topic-title"></h1>
                 </div>
 
-                <!-- Botões das Abas -->
                 <div class="tabs-container">
                     <button class="tab active" onclick="switchTab('text')"><i class="fas fa-align-left"></i> Resumo</button>
                     <button class="tab" onclick="switchTab('slides')"><i class="fas fa-file-pdf"></i> Slides</button>
                     <button class="tab" onclick="switchTab('video')"><i class="fas fa-play-circle"></i> Vídeos</button>
                 </div>
 
-                <!-- ONDE O CONTEÚDO APARECE -->
                 <div id="tab-text" class="tab-panel active">
                     <div id="markdown-render" class="markdown-content">
-                        <!-- O texto do arquivo .md vai ser injetado AQUI -->
                         <p style="color: #666;">Carregando resumo...</p>
                     </div>
                 </div>
@@ -76,15 +70,13 @@
                 </div>
 
                 <div id="tab-video" class="tab-panel">
-                    <div id="videos-container" class="video-grid"></div>
+                    <div id="videos-container"></div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- Scripts (Ordem importa!) -->
-    <!-- Primeiro os dados, depois a lógica -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

@@ -3,13 +3,13 @@ let currentSemIndex = 0;
 
 // Inicialização
 window.onload = () => {
-    loadTheme(); // Carrega o tema salvo (Escuro ou Claro)
+    loadTheme(); // Carrega o tema salvo
     renderCalendar();
     renderSemesterNav();
     loadSemester(0);
 };
 
-// --- LÓGICA DE TEMA (NOVO!) ---
+// --- LÓGICA DE TEMA ---
 function loadTheme() {
     const savedTheme = localStorage.getItem('siteTheme');
     if (savedTheme === 'light') {
@@ -36,7 +36,6 @@ function toggleTheme() {
 function updateThemeIcon(isLight) {
     const icon = document.querySelector('#theme-toggle i');
     if(icon) {
-        // Se for claro mostra Lua, se for escuro mostra Sol
         icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
     }
 }
@@ -47,7 +46,6 @@ function renderCalendar() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    // Limpa antes de renderizar
     container.innerHTML = '';
 
     exams.forEach(exam => {
@@ -56,31 +54,28 @@ function renderCalendar() {
         const diffTime = examDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
-        if (diffDays < 0) return; // Já passou
+        if (diffDays < 0) return;
 
         // Padrão (Verde)
         let color = 'var(--accent)';
         let statusText = "dias restantes";
-        let cardClass = ""; // Sem classe extra (usa o verde padrão do CSS)
+        let cardClass = ""; 
 
-        // Lógica das Cores e Classes
+        // Lógica das Cores
         if (diffDays < 10) {
-            color = '#ff9800'; // Laranja
-            cardClass = "atencao"; // Nome da classe pro CSS
+            color = '#ff9800'; 
+            cardClass = "atencao";
         }
-        
         if (diffDays < 6) {
-            color = '#ff5555'; // Vermelho
+            color = '#ff5555'; 
             cardClass = "perigo";
         }
-        
         if (diffDays === 0) {
             statusText = "É HOJE!";
             color = "#ff5555";
             cardClass = "perigo";
         }
 
-        // AQUI É O TRUQUE: Adicionamos a variável ${cardClass} dentro da class="card ..."
         container.innerHTML += `
             <div class="card ${cardClass}">
                 <h3 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:10px;">${exam.name}</h3>
@@ -97,7 +92,7 @@ function renderCalendar() {
 // --- LÓGICA DE NAVEGAÇÃO ---
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
-    nav.innerHTML = ''; // Limpa
+    nav.innerHTML = '';
     
     db.forEach((sem, index) => {
         const btn = document.createElement('button');
@@ -111,7 +106,6 @@ function renderSemesterNav() {
 function loadSemester(index) {
     currentSemIndex = index;
     
-    // Atualiza botões do topo
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
     });
@@ -131,7 +125,6 @@ function loadSemester(index) {
         topicList.id = `submenu-${subIdx}`; 
         
         btn.onclick = () => {
-            // Fecha os outros
             document.querySelectorAll('.topic-submenu').forEach(el => {
                 if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
             });
@@ -143,20 +136,16 @@ function loadSemester(index) {
         
         sidebar.appendChild(btn);
 
-        // Tópicos
         if (sub.topics.length > 0) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.innerHTML = `<i class="fas fa-circle" style="font-size:0.4em; margin-right:10px; opacity:0.6"></i> ${topic.title}`;
                 
-                // Lógica de Clique + Destaque
                 link.onclick = () => {
                     document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
                     link.classList.add('active');
                     openTopic(index, subIdx, topicIdx);
-                    
-                    // Fecha menu no celular ao clicar
                     if(window.innerWidth <= 768) toggleSidebar();
                 };
                 
@@ -176,7 +165,6 @@ async function openTopic(semIdx, subIdx, topIdx) {
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
     
-    // Breadcrumb chique
     document.getElementById('breadcrumb').innerHTML = `
         <span style="opacity:0.6">${db[semIdx].subjects[subIdx].name}</span> 
         <i class="fas fa-chevron-right" style="font-size:0.7em; margin:0 5px"></i> 
@@ -185,7 +173,7 @@ async function openTopic(semIdx, subIdx, topIdx) {
     
     document.getElementById('topic-title').innerText = data.title;
 
-    // Texto
+    // Texto (Markdown)
     const textArea = document.getElementById('markdown-render');
     textArea.innerHTML = '<div style="padding:40px; text-align:center; color:var(--text-muted)"><i class="fas fa-spinner fa-spin fa-2x"></i><br><br>Carregando resumo...</div>';
     
@@ -194,9 +182,11 @@ async function openTopic(semIdx, subIdx, topIdx) {
             const response = await fetch(data.file);
             if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
+            // Se der erro aqui, é porque a biblioteca 'marked' não carregou no HTML
             textArea.innerHTML = marked.parse(text);
         } catch (e) {
-            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Arquivo não encontrado: <b>${data.file}</b></div>`;
+            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Arquivo não encontrado ou erro: <b>${data.file}</b></div>`;
+            console.error(e);
         }
     } else {
         textArea.innerHTML = '<p style="opacity:0.5">Sem resumo cadastrado.</p>';
