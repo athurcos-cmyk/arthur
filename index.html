@@ -5,87 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enfermagem - Painel de Estudos</title>
     
-    <!-- Ícones e Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Nossos Arquivos de Estilo e Lógica -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Bibliotecas Externas -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR (Navegação dos Semestres) -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <header class="navbar">
-        <!-- BOTÃO MENU MOBILE (Para celular) -->
-        <button id="mobile-menu-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <div class="logo" onclick="showDashboard()">
-            <i class="fas fa-heartbeat fa-2x"></i>
-            <div>
-                <span>ENFERMAGEM</span><br>
-                <small>ESTUDOS</small>
+        <div class="nav-left">
+            <button id="mobile-menu-btn" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="logo" onclick="showDashboard()" role="button" tabindex="0">
+                <i class="fas fa-heartbeat fa-2x"></i>
+                <div class="logo-text">
+                    <span>ENFERMAGEM</span>
+                    <small>ESTUDOS</small>
+                </div>
             </div>
         </div>
-        <nav class="semester-nav" id="semester-nav"></nav>
+
+        <div class="nav-right">
+            <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </header>
+
+    <nav id="semester-nav" class="semester-nav centered" aria-label="Navegação de semestres"></nav>
 
     <div class="container">
         
-        <!-- MENU LATERAL (Disciplinas) -->
-        <aside class="sidebar-disciplines" id="sidebar-disciplines">
-            <div class="sidebar-header" id="sidebar-title">Semestre</div>
+        <aside class="sidebar-disciplines" id="sidebar-disciplines" aria-label="Menu de disciplinas">
+            <div class="sidebar-header">
+                <span id="sidebar-title">Semestre</span>
+                <button id="close-sidebar-mobile" class="close-btn-mobile"><i class="fas fa-times"></i></button>
+            </div>
             <div id="disciplines-container"></div>
         </aside>
 
-        <!-- ÁREA PRINCIPAL -->
-        <main class="main-view">
+        <main class="main-view" id="main-content">
             
-            <!-- TELA 1: Dashboard (Calendário) -->
-            <div id="dashboard-view">
-                <h2>Próximas Provas</h2>
+            <div id="dashboard-view" class="animate-fade-up">
+                <h2 class="section-title">Próximas Provas</h2>
                 <div class="dashboard-grid" id="calendar-container"></div>
             </div>
 
-            <!-- TELA 2: Conteúdo da Matéria -->
             <div id="content-view" class="content-area">
-                <div class="content-header">
+                
+                <div class="content-toolbar">
                     <div class="breadcrumb" id="breadcrumb"></div>
-                    <h1 id="topic-title"></h1>
+                    <button id="focus-mode-btn" class="focus-toggle-btn" title="Modo Leitura (Foco)">
+                        <i class="fas fa-expand"></i>
+                    </button>
                 </div>
 
-                <!-- Botões das Abas -->
-                <div class="tabs-container">
-                    <button class="tab active" onclick="switchTab('text')"><i class="fas fa-align-left"></i> Resumo</button>
-                    <button class="tab" onclick="switchTab('slides')"><i class="fas fa-file-pdf"></i> Slides</button>
-                    <button class="tab" onclick="switchTab('video')"><i class="fas fa-play-circle"></i> Vídeos</button>
+                <h1 id="topic-title"></h1>
+
+                <div class="tabs-container" role="tablist">
+                    <button class="tab active" onclick="switchTab('text')" role="tab" aria-selected="true"><i class="fas fa-align-left"></i> Resumo</button>
+                    <button class="tab" onclick="switchTab('slides')" role="tab" aria-selected="false"><i class="fas fa-file-pdf"></i> Slides</button>
+                    <button class="tab" onclick="switchTab('video')" role="tab" aria-selected="false"><i class="fas fa-play-circle"></i> Vídeos</button>
                 </div>
 
-                <!-- ONDE O CONTEÚDO APARECE -->
-                <div id="tab-text" class="tab-panel active">
-                    <div id="markdown-render" class="markdown-content">
-                        <!-- O texto do arquivo .md vai ser injetado AQUI -->
-                        <p style="color: #666;">Carregando resumo...</p>
+                <div class="content-wrapper">
+                    <div id="tab-text" class="tab-panel active" role="tabpanel">
+                        <div class="reading-layout">
+                            <div id="markdown-render" class="markdown-content">
+                                <p style="color: var(--text-muted);">Carregando resumo...</p>
+                            </div>
+                            <nav id="toc" class="toc-container" aria-label="Índice do conteúdo"></nav>
+                        </div>
                     </div>
-                </div>
 
-                <div id="tab-slides" class="tab-panel">
-                    <div id="slides-container"></div>
-                </div>
+                    <div id="tab-slides" class="tab-panel" role="tabpanel">
+                        <div id="slides-container"></div>
+                    </div>
 
-                <div id="tab-video" class="tab-panel">
-                    <div id="videos-container" class="video-grid"></div>
+                    <div id="tab-video" class="tab-panel" role="tabpanel">
+                        <div id="videos-container" class="video-grid"></div>
+                    </div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- Scripts (Ordem importa!) -->
-    <!-- Primeiro os dados, depois a lógica -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
