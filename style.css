@@ -34,25 +34,30 @@
     --accent-light: #27272a; /* Usado no TOC dark */
 }
 
-/* TEMA CLARO - LIGHT COMFORT */
+/* TEMA CLARO - PAPER / BEIGE AESTHETIC (Atualizado) */
 body.light {
-    --bg-page: #f6f1e7;          /* fundo bege suave */
-    --bg-sidebar: #f1ebe1;
-    --bg-card: #f3ece1;
-    --bg-card-hover: #e9e2d6;
-    --bg-nav-glass: rgba(246, 241, 231, 0.75);
+    /* Fundos: Tons de creme e papel */
+    --bg-page: #F5F2EB;          /* Bege suave (Linho) */
+    --bg-sidebar: #EBE7DE;       /* Um tom levemente mais escuro para separar */
+    --bg-card: #FFFFFF;          /* Cards brancos para destaque limpo */
+    --bg-card-hover: #FAF9F6;    /* Branco "Off-white" no hover */
+    --bg-nav-glass: rgba(245, 242, 235, 0.85); /* Efeito vidro bege */
   
-    --text-main: #2c2a27;        /* preto suave */
-    --text-strong: #1d1c1a;      /* forte porém confortável */
-    --text-muted: #6c665e;
+    /* Texto: Cinza chumbo e Marrom café (menos duro que preto puro) */
+    --text-main: #383533;        
+    --text-strong: #1F1D1C;      
+    --text-muted: #7A746E;
   
-    --divider: rgba(0,0,0,0.10);
-    --border-highlight: rgba(0,0,0,0.15);
+    /* Detalhes */
+    --divider: #E0DCD4;          /* Divisores sutis */
+    --border-highlight: #D6D1C7;
   
-    --shadow-glow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    /* Sombras: Quentes (marrom) em vez de pretas */
+    --shadow-glow: 0 4px 12px -2px rgba(60, 50, 40, 0.08);
+    --shadow-sm: 0 2px 6px rgba(60, 50, 40, 0.05);
 
-    --accent-light: #e1d7c7;     /* usado no TOC e elementos ativos */
+    /* Destaque sutil no TOC */
+    --accent-light: #E6E0D4;     
 }
 
 /* Reset e Base */
@@ -401,7 +406,7 @@ body.sidebar-hidden .sidebar-disciplines {
 .markdown-content { 
     min-width: 0; 
     line-height: 1.8; 
-    font-size: 1.05rem; 
+    font-size: 0.95rem;    /* FONTE AJUSTADA: Menor e mais elegante */
     color: var(--text-main); 
     opacity: 0;
     animation: fadeSimply 180ms ease-in forwards; 
