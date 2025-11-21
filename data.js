@@ -277,7 +277,6 @@ const db = [
                         videos: [
                             {title: "Introdução Fisiologia do Coração", url: "https://www.youtube.com/embed/0IleJNYR5tk"},
                             {title: "Anatomia Cardiaca Basica", url: "https://www.youtube.com/embed/uFabswAGE6U"},
-                            {title: "Curiosidades coração", url: "https://www.youtube.com/embed/zhfasJg5xQk"},
                             {title: "Fisiologia Cardiaca", url: "https://www.youtube.com/embed/8SunmLyTfbQ"},
                             {title: "Ciclo Cardíaco, Sístole e Diástole", url: "https://www.youtube.com/embed/eg_QCX1e1mg"},
                             {title: "Atividade elétrica do coração", url: "https://www.youtube.com/embed/yWZtY1grl6Q"},
