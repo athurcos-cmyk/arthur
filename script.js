@@ -237,19 +237,22 @@ function loadSemester(index) {
     if(isHidden) document.body.classList.add('sidebar-hidden');
 }
 
-// Abre o menu sanfona da disciplina
+// --- CORREÇÃO: Função atualizada para Abrir/Fechar (Toggle) ---
 function expandDiscipline(subIdx) {
-    // Fecha todos os outros primeiro
-    document.querySelectorAll('.topic-submenu').forEach(el => {
-        if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
-    });
-    document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active-discipline'));
-    
-    // Abre o selecionado
     const targetSubmenu = document.getElementById(`submenu-${subIdx}`);
     const targetBtn = document.getElementById(`disc-btn-${subIdx}`);
+
+    // 1. Verifica se o item clicado JÁ está aberto
+    const isAlreadyOpen = targetSubmenu && targetSubmenu.classList.contains('show');
+
+    // 2. Fecha TODOS os submenus e remove destaque de todos os botões
+    document.querySelectorAll('.topic-submenu').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active-discipline'));
     
-    if (targetSubmenu && targetBtn) {
+    // 3. Lógica de Toggle:
+    // Se ele NÃO estava aberto, nós abrimos agora.
+    // Se ele JÁ estava aberto, não fazemos nada (pois o passo 2 já o fechou), resultando em fechar.
+    if (!isAlreadyOpen && targetSubmenu && targetBtn) {
         targetSubmenu.classList.add('show');
         targetBtn.classList.add('active-discipline');
     }
