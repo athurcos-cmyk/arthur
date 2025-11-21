@@ -69,7 +69,7 @@ function renderCalendar() {
             cardClass = "atencao"; // Nome da classe pro CSS
         }
         
-        if (diffDays < 5) {
+        if (diffDays < 6) {
             color = '#ff5555'; // Vermelho
             cardClass = "perigo";
         }
