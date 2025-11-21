@@ -253,7 +253,7 @@ function loadSemester(index) {
                 link.className = 'topic-link';
                 link.id = `topic-link-${subIdx}-${topicIdx}`;
                 link.innerText = topic.title;
-                link.href = "javascript:void(0)"; // Evita comportamento padrão de link
+                link.href = `#sem-${index}/mat-${subIdx}/top-${topicIdx}`;
                 
                 link.onclick = (e) => {
                     e.preventDefault();
