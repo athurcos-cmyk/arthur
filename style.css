@@ -1,7 +1,7 @@
 /* ==========================================================================
    🎨 DESIGN SYSTEM & TEMAS
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap');
+@import url('[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap)');
 
 :root {
     /* --- TEMA ESCURO (PADRÃO) --- */
@@ -191,8 +191,14 @@ h1, h2, h3, .logo, .sidebar-header, .tab, .video-titulo {
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* Markdown */
-.markdown-content { line-height: 1.8; font-size: 1.05rem; color: var(--text-main); }
+/* Markdown - Garantia de Visibilidade */
+.markdown-content { 
+    line-height: 1.8; 
+    font-size: 1.05rem; 
+    color: var(--text-main); 
+    display: block; /* Garante que não está escondido */
+    min-height: 100px; /* Garante altura mínima */
+}
 .markdown-content h1, h2 { color: var(--text-main); margin-top: 40px; border-bottom: 1px solid var(--divider); padding-bottom: 10px; }
 .markdown-content strong { color: var(--accent); }
 .markdown-content img { display: block; margin: 20px auto; max-width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-card); }

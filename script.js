@@ -3,13 +3,13 @@ let currentSemIndex = 0;
 
 // Inicialização
 window.onload = () => {
-    loadTheme(); // Carrega o tema salvo
+    loadTheme(); 
     renderCalendar();
     renderSemesterNav();
     loadSemester(0);
 };
 
-// --- LÓGICA DE TEMA ---
+// --- TEMA ---
 function loadTheme() {
     const savedTheme = localStorage.getItem('siteTheme');
     if (savedTheme === 'light') {
@@ -23,11 +23,11 @@ function toggleTheme() {
     const current = html.getAttribute('data-theme');
     
     if (current === 'light') {
-        html.removeAttribute('data-theme'); // Volta pro escuro
+        html.removeAttribute('data-theme');
         localStorage.setItem('siteTheme', 'dark');
         updateThemeIcon(false);
     } else {
-        html.setAttribute('data-theme', 'light'); // Vai pro claro
+        html.setAttribute('data-theme', 'light');
         localStorage.setItem('siteTheme', 'light');
         updateThemeIcon(true);
     }
@@ -35,17 +35,16 @@ function toggleTheme() {
 
 function updateThemeIcon(isLight) {
     const icon = document.querySelector('#theme-toggle i');
-    if(icon) {
-        icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
-    }
+    if(icon) icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
 }
 
-// --- LÓGICA DO CALENDÁRIO ---
+// --- CALENDÁRIO ---
 function renderCalendar() {
     const container = document.getElementById('calendar-container');
+    if (!container) return;
+    
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
     container.innerHTML = '';
 
     exams.forEach(exam => {
@@ -56,25 +55,13 @@ function renderCalendar() {
         
         if (diffDays < 0) return;
 
-        // Padrão (Verde)
         let color = 'var(--accent)';
         let statusText = "dias restantes";
         let cardClass = ""; 
 
-        // Lógica das Cores
-        if (diffDays < 10) {
-            color = '#ff9800'; 
-            cardClass = "atencao";
-        }
-        if (diffDays < 6) {
-            color = '#ff5555'; 
-            cardClass = "perigo";
-        }
-        if (diffDays === 0) {
-            statusText = "É HOJE!";
-            color = "#ff5555";
-            cardClass = "perigo";
-        }
+        if (diffDays < 10) { color = '#ff9800'; cardClass = "atencao"; }
+        if (diffDays < 6) { color = '#ff5555'; cardClass = "perigo"; }
+        if (diffDays === 0) { statusText = "É HOJE!"; color = "#ff5555"; cardClass = "perigo"; }
 
         container.innerHTML += `
             <div class="card ${cardClass}">
@@ -92,6 +79,7 @@ function renderCalendar() {
 // --- NAVEGAÇÃO ---
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
+    if (!nav) return;
     nav.innerHTML = '';
     
     db.forEach((sem, index) => {
@@ -105,15 +93,16 @@ function renderSemesterNav() {
 
 function loadSemester(index) {
     currentSemIndex = index;
-    
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
     });
 
     const sidebar = document.getElementById('disciplines-container');
     const title = document.getElementById('sidebar-title');
+    if (!sidebar) return;
+    
     sidebar.innerHTML = '';
-    title.innerText = db[index].semester;
+    if(title) title.innerText = db[index].semester;
 
     db[index].subjects.forEach((sub, subIdx) => {
         const btn = document.createElement('button');
@@ -129,11 +118,9 @@ function loadSemester(index) {
                 if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
             });
             document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active'));
-            
             btn.classList.toggle('active');
             topicList.classList.toggle('show');
         };
-        
         sidebar.appendChild(btn);
 
         if (sub.topics.length > 0) {
@@ -141,14 +128,12 @@ function loadSemester(index) {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.innerHTML = `<i class="fas fa-circle" style="font-size:0.4em; margin-right:10px; opacity:0.6"></i> ${topic.title}`;
-                
                 link.onclick = () => {
                     document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
                     link.classList.add('active');
                     openTopic(index, subIdx, topicIdx);
                     if(window.innerWidth <= 768) toggleSidebar();
                 };
-                
                 topicList.appendChild(link);
             });
         } else {
@@ -158,43 +143,69 @@ function loadSemester(index) {
     });
 }
 
-// --- CARREGAR CONTEÚDO ---
+// --- CARREGAR CONTEÚDO (A PARTE CRÍTICA) ---
 async function openTopic(semIdx, subIdx, topIdx) {
     const data = db[semIdx].subjects[subIdx].topics[topIdx];
     
+    // Troca a tela
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
     
-    document.getElementById('breadcrumb').innerHTML = `
-        <span style="opacity:0.6">${db[semIdx].subjects[subIdx].name}</span> 
-        <i class="fas fa-chevron-right" style="font-size:0.7em; margin:0 5px"></i> 
-        <span>${data.title}</span>
-    `;
-    
+    // Atualiza Título
     document.getElementById('topic-title').innerText = data.title;
+    document.getElementById('breadcrumb').innerText = `${db[semIdx].subjects[subIdx].name} > ${data.title}`;
 
-    // Texto (Markdown)
+    // Área de Texto
     const textArea = document.getElementById('markdown-render');
-    textArea.innerHTML = '<div style="padding:40px; text-align:center; color:var(--text-muted)"><i class="fas fa-spinner fa-spin fa-2x"></i><br><br>Carregando resumo...</div>';
+    textArea.style.display = 'block'; // Garante que está visível
+    textArea.innerHTML = '<div style="padding:40px; text-align:center; color:var(--text-muted)"><i class="fas fa-spinner fa-spin fa-2x"></i><br><br>Carregando...</div>';
     
     if (data.file) {
         try {
+            // 1. Tenta buscar o arquivo
             const response = await fetch(data.file);
-            if (!response.ok) throw new Error("Erro 404");
+            
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status} (Arquivo não encontrado)`);
+            }
+            
             const text = await response.text();
-            textArea.innerHTML = marked.parse(text);
+
+            // 2. Verifica se a biblioteca 'marked' existe
+            if (typeof marked === 'undefined') {
+                // Se não existir (offline/erro), mostra texto puro
+                textArea.innerHTML = `
+                    <div style="padding:15px; background:#332a00; color:#ffcc00; border-radius:8px; margin-bottom:20px;">
+                        ⚠️ Modo Offline: Formatador não carregou. Mostrando texto simples.
+                    </div>
+                    <pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-main);">${text}</pre>
+                `;
+            } else {
+                // Se existir, formata bonito
+                textArea.innerHTML = marked.parse(text);
+            }
+
         } catch (e) {
-            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Para ver o resumo, use o "Live Server" no VS Code.<br><small>(O navegador bloqueia arquivos locais por segurança)</small></div>`;
+            // 3. Se der erro no fetch (CORS ou 404)
             console.error(e);
+            textArea.innerHTML = `
+                <div style="padding:20px; background:#2a0000; border:1px solid #ff5555; border-radius:8px; color:#ffaaaa;">
+                    <h3 style="color:#ff5555; margin-top:0"><i class="fas fa-exclamation-triangle"></i> Erro ao abrir arquivo</h3>
+                    <p>Não foi possível ler: <b>${data.file}</b></p>
+                    <p><b>Motivo:</b> ${e.message}</p>
+                    <hr style="border-color:#ff5555; opacity:0.3">
+                    <small>DICA: Se estiver no PC, use a extensão <b>Live Server</b> no VS Code.<br>Arquivos locais são bloqueados pelo navegador por segurança.</small>
+                </div>
+            `;
         }
     } else {
-        textArea.innerHTML = '<p style="opacity:0.5">Sem resumo cadastrado.</p>';
+        textArea.innerHTML = '<p style="opacity:0.5">Este tópico ainda não tem resumo escrito.</p>';
     }
 
     // Slides
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
-    if (data.slides) {
+    if (data.slides && data.slides.length > 0) {
         data.slides.forEach(s => {
             slideArea.innerHTML += `
                 <a href="${s.url}" target="_blank" class="slide-link">
@@ -205,15 +216,16 @@ async function openTopic(semIdx, subIdx, topIdx) {
                         <strong style="display:block; color:var(--text-main)">${s.title}</strong>
                         <small style="color:var(--text-muted)">Clique para abrir</small>
                     </div>
-                    <i class="fas fa-external-link-alt" style="margin-left:auto; opacity:0.5"></i>
                 </a>`;
         });
+    } else {
+        slideArea.innerHTML = '<div style="opacity:0.5; font-style:italic">Sem slides.</div>';
     }
 
     // Videos
     const videoArea = document.getElementById('videos-container');
     videoArea.innerHTML = '';
-    if (data.videos) {
+    if (data.videos && data.videos.length > 0) {
         data.videos.forEach(v => {
             videoArea.innerHTML += `
                 <div class="video-container">
@@ -223,19 +235,25 @@ async function openTopic(semIdx, subIdx, topIdx) {
                     </div>
                 </div>`;
         });
+    } else {
+        videoArea.innerHTML = '<div style="opacity:0.5; font-style:italic">Sem vídeos.</div>';
     }
+
+    // Força voltar para a primeira aba
     switchTab('text');
 }
 
 function switchTab(name) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(`tab-${name}`).classList.add('active');
+    
+    const target = document.getElementById(`tab-${name}`);
+    if (target) target.classList.add('active');
     
     const tabs = document.querySelectorAll('.tab');
-    if(name === 'text') tabs[0].classList.add('active');
-    if(name === 'slides') tabs[1].classList.add('active');
-    if(name === 'video') tabs[2].classList.add('active');
+    if(name === 'text' && tabs[0]) tabs[0].classList.add('active');
+    if(name === 'slides' && tabs[1]) tabs[1].classList.add('active');
+    if(name === 'video' && tabs[2]) tabs[2].classList.add('active');
 }
 
 function showDashboard() {
@@ -245,5 +263,5 @@ function showDashboard() {
 
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar-disciplines');
-    sidebar.classList.toggle('open');
+    if(sidebar) sidebar.classList.toggle('open');
 }
