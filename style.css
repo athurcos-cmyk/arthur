@@ -340,8 +340,10 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
         opacity 0.4s ease-in,
         transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
+@keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-5px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
 .topic-link {
     display: block;
     padding: 10px 24px 10px 40px;
