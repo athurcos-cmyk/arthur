@@ -3,13 +3,15 @@ let currentSemIndex = 0;
 
 // Inicialização
 window.onload = () => {
-    loadTheme(); // Carrega o tema (Nova funcionalidade)
+    loadTheme(); // NOVO: Carrega o tema
     renderCalendar();
     renderSemesterNav();
     loadSemester(0);
 };
 
-// --- TEMA (SOL/LUA) ---
+// ===========================================================
+// 🌙 LÓGICA DO TEMA (Adicionado ao seu backup)
+// ===========================================================
 function loadTheme() {
     const savedTheme = localStorage.getItem('siteTheme');
     if (savedTheme === 'light') {
@@ -37,27 +39,30 @@ function updateThemeIcon(isLight) {
     const icon = document.querySelector('#theme-toggle i');
     if(icon) icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
 }
+// ===========================================================
 
-// --- CALENDÁRIO ---
+// --- LÓGICA DO CALENDÁRIO ---
 function renderCalendar() {
     const container = document.getElementById('calendar-container');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    container.innerHTML = '';
+    container.innerHTML = ''; // Limpa antes de renderizar
 
     exams.forEach(exam => {
+        // Converte data brasileira (dd/mm/yyyy)
         const parts = exam.date.split('/');
         const examDate = new Date(parts[2], parts[1] - 1, parts[0]);
+
         const diffTime = examDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         if (diffDays < 0) return;
 
-        // Cores e Classes para o CSS novo
-        let color = 'var(--accent)';
+        // Lógica de Cores (Adaptada para o Novo CSS)
+        let color = 'var(--accent)'; // Verde Padrão
         let statusText = "dias restantes";
-        let cardClass = ""; 
+        let cardClass = "";
 
         if (diffDays < 10) { color = '#ff9800'; cardClass = "atencao"; }
         if (diffDays < 6) { color = '#ff5555'; cardClass = "perigo"; }
@@ -76,7 +81,7 @@ function renderCalendar() {
     });
 }
 
-// --- NAVEGAÇÃO ---
+// --- LÓGICA DE NAVEGAÇÃO (IGUAL AO BACKUP) ---
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
     nav.innerHTML = '';
@@ -98,13 +103,14 @@ function loadSemester(index) {
     const sidebar = document.getElementById('disciplines-container');
     const title = document.getElementById('sidebar-title');
     sidebar.innerHTML = '';
-    if(title) title.innerText = db[index].semester;
+    title.innerText = db[index].semester;
 
     db[index].subjects.forEach((sub, subIdx) => {
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
         btn.innerHTML = `${sub.name} <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px; opacity:0.5"></i>`;
         
+        // Gaveta de tópicos
         const topicList = document.createElement('div');
         topicList.className = 'topic-submenu'; 
         topicList.id = `submenu-${subIdx}`; 
@@ -114,28 +120,32 @@ function loadSemester(index) {
                 if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
             });
             document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active'));
+            
             btn.classList.toggle('active');
             topicList.classList.toggle('show');
         };
+        
         sidebar.appendChild(btn);
 
+        // Tópicos
         if (sub.topics.length > 0) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.innerHTML = `<i class="fas fa-circle" style="font-size:0.4em; margin-right:10px; opacity:0.6"></i> ${topic.title}`;
                 
+                // Lógica de Clique (Com Destaque Novo)
                 link.onclick = () => {
-                    // Destaque visual (Novo)
                     document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
                     link.classList.add('active');
                     
                     // Fecha menu no celular
                     if(window.innerWidth <= 768) toggleSidebar();
 
-                    // Carrega conteúdo (Lógica Antiga)
+                    // Chama a função original do backup
                     openTopic(index, subIdx, topicIdx);
                 };
+                
                 topicList.appendChild(link);
             });
         } else {
@@ -145,45 +155,38 @@ function loadSemester(index) {
     });
 }
 
-// --- CARREGAR CONTEÚDO (LÓGICA RESTAURADA DO BACKUP) ---
+// --- CARREGAR CONTEÚDO (CÓDIGO DO BACKUP RESTAURADO) ---
+// Essa função está idêntica à do backup, só ajustada para os IDs novos do CSS
 async function openTopic(semIdx, subIdx, topIdx) {
-    const data = db[semIdx].subjects[subIdx].topics[topIdx];
     
-    // 1. Troca a tela imediatamente
+    // 1. Lógica Visual (Troca de tela)
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
     
-    // 2. Preenche Títulos
-    document.getElementById('breadcrumb').innerText = `${db[semIdx].subjects[subIdx].name} > ${data.title}`;
+    // 2. Carrega Dados
+    const data = db[semIdx].subjects[subIdx].topics[topIdx];
+    document.getElementById('breadcrumb').innerHTML = `<span style="opacity:0.6">${db[semIdx].subjects[subIdx].name}</span> <i class="fas fa-chevron-right" style="font-size:0.7em"></i> <span>${data.title}</span>`;
     document.getElementById('topic-title').innerText = data.title;
 
-    // 3. Reseta e Carrega Texto
+    // 3. Carrega Texto (Lógica Original do Backup)
     const textArea = document.getElementById('markdown-render');
-    textArea.innerHTML = '<p style="color: var(--text-muted); padding: 20px;">Carregando resumo...</p>';
+    textArea.innerHTML = '<p style="color:var(--text-muted)">Carregando...</p>';
     
     if (data.file) {
         try {
             const response = await fetch(data.file);
-            if (!response.ok) throw new Error("Erro ao carregar");
+            if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
-            
-            // Se 'marked' estiver disponível, usa. Se não, texto puro.
-            if (typeof marked !== 'undefined') {
-                textArea.innerHTML = marked.parse(text);
-            } else {
-                textArea.innerHTML = `<pre>${text}</pre>`;
-            }
+            textArea.innerHTML = marked.parse(text);
         } catch (e) {
-            textArea.innerHTML = `<p style="color: #ff5555; padding: 20px; border: 1px solid #ff5555; border-radius: 8px;">
-                ⚠️ Não achei: <b>${data.file}</b>.<br>
-                <small>Se estiver no PC, abra com "Live Server".</small>
-            </p>`;
+            // Mantive o aviso simples do seu backup, mas com cor legível
+            textArea.innerHTML = `<p style="color: #ff5555; background: rgba(255,0,0,0.1); padding: 15px; border-radius: 8px;">⚠️ Não achei: <b>${data.file}</b>.<br><small>Se estiver offline, use o Live Server.</small></p>`;
         }
     } else {
-        textArea.innerHTML = '<p style="opacity:0.5; padding: 20px;">Sem resumo cadastrado.</p>';
+        textArea.innerHTML = '<p style="opacity:0.5">Sem resumo cadastrado.</p>';
     }
 
-    // 4. Slides
+    // 4. Slides (Lógica Original do Backup)
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
     if (data.slides) {
@@ -191,12 +194,12 @@ async function openTopic(semIdx, subIdx, topIdx) {
             slideArea.innerHTML += `
                 <a href="${s.url}" target="_blank" class="slide-link">
                     <div style="background:#f40f02; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:8px; color:white"><i class="fas fa-file-pdf"></i></div>
-                    <div><strong>${s.title}</strong><br><small>Abrir</small></div>
+                    <div><strong>${s.title}</strong><br><small style="color:var(--text-muted)">Clique para abrir</small></div>
                 </a>`;
         });
     }
 
-    // 5. Vídeos
+    // 5. Vídeos (Lógica Original do Backup)
     const videoArea = document.getElementById('videos-container');
     videoArea.innerHTML = '';
     if (data.videos) {
@@ -211,6 +214,7 @@ async function openTopic(semIdx, subIdx, topIdx) {
         });
     }
     
+    // Força aba de texto
     switchTab('text');
 }
 
@@ -222,7 +226,6 @@ function switchTab(name) {
     if (target) target.classList.add('active');
     
     const tabs = document.querySelectorAll('.tab');
-    // Garante que as abas acendam corretamente
     if(name === 'text' && tabs[0]) tabs[0].classList.add('active');
     if(name === 'slides' && tabs[1]) tabs[1].classList.add('active');
     if(name === 'video' && tabs[2]) tabs[2].classList.add('active');
