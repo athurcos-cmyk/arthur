@@ -89,7 +89,7 @@ function renderCalendar() {
     });
 }
 
-// --- LÓGICA DE NAVEGAÇÃO ---
+// --- NAVEGAÇÃO ---
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
     nav.innerHTML = '';
@@ -182,10 +182,9 @@ async function openTopic(semIdx, subIdx, topIdx) {
             const response = await fetch(data.file);
             if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
-            // Se der erro aqui, é porque a biblioteca 'marked' não carregou no HTML
             textArea.innerHTML = marked.parse(text);
         } catch (e) {
-            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Arquivo não encontrado ou erro: <b>${data.file}</b></div>`;
+            textArea.innerHTML = `<div style="padding:20px; background:rgba(255,0,0,0.1); border-radius:8px; color:#ff5555">⚠️ Para ver o resumo, use o "Live Server" no VS Code.<br><small>(O navegador bloqueia arquivos locais por segurança)</small></div>`;
             console.error(e);
         }
     } else {
