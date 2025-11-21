@@ -156,6 +156,16 @@ body {
 }
 .topic-link:hover { color: var(--text-main); background: #181818; }
 
+/* Adicione isso no seu style.css */
+
+.topic-link.active {
+    color: #ffffff !important;       /* Texto Branco Puro */
+    background-color: #252525;       /* Fundo mais claro que o menu */
+    border-left: 3px solid #4caf50;  /* Barrinha Verde (igual do calendário) */
+    padding-left: 32px;              /* Ajuste pequeno pra compensar a borda */
+    font-weight: 600;                /* Letra um pouco mais grossa */
+}
+
 /* --- CONTEÚDO PRINCIPAL --- */
 .main-view { flex: 1; padding: 40px; overflow-y: auto; background: var(--bg-page); }
 

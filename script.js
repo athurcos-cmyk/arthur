@@ -89,7 +89,17 @@ function loadSemester(index) {
                 const link = document.createElement('a');
                 link.className = 'topic-link';
                 link.innerHTML = `${topic.title}`;
-                link.onclick = () => openTopic(index, subIdx, topicIdx);
+                // NOVO TRECHO ATUALIZADO
+                link.onclick = () => {
+                // 1. Remove o destaque de TODOS os outros tópicos
+                document.querySelectorAll('.topic-link').forEach(t => t.classList.remove('active'));
+    
+                // 2. Adiciona o destaque SÓ nesse que foi clicado
+                link.classList.add('active');
+
+                // 3. Carrega o conteúdo normal
+                openTopic(index, subIdx, topicIdx);
+                };
                 topicList.appendChild(link);
             });
         } else {
