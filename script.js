@@ -1,89 +1,95 @@
 // ==============================================================
 // 📦 VARIÁVEIS GLOBAIS DE ESTADO
 // ==============================================================
-let currentSemIndex = 0;   // Índice do semestre atual
-let notesTimeout = null;   // Timer para o debounce das notas
-let tocObserver = null;    // Observador para o destaque do TOC
+// Armazenam o estado atual da aplicação para controle
+let currentSemIndex = 0;   // Índice do semestre atual exibido
+let notesTimeout = null;   // Timer para controlar o salvamento automático (debounce)
+let tocObserver = null;    // Observador que destaca o item do índice enquanto rola
 
 // ==============================================================
 // 🚀 INICIALIZAÇÃO (BOOTSTRAP)
 // ==============================================================
-// Função executada assim que a página termina de carregar
+// Função executada automaticamente assim que a página termina de carregar
 window.onload = () => {
-    // 1. Renderizar componentes base da interface
-    renderCalendar();       // Cria os cards de provas
-    renderSemesterNav();    // Cria a navegação superior (Semestres)
+    // 1. Renderizar componentes visuais base
+    renderCalendar();       // Cria os cards de contagem regressiva das provas
+    renderSemesterNav();    // Cria os botões de navegação dos semestres
     
-    // 2. Inicializar funcionalidades do Core
-    initTheme();            // Carrega tema (Dark/Light)
-    initHashRouting();      // Liga o sistema de rotas (#sem-0/mat-1...)
-    handleMobileSidebar();  // Configura abertura/fechamento do menu mobile
-    initFocusMode();        // Configura o botão de foco (mesmo oculto)
+    // 2. Inicializar configurações e rotas
+    initTheme();            // Verifica e aplica o tema (Dark/Light) salvo
+    initHashRouting();      // Liga o sistema de navegação por URL (#sem-0/mat-1...)
+    handleMobileSidebar();  // Configura a abertura do menu no celular
+    initFocusMode();        // Configura o botão de modo leitura (mesmo que oculto)
     
-    // 3. Inicializar Features Adicionais
-    initSidebarDesktopToggle(); // Botão de esconder sidebar no PC
-    initTOCToggle();            // Botão de índice no mobile
-    initSearch();               // Barra de busca
-    initNotes();                // Bloco de notas pessoal
+    // 3. Inicializar Funcionalidades Extras
+    initSidebarDesktopToggle(); // Botão de esconder a barra lateral no PC
+    initTOCToggle();            // Botão de abrir o índice no celular
+    initSearch();               // Barra de busca global
+    initNotes();                // Sistema de anotações pessoais
+    
+    // O Zoom de imagem é iniciado dentro de openTopic quando o conteúdo carrega
 };
 
 // ==============================================================
-// A - CALENDÁRIO COM PRIORIDADES
+// A - CALENDÁRIO DE PROVAS (COM PRIORIDADE E URGÊNCIA)
 // ==============================================================
 function renderCalendar() {
     const container = document.getElementById('calendar-container');
-    if(!container) return;
+    if(!container) return; // Segurança: se não achar o container, para.
 
-    container.innerHTML = ''; 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Zera hora para comparar apenas datas
+    container.innerHTML = ''; // Limpa o calendário anterior
     
+    // Data de hoje zerada (00:00:00) para comparação justa de dias
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    // Loop por todas as provas cadastradas no data.js
     exams.forEach(exam => {
-        // Converte string "DD/MM/AAAA" para Objeto Date
+        // Converte string "DD/MM/AAAA" para objeto Date do JS
         const parts = exam.date.split('/');
         const examDate = new Date(parts[2], parts[1] - 1, parts[0]);
 
-        // Calcula diferença em dias
+        // Calcula a diferença em milissegundos e converte para dias
         const diffTime = examDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         if (diffDays < 0) return; // Não mostra provas que já passaram
 
-        // Lógica de Prioridade Visual (Cores e Textos)
-        let priorityClass = 'priority-green';
+        // Definição das Cores e Textos de Urgência
+        let priorityClass = 'priority-green'; // Padrão: Verde (Tranquilo)
         let color = 'var(--priority-green)';
         let displayDays = diffDays;
         let labelText = 'dias restantes';
 
-        // Urgência: HOJE
+        // Nível Crítico: HOJE
         if (diffDays === 0) {
             priorityClass = 'priority-red';
             color = 'var(--priority-red)';
             displayDays = "HOJE";
             labelText = "🚨 É HOJE!";
         } 
-        // Urgência: AMANHÃ
+        // Nível Crítico: AMANHÃ
         else if (diffDays === 1) {
             priorityClass = 'priority-red';
             color = 'var(--priority-red)';
             displayDays = "1";
             labelText = "⚠️ É AMANHÃ!";
         } 
-        // Urgência: Menos de 1 semana
+        // Nível Alto: Menos de uma semana
         else if (diffDays < 6) {
             priorityClass = 'priority-red';
             color = 'var(--priority-red)';
         } 
-        // Atenção: Menos de 10 dias
+        // Nível Médio: Menos de 10 dias
         else if (diffDays < 10) {
             priorityClass = 'priority-orange';
             color = 'var(--priority-orange)';
         }
 
-        // Aumenta a fonte se for o dia da prova
+        // Ajuste visual: Aumenta a fonte se for o dia da prova
         const fontSize = diffDays === 0 ? '1.8rem' : '2.5rem';
 
-        // Injeta o Card no HTML
+        // Cria o HTML do card
         container.innerHTML += `
             <div class="card ${priorityClass} animate-fade-up" tabindex="0">
                 <h3>${exam.name}</h3>
@@ -95,65 +101,73 @@ function renderCalendar() {
 }
 
 // ==============================================================
-// B - NAVEGAÇÃO E ROTEAMENTO (HASH ROUTING)
+// B - SISTEMA DE ROTEAMENTO (HASH ROUTING)
 // ==============================================================
+// Permite que o site funcione sem recarregar, lendo o #na-url
 function initHashRouting() {
-    // Escuta mudanças na URL após o #
-    window.addEventListener('hashchange', parseHash);
-    parseHash(); // Executa ao abrir a página
+    window.addEventListener('hashchange', parseHash); // Escuta quando a URL muda
+    parseHash(); // Executa a primeira vez ao abrir
 }
 
 function parseHash() {
-    const hash = location.hash.slice(1); // Remove o '#'
+    const hash = location.hash.slice(1); // Pega tudo depois do #
     
-    // Se não tem hash, carrega o primeiro semestre e mostra Dashboard
+    // Se não tiver hash (está na home), carrega o semestre 0
     if(!hash) {
         loadSemester(0);
         showDashboard(false); 
         return;
     }
 
-    // Extrai índices da URL: #sem-X/mat-Y/top-Z
+    // Quebra a URL em partes: sem-0 / mat-2 / top-4
     const [semPart, matPart, topPart] = hash.split('/');
     
+    // Extrai apenas os números usando Regex
     const semIdx = semPart?.match(/sem-(\d+)/)?.[1];
     const matIdx = matPart?.match(/mat-(\d+)/)?.[1];
     const topIdx = topPart?.match(/top-(\d+)/)?.[1];
 
-    // Carrega o semestre se necessário
+    // Lógica de carregamento em cascata
     if (semIdx !== undefined) {
         const sIdx = parseInt(semIdx);
-        // Só recarrega sidebar se mudou de semestre ou está vazia
+        
+        // Carrega a sidebar se mudou de semestre ou se está vazia
         if (sIdx !== currentSemIndex || document.getElementById('disciplines-container').innerHTML === '') {
             loadSemester(sIdx);
         }
         
-        // Se tem matéria definida, expande e tenta abrir tópico
+        // Se tiver matéria na URL, abre o menu dela
         if (matIdx !== undefined) {
             const mIdx = parseInt(matIdx);
-            // Pequeno delay para garantir que o DOM da sidebar existe
+            
+            // Pequeno delay para garantir que o HTML da sidebar foi criado
             setTimeout(() => { 
                 expandDiscipline(mIdx);
+                
+                // Se tiver tópico na URL, carrega o conteúdo
                 if (topIdx !== undefined) {
                     openTopic(sIdx, mIdx, parseInt(topIdx), false);
                 }
             }, 50);
         } else {
-            // Se só tem semestre, mostra dashboard
+            // Se tiver só o semestre, mostra o painel de provas
             showDashboard(false);
         }
     }
 }
 
+// Renderiza os botões de semestres no topo
 function renderSemesterNav() {
     const nav = document.getElementById('semester-nav');
     nav.innerHTML = ''; 
-    // Cria botões para cada semestre disponível no data.js
+    
     db.forEach((sem, index) => {
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
         btn.id = `nav-sem-${index}`;
         btn.innerText = sem.semester;
+        
+        // Ao clicar, muda o Hash (o que dispara o parseHash)
         btn.onclick = () => {
             location.hash = `#sem-${index}`;
         };
@@ -161,29 +175,31 @@ function renderSemesterNav() {
     });
 }
 
+// Carrega a lista de disciplinas na barra lateral
 function loadSemester(index) {
     if (index < 0 || index >= db.length) return;
     
     currentSemIndex = index;
     
-    // Atualiza visual dos botões superiores
+    // Atualiza estilo do botão ativo no topo
     document.querySelectorAll('.nav-btn').forEach((btn, i) => {
         btn.classList.toggle('active-semester', i === index);
     });
 
     const sidebar = document.getElementById('disciplines-container');
     const title = document.getElementById('sidebar-title');
-    sidebar.innerHTML = '';
-    title.innerText = db[index].semester;
+    
+    sidebar.innerHTML = ''; // Limpa sidebar antiga
+    title.innerText = db[index].semester; // Atualiza título
 
-    // Renderiza a lista de disciplinas na sidebar
+    // Gera os botões das matérias
     db[index].subjects.forEach((sub, subIdx) => {
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
         btn.id = `disc-btn-${subIdx}`;
         btn.innerHTML = `<span>${sub.name}</span> <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px"></i>`;
         
-        // Container para os tópicos (submenu)
+        // Cria o container oculto para os tópicos
         const topicList = document.createElement('div');
         topicList.className = 'topic-submenu'; 
         topicList.id = `submenu-${subIdx}`; 
@@ -194,7 +210,7 @@ function loadSemester(index) {
         
         sidebar.appendChild(btn);
 
-        // Renderiza os links dos tópicos
+        // Gera os links dos tópicos dentro do submenu
         if (sub.topics.length > 0) {
             sub.topics.forEach((topic, topicIdx) => {
                 const link = document.createElement('a');
@@ -202,8 +218,10 @@ function loadSemester(index) {
                 link.id = `topic-link-${subIdx}-${topicIdx}`;
                 link.innerText = topic.title;
                 link.href = "javascript:void(0)"; 
+                
                 link.onclick = (e) => {
                     e.preventDefault();
+                    // Atualiza a URL para navegar
                     location.hash = `#sem-${index}/mat-${subIdx}/top-${topicIdx}`;
                 };
                 topicList.appendChild(link);
@@ -214,19 +232,20 @@ function loadSemester(index) {
         sidebar.appendChild(topicList);
     });
     
-    // Verifica se o usuário prefere sidebar oculta e aplica classe
+    // Restaura preferência de sidebar oculta se existir
     const isHidden = localStorage.getItem('sidebarHidden') === 'true';
     if(isHidden) document.body.classList.add('sidebar-hidden');
 }
 
+// Abre o menu sanfona da disciplina
 function expandDiscipline(subIdx) {
-    // Fecha outros menus abertos (acordeão)
+    // Fecha todos os outros primeiro
     document.querySelectorAll('.topic-submenu').forEach(el => {
         if(el.id !== `submenu-${subIdx}`) el.classList.remove('show');
     });
     document.querySelectorAll('.discipline-btn').forEach(b => b.classList.remove('active-discipline'));
     
-    // Abre o atual
+    // Abre o selecionado
     const targetSubmenu = document.getElementById(`submenu-${subIdx}`);
     const targetBtn = document.getElementById(`disc-btn-${subIdx}`);
     
@@ -237,21 +256,24 @@ function expandDiscipline(subIdx) {
 }
 
 // ==============================================================
-// C - CARREGAMENTO DE CONTEÚDO (TOPIC VIEWER)
+// C - CARREGAMENTO DE CONTEÚDO (O CORAÇÃO DO SITE)
 // ==============================================================
 async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
+    // Se for clique manual, apenas atualiza o hash (o hashchange chama essa função de novo)
     if (updateHash) {
         location.hash = `#sem-${semIdx}/mat-${subIdx}/top-${topIdx}`;
         return; 
     }
 
+    // Atualiza UI
     markActiveTopic(subIdx, topIdx);
-    closeMobileSidebar(); // Fecha menu se estiver no celular
+    closeMobileSidebar(); // Esconde menu no celular ao clicar
 
+    // Busca os dados no data.js
     const data = db[semIdx]?.subjects[subIdx]?.topics[topIdx];
     if (!data) return;
 
-    // Troca a visualização: Esconde Dashboard, Mostra Conteúdo
+    // Troca as telas (some dashboard, aparece conteúdo)
     document.getElementById('dashboard-view').style.display = 'none';
     document.getElementById('content-view').classList.add('active');
     
@@ -259,34 +281,36 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     document.getElementById('breadcrumb').innerText = `${db[semIdx].semester}  /  ${db[semIdx].subjects[subIdx].name}`;
     const titleEl = document.getElementById('topic-title');
     titleEl.innerText = data.title;
-    
-    // Acessibilidade: foca no título para leitura
     titleEl.setAttribute('tabindex', '-1');
-    titleEl.focus();
+    titleEl.focus(); // Acessibilidade
 
-    // Carrega Notas Pessoais do LocalStorage
+    // Carrega as notas salvas para este tópico
     loadNotes(semIdx, subIdx, topIdx);
 
-    // 1. Renderiza TEXTO (Markdown)
+    // 1. CARREGA O TEXTO (MARKDOWN)
     const textArea = document.getElementById('markdown-render');
     textArea.innerHTML = '<p class="loading-text">Carregando conteúdo...</p>';
     
     if (data.file) {
         try {
+            // Busca o arquivo .md na pasta conteudos
             const response = await fetch(data.file);
             if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
             
-            // Converte Markdown para HTML
+            // Converte Markdown para HTML usando a biblioteca 'marked'
             textArea.innerHTML = marked.parse(text);
             
-            // MELHORIA: Forçar links externos a abrirem em nova aba
+            // MELHORIA DE UX: Todos os links do texto abrem em nova aba
             textArea.querySelectorAll('a').forEach(link => {
                 link.setAttribute('target', '_blank');
                 link.setAttribute('rel', 'noopener noreferrer');
             });
 
-            // Gera o índice (TOC) e liga o observador de scroll
+            // ATIVA O ZOOM NAS IMAGENS (NOVA FEATURE)
+            initImageZoom();
+
+            // Gera o índice automático (TOC) e o observador
             generateTOC();
             initTOCObserver();
             
@@ -299,7 +323,7 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         document.getElementById('toc-content').innerHTML = '';
     }
 
-    // 2. Renderiza SLIDES
+    // 2. CARREGA OS SLIDES
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
     if (data.slides && data.slides.length) {
@@ -314,7 +338,7 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         slideArea.innerHTML = '<p style="color:var(--text-muted)">Nenhum slide disponível.</p>';
     }
 
-    // 3. Renderiza VÍDEOS
+    // 3. CARREGA OS VÍDEOS
     const videoArea = document.getElementById('videos-container');
     videoArea.innerHTML = '';
     if (data.videos && data.videos.length) {
@@ -332,11 +356,10 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         videoArea.innerHTML = '<p style="color:var(--text-muted)">Nenhum vídeo disponível.</p>';
     }
 
-    // Reseta para a aba de Texto
+    // Volta para a aba de texto por padrão
     switchTab('text');
 }
 
-// Marca visualmente o tópico ativo na sidebar
 function markActiveTopic(subIdx, topIdx) {
     document.querySelectorAll('.topic-link').forEach(l => l.classList.remove('active-topic'));
     const activeLink = document.getElementById(`topic-link-${subIdx}-${topIdx}`);
@@ -344,17 +367,54 @@ function markActiveTopic(subIdx, topIdx) {
 }
 
 // ==============================================================
-// F - GERADOR AUTOMÁTICO DE TOC (ÍNDICE)
+// 🔍 LIGHTBOX (ZOOM EM IMAGENS)
+// ==============================================================
+function initImageZoom() {
+    // 1. Cria o elemento HTML do lightbox se ele ainda não existir no corpo da página
+    if (!document.getElementById('lightbox')) {
+        const lightbox = document.createElement('div');
+        lightbox.id = 'lightbox';
+        lightbox.className = 'lightbox-overlay';
+        lightbox.innerHTML = '<img src="" alt="Zoom">';
+        
+        // Ao clicar no fundo preto, fecha o zoom
+        lightbox.onclick = () => {
+            lightbox.classList.remove('active');
+            // Aguarda a animação CSS terminar antes de esconder
+            setTimeout(() => lightbox.style.display = 'none', 200); 
+        };
+        document.body.appendChild(lightbox);
+    }
+
+    // 2. Seleciona todas as imagens dentro do texto do resumo
+    const imgs = document.querySelectorAll('.markdown-content img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    // 3. Adiciona o evento de clique em cada imagem
+    imgs.forEach(img => {
+        img.onclick = () => {
+            lightboxImg.src = img.src;      // Copia a imagem clicada para o lightbox
+            lightbox.style.display = 'flex'; // Mostra o container
+            // Pequeno delay para permitir que o CSS anime a opacidade (fade in)
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        };
+    });
+}
+
+// ==============================================================
+// F - GERADOR AUTOMÁTICO DE ÍNDICE (TOC)
 // ==============================================================
 function generateTOC() {
     const tocContent = document.getElementById('toc-content');
     const tocContainer = document.getElementById('toc');
     const content = document.getElementById('markdown-render');
+    // Pega todos os títulos H1, H2 e H3 do texto
     const headers = content.querySelectorAll('h1, h2, h3');
     
     tocContent.innerHTML = ''; 
     
-    // Se tiver poucos títulos, esconde o TOC
+    // Se tiver menos de 2 títulos, não vale a pena mostrar índice
     if (headers.length < 2) { 
         tocContainer.style.display = 'none';
         return;
@@ -362,19 +422,19 @@ function generateTOC() {
     tocContainer.style.display = 'block';
 
     headers.forEach((header, index) => {
-        // Cria IDs para os títulos se não existirem
+        // Garante que todo título tenha um ID para linkagem
         if (!header.id) header.id = `heading-${index}`;
 
         const link = document.createElement('a');
         link.innerText = header.innerText;
         link.href = `#${header.id}`;
         link.className = 'toc-link';
-        link.dataset.target = header.id;
+        link.dataset.target = header.id; // Usado pelo Observer
         
-        // Indenta h3
+        // Se for H3, adiciona classe para indentar visualmente
         if (header.tagName === 'H3') link.classList.add('sub-item');
 
-        // --- CORREÇÃO CRÍTICA DE SCROLL MOBILE ---
+        // CORREÇÃO DO SCROLL NO MOBILE
         link.onclick = (e) => {
             e.preventDefault();
             
@@ -382,8 +442,8 @@ function generateTOC() {
             const targetElement = document.getElementById(header.id);
             
             if (container && targetElement) {
-                // Calcula a posição exata dentro do container scrollável
-                // Isso evita que o body role e esconda o header no mobile
+                // Calcula a posição relativa dentro do scroll do container
+                // Isso impede que o cabeçalho do site seja empurrado para cima
                 const topPos = targetElement.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
                 
                 container.scrollTo({
@@ -392,7 +452,7 @@ function generateTOC() {
                 });
             }
 
-            // Fecha overlay no mobile se estiver aberto
+            // Fecha o painel flutuante se estiver no mobile
             if(window.innerWidth <= 1024) {
                 document.getElementById('toc').classList.remove('visible');
             }
@@ -401,16 +461,18 @@ function generateTOC() {
     });
 }
 
-// Observer: Destaca o item do TOC enquanto rola a página
+// Observa qual título está visível na tela para destacar no índice
 function initTOCObserver() {
     if (tocObserver) tocObserver.disconnect();
 
+    // Margens ajustadas para detectar o título um pouco antes do topo
     const options = { root: null, rootMargin: '-100px 0px -60% 0px', threshold: 0 };
     
     tocObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.id;
+                // Adiciona classe ativa apenas ao link correspondente
                 document.querySelectorAll('.toc-link').forEach(link => {
                     link.classList.toggle('toc-link--active', link.dataset.target === id);
                 });
@@ -418,35 +480,31 @@ function initTOCObserver() {
         });
     }, options);
 
+    // Começa a observar todos os headers
     document.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3').forEach(h => {
         tocObserver.observe(h);
     });
 }
 
-// Configura botão de abrir/fechar TOC no mobile
+// Botões para abrir/fechar TOC no mobile
 function initTOCToggle() {
     const btn = document.getElementById('toc-toggle-btn');
     const toc = document.getElementById('toc');
     const close = document.getElementById('toc-close-mobile');
-    
     if(btn) btn.onclick = () => toc.classList.toggle('visible');
     if(close) close.onclick = () => toc.classList.remove('visible');
 }
 
 // ==============================================================
-// FEATURE: SIDEBAR DESKTOP TOGGLE
+// FEATURE: SIDEBAR TOGGLE (DESKTOP)
 // ==============================================================
 function initSidebarDesktopToggle() {
     const btn = document.getElementById('sidebar-toggle-desktop');
-    
-    // Recupera preferência salva
+    // Se o usuário deixou fechado antes, mantém fechado
     if (localStorage.getItem('sidebarHidden') === 'true') {
         document.body.classList.add('sidebar-hidden');
     }
-
-    if (btn) {
-        btn.onclick = toggleSidebarDesktop;
-    }
+    if (btn) btn.onclick = toggleSidebarDesktop;
 }
 
 function toggleSidebarDesktop() {
@@ -456,20 +514,21 @@ function toggleSidebarDesktop() {
 }
 
 // ==============================================================
-// FEATURE: BUSCA GLOBAL SIMPLES
+// FEATURE: BUSCA GLOBAL
 // ==============================================================
-let searchIndex = [];
+let searchIndex = []; // Array que guarda todos os tópicos para busca rápida
 
 function initSearch() {
     const input = document.getElementById('global-search');
     const resultsBox = document.getElementById('search-results');
     
-    // Cria um índice plano de todo o conteúdo
+    // Monta o índice de busca varrendo todo o data.js
     db.forEach((sem, sIdx) => {
         sem.subjects.forEach((mat, mIdx) => {
             mat.topics.forEach((top, tIdx) => {
                 searchIndex.push({
                     label: `${mat.name}: ${top.title}`,
+                    // Cria uma string de palavras-chave para facilitar a busca
                     keywords: `${sem.semester} ${mat.name} ${top.title}`.toLowerCase(),
                     hash: `#sem-${sIdx}/mat-${mIdx}/top-${tIdx}`
                 });
@@ -477,38 +536,42 @@ function initSearch() {
         });
     });
 
+    // Evento de digitação
     input.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         resultsBox.innerHTML = '';
         
+        // Só busca se tiver 2 ou mais caracteres
         if(term.length < 2) {
             resultsBox.style.display = 'none';
             return;
         }
 
+        // Filtra resultados
         const filtered = searchIndex.filter(item => item.keywords.includes(term));
         
         if(filtered.length > 0) {
             resultsBox.style.display = 'block';
+            // Mostra apenas os 10 primeiros
             filtered.slice(0, 10).forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'search-item';
                 div.innerHTML = `<strong>${item.label.split(':')[1]}</strong><small>${item.label.split(':')[0]}</small>`;
                 div.onclick = () => {
-                    location.hash = item.hash;
-                    input.value = '';
-                    resultsBox.style.display = 'none';
+                    location.hash = item.hash; // Navega
+                    input.value = '';          // Limpa campo
+                    resultsBox.style.display = 'none'; // Fecha resultados
                 };
                 resultsBox.appendChild(div);
             });
         } else {
-            // Feedback visual se nada for encontrado
+            // Feedback de nenhum resultado
             resultsBox.style.display = 'block';
             resultsBox.innerHTML = '<div class="search-item" style="cursor:default; color:var(--text-muted);">Nenhum resultado encontrado.</div>';
         }
     });
 
-    // Fecha busca ao clicar fora
+    // Fecha ao clicar fora
     document.addEventListener('click', (e) => {
         if(!e.target.closest('.search-container')) {
             resultsBox.style.display = 'none';
@@ -517,16 +580,16 @@ function initSearch() {
 }
 
 // ==============================================================
-// FEATURE: NOTAS PESSOAIS (LOCALSTORAGE)
+// FEATURE: NOTAS PESSOAIS (PERSISTÊNCIA)
 // ==============================================================
-let currentNoteKey = '';
+let currentNoteKey = ''; // Chave única para salvar a nota do tópico atual
 
 function initNotes() {
     const txt = document.getElementById('notes-textarea');
     const btnClear = document.getElementById('notes-clear');
     
     if(txt) {
-        // Salva automaticamente após parar de digitar (debounce)
+        // Salva automaticamente 400ms após parar de digitar
         txt.addEventListener('input', () => {
             if(notesTimeout) clearTimeout(notesTimeout);
             notesTimeout = setTimeout(saveNotes, 400); 
@@ -543,8 +606,10 @@ function initNotes() {
 }
 
 function loadNotes(s, m, t) {
+    // Cria uma chave única baseada na posição do tópico (ex: notes::sem-0::mat-1::top-0)
     currentNoteKey = `notes::sem-${s}::mat-${m}::top-${t}`;
     const saved = localStorage.getItem(currentNoteKey) || '';
+    
     const txt = document.getElementById('notes-textarea');
     if(txt) txt.value = saved;
     document.getElementById('notes-saved-indicator').classList.remove('visible');
@@ -562,18 +627,22 @@ function saveNotes() {
 }
 
 // ==============================================================
-// UTILITÁRIOS DE UI (TABS, DASHBOARD)
+// UTILITÁRIOS DE UI (ABAS E DASHBOARD)
 // ==============================================================
 function switchTab(name) {
+    // Esconde todos os painéis
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    // Desativa todas as abas
     document.querySelectorAll('.tab').forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
     });
     
+    // Ativa o painel solicitado
     const panel = document.getElementById(`tab-${name}`);
     if(panel) panel.classList.add('active');
     
+    // Ativa a aba correspondente
     const tabIndex = name === 'text' ? 0 : name === 'slides' ? 1 : 2;
     const btn = document.querySelectorAll('.tab')[tabIndex];
     if(btn) {
@@ -588,24 +657,27 @@ function showDashboard(updateHash = true) {
     document.getElementById('dashboard-view').style.display = 'block';
     document.getElementById('content-view').classList.remove('active');
     
+    // Remove seleção da sidebar
     document.querySelectorAll('.topic-link').forEach(l => l.classList.remove('active-topic'));
     closeMobileSidebar();
 }
 
 // ==============================================================
-// TEMA (DARK/LIGHT) & MENU MOBILE
+// TEMA (DARK/LIGHT) E MENU MOBILE
 // ==============================================================
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     const btn = document.getElementById('theme-toggle');
     const icon = btn.querySelector('i');
     
+    // Aplica tema salvo
     if (savedTheme === 'light') {
         document.body.classList.add('light');
         icon.classList.replace('fa-moon', 'fa-sun');
         btn.setAttribute('aria-pressed', 'true');
     }
     
+    // Alterna ao clicar
     btn.onclick = () => {
         document.body.classList.toggle('light');
         const isLight = document.body.classList.contains('light');
@@ -629,19 +701,20 @@ function handleMobileSidebar() {
     function open() {
         sidebar.classList.add('open');
         overlay.classList.add('visible');
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = 'hidden'; // Trava scroll do fundo
     }
     
     function close() {
         sidebar.classList.remove('open');
         overlay.classList.remove('visible');
-        document.body.style.overflow = '';
+        document.body.style.overflow = ''; // Destrava scroll
     }
     
     btn.onclick = open;
     closeBtn.onclick = close;
     overlay.onclick = close;
     
+    // Fecha ao apertar ESC
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && sidebar.classList.contains('open')) close();
     });
@@ -657,12 +730,12 @@ function closeMobileSidebar() {
 }
 
 // ==============================================================
-// MODO FOCO (FIX: Sempre inicia desligado para segurança)
+// MODO FOCO (SEGURANÇA: INICIA SEMPRE DESLIGADO)
 // ==============================================================
 function initFocusMode() {
     const btn = document.getElementById('focus-mode-btn');
     
-    // Garante que o modo foco comece desligado para evitar bugs visuais
+    // Garante que começa desligado para evitar bugs de interface sumindo
     document.body.classList.remove('focus-mode');
     sessionStorage.removeItem('focusMode');
 
@@ -670,6 +743,8 @@ function initFocusMode() {
         btn.onclick = () => {
             document.body.classList.toggle('focus-mode');
             const active = document.body.classList.contains('focus-mode');
+            
+            // Salva estado apenas na sessão atual
             if(active) {
                 sessionStorage.setItem('focusMode', 'on');
             } else {

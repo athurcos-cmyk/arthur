@@ -10,14 +10,18 @@
     --bg-nav-glass: rgba(24, 24, 27, 0.75);
     
     /* Texto - AJUSTADO PARA MELHOR CONTRASTE DO NEGRITO */
-    --text-main: #c4c4c7;      /* Cinza claro (não mais branco) */
-    --text-strong: #ffffff;    /* Branco puro (agora vai destacar) */
-    --text-muted: #71717a;     /* Cinza mais escuro para detalhes */
+    --text-main: #c4c4c7;      /* Cinza claro */
+    --text-strong: #ffffff;    /* Branco puro (destaque) */
+    --text-muted: #71717a;     
     --text-accent: #3b82f6; 
     
     /* Bordas e Divisores */
     --divider: #27272a;
     --border-highlight: #3f3f46;
+    
+    /* Scrollbar Dark */
+    --scroll-thumb: #3f3f46;
+    --scroll-track: transparent;
     
     /* Cores de Estado */
     --priority-green: #22c55e;
@@ -31,33 +35,41 @@
     --shadow-glow: 0 0 15px rgba(0,0,0,0.3);
     --nav-height: 64px;
     
-    --accent-light: #27272a; /* Usado no TOC dark */
+    --accent-light: #27272a; 
 }
 
 /* TEMA CLARO - PAPER / BEIGE AESTHETIC (Atualizado) */
 body.light {
     /* Fundos: Tons de creme e papel */
     --bg-page: #F5F2EB;          /* Bege suave (Linho) */
-    --bg-sidebar: #EBE7DE;       /* Um tom levemente mais escuro para separar */
-    --bg-card: #FFFFFF;          /* Cards brancos para destaque limpo */
-    --bg-card-hover: #FAF9F6;    /* Branco "Off-white" no hover */
-    --bg-nav-glass: rgba(245, 242, 235, 0.85); /* Efeito vidro bege */
+    --bg-sidebar: #EBE7DE;       /* Um tom levemente mais escuro */
+    --bg-card: #FFFFFF;          
+    --bg-card-hover: #FAF9F6;    
+    --bg-nav-glass: rgba(245, 242, 235, 0.85);
   
-    /* Texto: Cinza chumbo e Marrom café (menos duro que preto puro) */
+    /* Texto: Cinza chumbo e Marrom café */
     --text-main: #383533;        
     --text-strong: #1F1D1C;      
     --text-muted: #7A746E;
   
     /* Detalhes */
-    --divider: #E0DCD4;          /* Divisores sutis */
+    --divider: #E0DCD4;          
     --border-highlight: #D6D1C7;
-  
-    /* Sombras: Quentes (marrom) em vez de pretas */
+    
+    /* Scrollbar Light */
+    --scroll-thumb: #D6D1C7;
+
+    /* Sombras e Accent */
     --shadow-glow: 0 4px 12px -2px rgba(60, 50, 40, 0.08);
     --shadow-sm: 0 2px 6px rgba(60, 50, 40, 0.05);
-
-    /* Destaque sutil no TOC */
     --accent-light: #E6E0D4;     
+}
+
+/* Fonte Serifada (Livro) apenas no conteúdo do modo claro */
+body.light .markdown-content {
+    font-family: 'Merriweather', serif;
+    font-size: 1rem;
+    line-height: 1.9;
 }
 
 /* Reset e Base */
@@ -75,13 +87,18 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- SCROLLBAR CUSTOMIZADA --- */
+/* --- SCROLLBAR CUSTOMIZADA TEMÁTICA --- */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.3); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(128, 128, 128, 0.5); }
+::-webkit-scrollbar-track { background: var(--scroll-track); }
+::-webkit-scrollbar-thumb { 
+    background-color: var(--scroll-thumb); 
+    border-radius: 99px; 
+    border: 2px solid transparent; 
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--text-muted); }
 
-* { scrollbar-width: thin; scrollbar-color: rgba(128, 128, 128, 0.3) transparent; }
+* { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
 
 /* ==========================================================================
    NAVBAR & HEADER
@@ -257,10 +274,7 @@ body {
     transition: margin-left 0.3s ease, transform 0.3s ease;
 }
 
-/* Sidebar Hidden (Desktop Toggle) */
-body.sidebar-hidden .sidebar-disciplines {
-    margin-left: -280px;
-}
+body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
 
 .sidebar-header {
     padding: 20px 24px;
@@ -318,10 +332,6 @@ body.sidebar-hidden .sidebar-disciplines {
     border-left-color: var(--text-accent);
 }
 
-/* Ícones mais sofisticados */
-.icon { opacity: .75; transition: transform .18s, opacity .18s; }
-.icon:hover { opacity: 1; transform: scale(1.06); }
-
 .sidebar-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90;
     opacity: 0; pointer-events: none; transition: opacity 0.3s;
@@ -357,7 +367,6 @@ body.sidebar-hidden .sidebar-disciplines {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
 }
-/* Hover sofisticado */
 .card:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 
 .card.priority-green { border-top: 4px solid var(--priority-green); box-shadow: 0 4px 20px rgba(34, 197, 94, 0.15); }
@@ -386,7 +395,7 @@ body.sidebar-hidden .sidebar-disciplines {
 #topic-title { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 32px; color: var(--text-main); outline: none; }
 
 .focus-toggle-btn {
-    display: none !important; /* Oculta botão de foco mas mantem no código */
+    display: none !important;
     background: var(--bg-card); border: 1px solid var(--divider); color: var(--text-muted);
     padding: 8px; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;
 }
@@ -394,7 +403,6 @@ body.sidebar-hidden .sidebar-disciplines {
 
 .content-wrapper { display: block; position: relative; } 
 
-/* Layout Leitura */
 .reading-layout {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -402,11 +410,11 @@ body.sidebar-hidden .sidebar-disciplines {
     align-items: start;
 }
 
-/* Markdown Content - CORREÇÕES */
+/* Markdown Content */
 .markdown-content { 
     min-width: 0; 
     line-height: 1.8; 
-    font-size: 0.95rem;    /* FONTE AJUSTADA: Menor e mais elegante */
+    font-size: 0.95rem;
     color: var(--text-main); 
     opacity: 0;
     animation: fadeSimply 180ms ease-in forwards; 
@@ -420,12 +428,10 @@ body.sidebar-hidden .sidebar-disciplines {
 }
 .markdown-content h2 { border-bottom: 1px solid var(--divider); padding-bottom: 10px; }
 
-/* Espaçamento natural P e Listas */
 .markdown-content p { margin: 0 0 1.2rem 0; }
 .markdown-content ul, .markdown-content ol { margin: 1rem 0; padding-left: 1.5rem; }
 .markdown-content li { margin-bottom: 0.4rem; }
 
-/* Correção de Negrito */
 .markdown-content strong { color: var(--text-strong); font-weight: 700; }
 
 .markdown-content blockquote { 
@@ -434,7 +440,32 @@ body.sidebar-hidden .sidebar-disciplines {
     color: var(--text-muted); font-style: italic;
     background: var(--bg-card-hover); padding: 15px 20px; border-radius: 0 8px 8px 0;
 }
-.markdown-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 30px 0; border: 1px solid var(--divider); }
+.markdown-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 30px 0; border: 1px solid var(--divider); cursor: zoom-in; }
+
+/* LIGHTBOX ZOOM IMAGEM */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.lightbox-overlay.active { display: flex; opacity: 1; }
+.lightbox-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.2s;
+}
+.lightbox-overlay.active img { transform: scale(1); }
 
 /* Wrapper da Coluna Direita */
 .side-panel-wrapper {
@@ -453,7 +484,6 @@ body.sidebar-hidden .sidebar-disciplines {
     transition: transform 0.3s;
 }
 
-/* Overlay Mobile TOC */
 .toc-container.visible {
     position: fixed;
     top: 20%;
@@ -556,16 +586,6 @@ body.sidebar-hidden .sidebar-disciplines {
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 /* ==========================================================================
-   MODO FOCO (Styles mantidos, mas botão oculto)
-   ========================================================================== */
-body.focus-mode .sidebar-disciplines { display: none !important; } 
-body.focus-mode .navbar { display: none; }
-body.focus-mode .container { max-width: 900px; margin: 0 auto; }
-body.focus-mode .main-view { padding-top: 60px; }
-body.focus-mode .focus-toggle-btn { position: fixed; top: 20px; right: 20px; z-index: 100; background: var(--bg-page); }
-body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
-
-/* ==========================================================================
    📱 MOBILE
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -581,12 +601,10 @@ body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
     .side-panel-wrapper .toc-container.visible { display: block; } 
 }
 
-/* CORREÇÃO PARA CELULARES PEQUENOS */
 @media (max-width: 768px) {
     #mobile-menu-btn { display: block; }
     #sidebar-toggle-desktop { display: none; }
 
-    /* Ajuste Navbar: Permitir quebra para mostrar busca */
     .navbar {
         flex-wrap: wrap;
         height: auto;
@@ -594,11 +612,8 @@ body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
         gap: 10px;
     }
 
-    .nav-right {
-        margin-left: auto;
-    }
+    .nav-right { margin-left: auto; }
     
-    /* Busca aparece abaixo dos botões */
     .search-container {
         display: block; 
         order: 3; 
@@ -625,6 +640,41 @@ body.focus-mode .reading-layout { grid-template-columns: 1fr auto; gap: 20px; }
     
     .tabs-container { overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
     .tab { flex-shrink: 0; }
+}
+
+/* ==========================================================================
+   🖨️ ESTILOS DE IMPRESSÃO
+   ========================================================================== */
+@media print {
+    .navbar, .sidebar-disciplines, .semester-nav, .content-toolbar, .tabs-container, .side-panel-wrapper, #theme-toggle, #mobile-menu-btn, .lightbox-overlay {
+        display: none !important;
+    }
+
+    body, .main-view, .container {
+        background: white !important;
+        color: black !important;
+        height: auto !important;
+        overflow: visible !important;
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .content-area { display: block !important; }
+    
+    .markdown-content {
+        font-family: 'Merriweather', serif !important;
+        font-size: 12pt !important;
+        color: black !important;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    
+    .markdown-content a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #555;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
