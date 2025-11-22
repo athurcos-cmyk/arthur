@@ -143,7 +143,11 @@
         </main>
     </div>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const time = new Date().getTime();
+        document.write('<script src="data.js?v=' + time + '"><\/script>');
+        document.write('<script src="script.js?v=' + time + '"><\/script>');
+    </script>
+</body>
 </body>
 </html>
