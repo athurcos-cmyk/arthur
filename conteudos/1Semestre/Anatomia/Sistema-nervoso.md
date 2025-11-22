@@ -69,7 +69,7 @@ Cada cada parte do cerebro e do tronco tem suas subdivisões:
 ## 6. Lobos do Telencéfalo 
 O Telencéfalo é dividido em lobos com funções específicas:
 
-* **Lobo Frontal:** **PENSAMENTO** (personalidade, planejamento) + **MOVIMENTO VOLUNTÁRIO** (Via Eferente). *(Lembre-se: O Frontal é o CEO que pensa e dá a ordem).*
+* **Lobo Frontal:** **PENSAMENTO** (personalidade, planejamento) + **MOVIMENTO VOLUNTÁRIO** (Via Eferente).
 * **Lobo Parietal:** **SENSAÇÕES** (tato, dor, temperatura, pressão) (Via Aferente).
 * **Lobo Occipital:** **VISÃO**.
 * **Lobo Temporal:** **AUDIÇÃO** e **LINGUAGEM**.
