@@ -161,13 +161,24 @@ function renderDashboardCounts() {
         }
     });
 
+    // Se tiver provas, mostra o alerta laranja
     if(examsThisWeek > 0) {
-        // Insere o card de resumo no início do grid
         const summaryCard = `
             <div class="card priority-orange animate-fade-up" id="card-exams-count">
                 <h3>Resumo da Semana</h3>
                 <div class="days-left" style="color:var(--priority-orange); font-size: 2.5rem">${examsThisWeek}</div>
                 <small>Provas esta semana</small>
+            </div>
+        `;
+        container.insertAdjacentHTML('afterbegin', summaryCard);
+    } 
+    // SE NÃO TIVER PROVAS (0), mostra o card verde de folga
+    else {
+        const summaryCard = `
+            <div class="card priority-green animate-fade-up" id="card-exams-count">
+                <h3>Resumo da Semana</h3>
+                <div class="days-left" style="color:var(--priority-green); font-size: 2.5rem"><i class="fas fa-smile-beam"></i></div>
+                <small>Nenhuma prova esta semana!</small>
             </div>
         `;
         container.insertAdjacentHTML('afterbegin', summaryCard);
