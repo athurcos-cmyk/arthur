@@ -75,6 +75,11 @@
             <div id="dashboard-view" class="animate-fade-up">
                 <h2 class="section-title">Próximas Provas</h2>
                 <div class="dashboard-grid" id="calendar-container"></div>
+
+                <div id="tasks-section" style="margin-top: 40px; display: none;">
+                    <h2 class="section-title">Trabalhos & Entregas</h2>
+                    <div class="dashboard-grid" id="tasks-container"></div>
+                </div>
             </div>
 
             <div id="content-view" class="content-area">
@@ -87,9 +92,15 @@
                         <div class="breadcrumb" id="breadcrumb"></div>
                     </div>
                     
-                    <button id="focus-mode-btn" class="focus-toggle-btn" title="Modo Leitura (Foco)">
-                        <i class="fas fa-expand"></i>
-                    </button>
+                    <div class="toolbar-right" style="display: flex; gap: 8px;">
+                        <button id="btn-mark-done" class="action-btn" aria-label="Marcar como concluído" title="Marcar como concluído">
+                            <i class="fas fa-check"></i>
+                        </button>
+
+                        <button id="focus-mode-btn" class="focus-toggle-btn" title="Modo Leitura (Foco)">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <h1 id="topic-title"></h1>
@@ -131,8 +142,7 @@
                     </div>
 
                     <div id="tab-slides" class="tab-panel" role="tabpanel">
-                        <div id="slides-container"></div>
-                    </div>
+                        <div id="slides-container" class="slides-grid"></div> </div>
 
                     <div id="tab-video" class="tab-panel" role="tabpanel">
                         <div id="videos-container" class="video-grid"></div>
@@ -143,11 +153,16 @@
         </main>
     </div>
 
+    <div id="pomodoro-pill" class="pomodoro-pill" aria-live="polite">
+        <span id="pomodoro-time">25:00</span>
+        <button id="pomodoro-action" aria-label="Iniciar Pomodoro"><i class="fas fa-play"></i></button>
+        <button id="pomodoro-reset" aria-label="Resetar Pomodoro"><i class="fas fa-redo"></i></button>
+    </div>
+
     <script>
         const time = new Date().getTime();
         document.write('<script src="data.js?v=' + time + '"><\/script>');
         document.write('<script src="script.js?v=' + time + '"><\/script>');
     </script>
-</body>
 </body>
 </html>

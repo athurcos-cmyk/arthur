@@ -359,7 +359,9 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     to { opacity: 1; transform: translateY(0); } 
 }
 .topic-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 24px 10px 40px;
     color: var(--text-muted);
     text-decoration: none;
@@ -748,4 +750,106 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
 
 @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   ✨ NOVAS FEATURES (Tracker, Pomodoro, Slides Grid)
+   ========================================================================== */
+
+/* --- 1. Botão de Marcar Concluído (Toolbar) --- */
+.action-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    color: var(--text-muted);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.action-btn:hover { color: var(--text-main); border-color: var(--text-main); }
+.action-btn.done {
+    background: var(--priority-green);
+    color: white;
+    border-color: var(--priority-green);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+/* Ícone de check na Sidebar */
+.topic-done-icon {
+    color: var(--priority-green);
+    font-size: 0.8em;
+    margin-left: auto; /* Empurra para direita */
+}
+
+/* --- 2. Pomodoro Pill --- */
+.pomodoro-pill {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bg-nav-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--divider);
+    padding: 8px 16px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-glow);
+    z-index: 100;
+    transition: transform 0.2s;
+}
+.pomodoro-pill:hover { transform: scale(1.05); }
+
+#pomodoro-time {
+    font-family: 'Inter', monospace;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1rem;
+    min-width: 50px;
+    text-align: center;
+}
+.pomodoro-pill button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.pomodoro-pill button:hover { color: var(--text-accent); }
+.pomodoro-running #pomodoro-time { color: var(--priority-orange); }
+
+/* --- 3. Slides Grid Layout --- */
+.slides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+/* Reutiliza estilo base, mas ajusta para card vertical se necessário */
+.slides-grid .slide-link {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    margin-bottom: 0;
+}
+.slides-grid .slide-link i { margin-bottom: 8px; }
+
+/* --- 4. Toast Notification (Micro-interação) --- */
+.toast {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--priority-green);
+    color: var(--text-main);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-glow);
+    z-index: 110;
+    font-size: 0.9rem;
+    animation: fadeUp 0.3s ease-out;
 }

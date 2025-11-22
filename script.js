@@ -8,6 +8,10 @@ let currentSemIndex = 0;   // Guarda qual semestre está sendo visualizado (0 = 
 let notesTimeout = null;   // Timer usado para o "debounce" do salvamento de notas (evita salvar a cada tecla)
 let tocObserver = null;    // Guarda a instância do IntersectionObserver do índice (TOC)
 
+// Variáveis do Pomodoro (Nova Feature)
+let pomodoroTimer = null;
+const POMODORO_DEFAULT = 25 * 60; // 25 minutos em segundos
+
 // ==============================================================
 // 🚀 INICIALIZAÇÃO (BOOTSTRAP)
 // ==============================================================
@@ -18,6 +22,8 @@ window.onload = () => {
     // 1. Renderizar componentes visuais base
     // ----------------------------------------------------------
     renderCalendar();       // Desenha os cards com contagem regressiva das provas
+    renderDashboardCounts(); // NOVO: Conta provas da semana
+    renderTasks();          // NOVO: Renderiza trabalhos se existirem
     renderSemesterNav();    // Desenha os botões de navegação dos semestres no topo
     
     // ----------------------------------------------------------
@@ -35,7 +41,9 @@ window.onload = () => {
     initTOCToggle();            // Liga o botão de abrir o índice no Mobile
     initSearch();               // Liga a barra de busca global no topo
     initNotes();                // Inicializa o sistema de anotações pessoais
-    
+    initPomodoro();             // NOVO: Inicializa o timer Pomodoro
+    initTracker();              // NOVO: Inicializa o botão de concluir tópico
+
     // OBS: O Zoom de imagem (initImageZoom) é chamado dentro de openTopic 
     // porque as imagens só existem depois que o conteúdo carrega.
 };
@@ -120,6 +128,83 @@ function renderCalendar() {
             </div>
         `;
     });
+}
+
+// ==============================================================
+// FEATURE: DASHBOARD COUNTS & TASKS
+// ==============================================================
+function renderDashboardCounts() {
+    const container = document.getElementById('calendar-container');
+    if(!container) return;
+
+    // Calcula provas da SEMANA ATUAL (Segunda a Domingo)
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    
+    // Encontra o dia da semana (0=Domingo, 1=Segunda...)
+    const day = today.getDay(); 
+    // Calcula distância para segunda-feira (se domingo(0), volta 6 dias)
+    const diffToMon = today.getDate() - day + (day === 0 ? -6 : 1);
+    
+    const monday = new Date(today);
+    monday.setDate(diffToMon);
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+
+    let examsThisWeek = 0;
+
+    exams.forEach(exam => {
+        const parts = exam.date.split('/');
+        const exDate = new Date(parts[2], parts[1]-1, parts[0]);
+        if(exDate >= monday && exDate <= sunday) {
+            examsThisWeek++;
+        }
+    });
+
+    if(examsThisWeek > 0) {
+        // Insere o card de resumo no início do grid
+        const summaryCard = `
+            <div class="card priority-orange animate-fade-up" id="card-exams-count">
+                <h3>Resumo da Semana</h3>
+                <div class="days-left" style="color:var(--priority-orange); font-size: 2.5rem">${examsThisWeek}</div>
+                <small>Provas esta semana</small>
+            </div>
+        `;
+        container.insertAdjacentHTML('afterbegin', summaryCard);
+    }
+}
+
+function renderTasks() {
+    // Verifica se a variável tasks existe no data.js
+    if(typeof tasks === 'undefined') return;
+
+    const section = document.getElementById('tasks-section');
+    const container = document.getElementById('tasks-container');
+    if(!section || !container) return;
+
+    if(tasks.length > 0) {
+        section.style.display = 'block';
+        container.innerHTML = '';
+        
+        tasks.forEach(task => {
+            // Estilo visual distinto (roxo/neutro)
+            container.innerHTML += `
+                <div class="card animate-fade-up" style="border-top: 4px solid var(--text-accent);">
+                    <h3>${task.name}</h3>
+                    <small style="display:block; margin-top:5px; color:var(--text-muted);">
+                        <i class="fas fa-calendar"></i> Entrega: ${task.date}
+                    </small>
+                    <small style="display:block; margin-top:2px; text-transform:uppercase; font-size:0.75rem;">
+                        ${task.type === 'group' ? '👥 Grupo' : '👤 Individual'}
+                    </small>
+                </div>
+            `;
+        });
+    } else {
+        // Fallback se array vazio
+        section.style.display = 'block';
+        container.innerHTML = '<div style="color:var(--text-muted);">Nenhuma entrega pendente.</div>';
+    }
 }
 
 // ==============================================================
@@ -273,6 +358,9 @@ function loadSemester(index) {
     // Restaura preferência de sidebar oculta se existir
     const isHidden = localStorage.getItem('sidebarHidden') === 'true';
     if(isHidden) document.body.classList.add('sidebar-hidden');
+
+    // NOVO: Renderiza os ícones de concluído nos tópicos
+    renderProgressBadges();
 }
 
 // --- FUNÇÃO CORRIGIDA: EXPANDIR MENU (COM LÓGICA DE TOGGLE E FORCE OPEN) ---
@@ -333,6 +421,9 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     // Carrega as notas salvas para este tópico específico
     loadNotes(semIdx, subIdx, topIdx);
 
+    // NOVO: Verifica se o tópico está concluído e atualiza o botão
+    checkCurrentTopicStatus(semIdx, subIdx, topIdx);
+
     // --- 1. CARREGA O TEXTO (MARKDOWN) ---
     const textArea = document.getElementById('markdown-render');
     textArea.innerHTML = '<p class="loading-text">Carregando conteúdo...</p>';
@@ -371,13 +462,17 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
         document.getElementById('toc-content').innerHTML = '';
     }
 
-    // --- 2. CARREGA OS SLIDES ---
+    // --- 2. CARREGA OS SLIDES (COM NOVO LAYOUT DE GRID) ---
     const slideArea = document.getElementById('slides-container');
     slideArea.innerHTML = '';
+    
+    // Garante que a classe de grid está aplicada
+    slideArea.className = 'slides-grid'; 
+
     if (data.slides && data.slides.length) {
         data.slides.forEach(s => {
             slideArea.innerHTML += `
-                <a href="${s.url}" target="_blank" class="slide-link">
+                <a href="${s.url}" target="_blank" class="slide-link slide-card" rel="noopener noreferrer" aria-label="Abrir slide ${s.title}">
                     <i class="fas fa-file-pdf fa-2x" style="color: var(--priority-red)"></i>
                     <div><strong>${s.title}</strong><br><small>Abrir no Drive</small></div>
                 </a>`;
@@ -819,4 +914,179 @@ function initFocusMode() {
             }
         };
     }
+}
+
+// ==============================================================
+// FEATURE: TRACKER DE PROGRESSO (NOVO)
+// ==============================================================
+
+function initTracker() {
+    const btn = document.getElementById('btn-mark-done');
+    if(btn) {
+        btn.onclick = () => {
+            // Pega o ID atual da URL
+            const hash = location.hash.slice(1);
+            const semIdx = hash.match(/sem-(\d+)/)?.[1];
+            const matIdx = hash.match(/mat-(\d+)/)?.[1];
+            const topIdx = hash.match(/top-(\d+)/)?.[1];
+
+            if(semIdx && matIdx && topIdx) {
+                toggleTopicStatus(semIdx, matIdx, topIdx);
+            }
+        };
+    }
+}
+
+function toggleTopicStatus(s, m, t) {
+    const key = `status::sem-${s}::mat-${m}::top-${t}`;
+    const isDone = localStorage.getItem(key) === 'true';
+    
+    // Inverte o estado
+    if(isDone) {
+        localStorage.removeItem(key);
+    } else {
+        localStorage.setItem(key, 'true');
+        showToast("Tópico marcado como concluído!");
+    }
+    
+    // Atualiza UI
+    checkCurrentTopicStatus(s, m, t);
+    renderProgressBadges(); // Atualiza sidebar
+}
+
+function checkCurrentTopicStatus(s, m, t) {
+    const key = `status::sem-${s}::mat-${m}::top-${t}`;
+    const isDone = localStorage.getItem(key) === 'true';
+    const btn = document.getElementById('btn-mark-done');
+    
+    if(!btn) return;
+
+    if(isDone) {
+        btn.classList.add('done');
+        btn.innerHTML = '<i class="fas fa-check-circle"></i>';
+        btn.setAttribute('aria-pressed', 'true');
+    } else {
+        btn.classList.remove('done');
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.setAttribute('aria-pressed', 'false');
+    }
+}
+
+function renderProgressBadges() {
+    // Percorre todos os links da sidebar
+    document.querySelectorAll('.topic-link').forEach(link => {
+        // Extrai IDs do href do link
+        const href = link.getAttribute('href'); 
+        const s = href.match(/sem-(\d+)/)?.[1];
+        const m = href.match(/mat-(\d+)/)?.[1];
+        const t = href.match(/top-(\d+)/)?.[1];
+
+        if(s && m && t) {
+            const key = `status::sem-${s}::mat-${m}::top-${t}`;
+            const isDone = localStorage.getItem(key) === 'true';
+            
+            // Remove ícone antigo se existir
+            const existingIcon = link.querySelector('.topic-done-icon');
+            if(existingIcon) existingIcon.remove();
+
+            if(isDone) {
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-check-circle topic-done-icon';
+                link.appendChild(icon);
+            }
+        }
+    });
+}
+
+// ==============================================================
+// FEATURE: POMODORO TIMER (NOVO)
+// ==============================================================
+let pomodoroInterval = null;
+
+function initPomodoro() {
+    const pill = document.getElementById('pomodoro-pill');
+    const timeDisplay = document.getElementById('pomodoro-time');
+    const btnAction = document.getElementById('pomodoro-action');
+    const btnReset = document.getElementById('pomodoro-reset');
+    
+    // Recupera estado salvo
+    let remaining = parseInt(sessionStorage.getItem('pomodoroRemaining')) || POMODORO_DEFAULT;
+    let isRunning = sessionStorage.getItem('pomodoroRunning') === 'true';
+
+    updatePomodoroDisplay(remaining);
+
+    if(isRunning) {
+        startPomodoro(remaining);
+        btnAction.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+
+    btnAction.onclick = () => {
+        const running = sessionStorage.getItem('pomodoroRunning') === 'true';
+        if(running) {
+            pausePomodoro();
+            btnAction.innerHTML = '<i class="fas fa-play"></i>';
+            btnAction.setAttribute('aria-pressed', 'false');
+        } else {
+            const current = parseInt(sessionStorage.getItem('pomodoroRemaining')) || POMODORO_DEFAULT;
+            startPomodoro(current);
+            btnAction.innerHTML = '<i class="fas fa-pause"></i>';
+            btnAction.setAttribute('aria-pressed', 'true');
+        }
+    };
+
+    btnReset.onclick = () => {
+        pausePomodoro();
+        sessionStorage.setItem('pomodoroRemaining', POMODORO_DEFAULT);
+        updatePomodoroDisplay(POMODORO_DEFAULT);
+        btnAction.innerHTML = '<i class="fas fa-play"></i>';
+        btnAction.setAttribute('aria-pressed', 'false');
+    };
+}
+
+function startPomodoro(timeLeft) {
+    if(pomodoroInterval) clearInterval(pomodoroInterval);
+    sessionStorage.setItem('pomodoroRunning', 'true');
+    document.getElementById('pomodoro-pill').classList.add('pomodoro-running');
+    
+    let current = timeLeft;
+    
+    pomodoroInterval = setInterval(() => {
+        current--;
+        sessionStorage.setItem('pomodoroRemaining', current);
+        updatePomodoroDisplay(current);
+
+        if(current <= 0) {
+            clearInterval(pomodoroInterval);
+            sessionStorage.setItem('pomodoroRunning', 'false');
+            sessionStorage.setItem('pomodoroRemaining', POMODORO_DEFAULT);
+            alert("Pomodoro finalizado! Hora de descansar.");
+            document.getElementById('pomodoro-action').innerHTML = '<i class="fas fa-play"></i>';
+            document.getElementById('pomodoro-pill').classList.remove('pomodoro-running');
+            updatePomodoroDisplay(POMODORO_DEFAULT);
+        }
+    }, 1000);
+}
+
+function pausePomodoro() {
+    if(pomodoroInterval) clearInterval(pomodoroInterval);
+    sessionStorage.setItem('pomodoroRunning', 'false');
+    document.getElementById('pomodoro-pill').classList.remove('pomodoro-running');
+}
+
+function updatePomodoroDisplay(seconds) {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    document.getElementById('pomodoro-time').innerText = `${m}:${s}`;
+}
+
+// Micro-Toast Notification
+function showToast(msg) {
+    const div = document.createElement('div');
+    div.className = 'toast';
+    div.innerText = msg;
+    document.body.appendChild(div);
+    setTimeout(() => {
+        div.style.opacity = '0';
+        setTimeout(() => div.remove(), 300);
+    }, 2000);
 }
