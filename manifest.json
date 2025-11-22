@@ -1,7 +1,7 @@
 {
   "name": "Enfermagem Estudos",
   "short_name": "Enfermagem",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#09090b",
   "theme_color": "#09090b",
