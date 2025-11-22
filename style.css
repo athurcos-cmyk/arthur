@@ -469,7 +469,26 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     color: var(--text-muted); font-style: italic;
     background: var(--bg-card-hover); padding: 15px 20px; border-radius: 0 8px 8px 0;
 }
-.markdown-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 30px 0; border: 1px solid var(--divider); cursor: zoom-in; }
+/* Imagens no conteúdo (CORRIGIDO TAMANHO) */
+.markdown-content img {
+    max-width: 100%;      /* Não ultrapassa a largura do texto */
+    max-height: 55vh;     /* NOVO: Limita a altura a 55% da tela */
+    height: auto;         /* Mantém a proporção correta */
+    
+    display: block;       /* Garante que se comporte como bloco */
+    margin: 30px auto;    /* NOVO: Centraliza a imagem horizontalmente e dá espaço vertical */
+    
+    border-radius: 8px;   /* Cantos arredondados */
+    border: 1px solid var(--divider); /* Borda sutil */
+    cursor: zoom-in;      /* Mostra a lupa ao passar o mouse */
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+/* Pequeno efeito visual ao passar o mouse na imagem */
+.markdown-content img:hover {
+    border-color: var(--text-accent);
+    transform: scale(1.01);
+}
 
 /* LIGHTBOX ZOOM IMAGEM */
 .lightbox-overlay {
