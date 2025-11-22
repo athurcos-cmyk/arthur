@@ -65,8 +65,8 @@ body.light {
     --accent-light: #E6E0D4;     
 }
 
-/* Fonte Serifada (Livro) apenas no conteúdo do modo claro */
-body.light .markdown-content {
+/* Fonte Serifada (Livro) EM TODOS OS TEMAS */
+.markdown-content {
     font-family: 'Merriweather', serif;
     font-size: 1rem;
     line-height: 1.9;
