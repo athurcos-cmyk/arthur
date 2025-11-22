@@ -229,7 +229,8 @@ function loadSemester(index) {
         const btn = document.createElement('button');
         btn.className = 'discipline-btn';
         btn.id = `disc-btn-${subIdx}`;
-        btn.innerHTML = `<span>${sub.name}</span> <i class="fas fa-chevron-down" style="float:right; font-size:0.8em; margin-top:4px"></i>`;
+        // Mudamos para 'fa-chevron-right' e removemos o style="..." substituindo por uma classe
+        btn.innerHTML = `<span>${sub.name}</span> <i class="fas fa-chevron-right discipline-icon"></i>`;
         
         // Cria o container oculto para os tópicos
         const topicList = document.createElement('div');

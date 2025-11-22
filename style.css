@@ -287,7 +287,7 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     display: flex; justify-content: space-between; align-items: center;
 }
 .close-btn-mobile { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 1.2rem; }
-
+/* Botão de disciplina */
 .discipline-btn {
     width: 100%;
     padding: 16px 24px;
@@ -310,6 +310,20 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
 .discipline-btn.active-discipline::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--text-accent);
 }
+/* Ícone da seta na disciplina */
+.discipline-icon {
+    float: right;
+    font-size: 0.8em;
+    margin-top: 4px;
+    /* A mágica da rotação suave acontece aqui */
+    transition: transform 0.3s ease;
+}
+
+/* Quando o botão da disciplina está ativo (aberto), gira o ícone */
+.discipline-btn.active-discipline .discipline-icon {
+    /* Gira 90 graus para baixo */
+    transform: rotate(90deg);
+}
 
 /* ANIMAÇÃO SUAVE DO SUBMENU (ACCORDION) */
 .topic-submenu {
@@ -323,7 +337,7 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     
     /* Configuração da Transição (Velocidade e Curva) */
     transition: 
-        max-height 0.4s cubic-bezier(0, 1, 0, 1),
+        max-height 0.6s cubic-bezier(0, 1, 0, 1),
         opacity 0.3s ease,
         transform 0.3s ease;
 }
