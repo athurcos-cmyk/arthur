@@ -52,9 +52,9 @@ Cada cada parte do cerebro e do tronco tem suas subdivisões:
 * **Telencéfalo:** Parte maior, externa e enrugada (90%).
 * **Diencéfalo:** Parte central "escondida" (contém Tálamo e Hipotálamo).
 
-#### **Função do Tálamo e Hipotalamo:**
-**Tálamo**: É o principal centro de retransmissão de informações sensoriais (exceto o olfato) que vão para o cérebro. É o "porteiro" ou "central de distribuição" do cérebro.
-**Hipotálamo:** É o centro de controle da homeostase (equilíbrio interno). Controla a temperatura corporal, fome, sede e é o elo principal entre o Sistema Nervoso e o Sistema Endócrino (hormônios).
+    * #### **Função do Tálamo e Hipotalamo:**
+        * **Tálamo**: É o principal centro de retransmissão de informações sensoriais (exceto o olfato) que vão para o cérebro. É o "porteiro" ou "central de distribuição" do cérebro.
+        * **Hipotálamo:** É o centro de controle da homeostase (equilíbrio interno). Controla a temperatura corporal, fome, sede e é o elo principal entre o Sistema Nervoso e o Sistema Endócrino (hormônios).
 
 ### Tronco Encefálico
 * **Mesencéfalo:** Reflexos de visão e audição.
@@ -66,7 +66,7 @@ Cada cada parte do cerebro e do tronco tem suas subdivisões:
 
 ---
 
-## 6. Lobos do Telencéfalo ("Departamentos Funcionais")
+## 6. Lobos do Telencéfalo 
 O Telencéfalo é dividido em lobos com funções específicas:
 
 * **Lobo Frontal:** **PENSAMENTO** (personalidade, planejamento) + **MOVIMENTO VOLUNTÁRIO** (Via Eferente). *(Lembre-se: O Frontal é o CEO que pensa e dá a ordem).*
@@ -77,7 +77,7 @@ O Telencéfalo é dividido em lobos com funções específicas:
 
 ---
 
-## 7. Hidráulica e Proteção Interna (Ventrículos e Líquor)
+## 7. Ventrículos e Líquor
 * **Ventrículos:** São os espaços ocos dentro do cérebro (resquício do Tubo Neural). Incluem os Ventrículos Laterais, III Ventrículo, Aqueduto e IV Ventrículo.
 * **Líquor (LCR):** Fluido que preenche os ventrículos e o espaço subaracnóide.
     * **Funções:** Proteção mecânica (amortecedor) e transporte/diagnóstico.
@@ -87,12 +87,12 @@ O Telencéfalo é dividido em lobos com funções específicas:
 
 ---
 
-## 8. O Escudo Externo (Meninges)
+## 8. Meninges
 São 3 membranas de tecido conjuntivo que protegem o SNC (de fora para dentro):
 
-1.  **Dura-máter:** Externa, espessa, resistente ("Mãe dura").
-2.  **Aracnoide-máter:** Intermediária ("Teia de aranha").
-3.  **Pia-máter:** Interna, delicada, aderida ao cérebro ("Mãe gentil").
+1.  **Dura-máter:** Externa, espessa, resistente 
+2.  **Aracnoide-máter:** Intermediária 
+3.  **Pia-máter:** Interna, delicada, aderida ao cérebro 
 
 ### O Espaço Vital
 * **Espaço Subaracnóide:** Localizado **abaixo da Aracnoide**. É o espaço real onde circula o **Líquor**. É aqui que ocorre a meningite e onde se coleta líquor na punção lombar.
