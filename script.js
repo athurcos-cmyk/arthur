@@ -338,8 +338,8 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     
     if (data.file) {
         try {
-            // Faz uma requisição (fetch) para pegar o arquivo .md na pasta
-            const response = await fetch(data.file);
+            // Busca o arquivo .md e adiciona um timestamp para FORÇAR o download novo (sem cache)
+            const response = await fetch(`${data.file}?t=${new Date().getTime()}`);
             if (!response.ok) throw new Error("Erro 404");
             const text = await response.text();
             
