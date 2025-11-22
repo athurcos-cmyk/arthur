@@ -337,7 +337,7 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     
     /* Configuração da Transição (Velocidade e Curva) */
     transition: 
-        max-height 0.5s ease-out cubic-bezier(0, 1, 0, 1),
+        max-height 0.5s ease-out,
         opacity 0.4s ease-out,
         transform 0.4s ease-out;
 }
