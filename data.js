@@ -81,20 +81,20 @@ const db = [
                         videos: []
                     },
                     {
-                        title: "Sistema Respiratorio",
-                        file: "conteudos/1Semestre/Anatomia/Sistema-respiratorio.md",
-                        slides: [
-                            { title: "Sistema Respiratorio", url: "https://drive.google.com/file/d/1ah9nB4vD_DK3L3hVVGeYigfEGgA4Xcic/view?usp=drive_link" },
-                            { title: "Roteiro de apoio - Sistema Respiratorio", url: "https://drive.google.com/file/d/1fm60zFV4Gqjhj7Y3xBHVXsPihKy6Qf0a/view?usp=drive_link" }
-                        ],
-                        videos: []
-                    },
-                    {
                         title: "Sistema Digestorio",
                         file: "conteudos/1Semestre/Anatomia/sistema-digestorio.md",
                         slides: [
                             { title: "Sistema Digestorio", url: "https://drive.google.com/file/d/15GncI0bKqzotWhwk5VgH6E1xvfGgHVwb/view?usp=drive_link" },
                             { title: "Roteiro de apoio - Sistema Digestorio", url: "https://drive.google.com/file/d/1fm60zFV4Gqjhj7Y3xBHVXsPihKy6Qf0a/view?usp=drive_link" }
+                        ],
+                        videos: []
+                    },
+                    {
+                        title: "Sistema Respiratorio",
+                        file: "conteudos/1Semestre/Anatomia/Sistema-respiratorio.md",
+                        slides: [
+                            { title: "Sistema Respiratorio", url: "https://drive.google.com/file/d/1ah9nB4vD_DK3L3hVVGeYigfEGgA4Xcic/view?usp=drive_link" },
+                            { title: "Roteiro de apoio - Sistema Respiratorio", url: "https://drive.google.com/file/d/1fm60zFV4Gqjhj7Y3xBHVXsPihKy6Qf0a/view?usp=drive_link" }
                         ],
                         videos: []
                     },
