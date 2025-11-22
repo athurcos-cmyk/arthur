@@ -48,7 +48,7 @@ O Encéfalo (parte do SNC dentro do crânio) divide-se em 3 grandes partes:
 ## 5. Cérebro e Tronco Encefálico
 Cada cada parte do cerebro e do tronco tem suas subdivisões:
 
-### Cérebros teste final
+### Cérebro
 * **Telencéfalo:** Parte maior, externa e enrugada (90%).
 * **Diencéfalo:** Parte central "escondida" (contém Tálamo e Hipotálamo).
 
