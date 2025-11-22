@@ -390,6 +390,8 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
 .main-view { 
     flex: 1; 
     padding: 32px 40px; 
+    /* CORREÇÃO: Espaço extra no fim para o conteúdo não ficar atrás do Pomodoro */
+    padding-bottom: 120px;
     overflow-y: auto; 
     position: relative;
     background: var(--bg-page);
@@ -706,7 +708,11 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     .sidebar-disciplines.open { transform: translateX(0); }
     .close-btn-mobile { display: block; }
 
-    .main-view { padding: 20px 16px; }
+    .main-view { 
+        /* Padding: Topo | Direita | Fundo (Grande) | Esquerda */
+        padding: 20px 16px 140px 16px; 
+    }
+    
     #topic-title { font-size: 1.75rem; }
     
     .tabs-container { overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
