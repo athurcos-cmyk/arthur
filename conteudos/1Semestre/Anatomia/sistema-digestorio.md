@@ -1,4 +1,4 @@
-# 🍎 Consolidação: Sistema Digestório
+# Sistema Digestorio
 
 O sistema é como um tubo contínuo. A comida passa por: Boca → Faringe → Esôfago → Estômago → Intestino Delgado → Intestino Grosso.
 
