@@ -25,7 +25,7 @@ window.onload = () => {
     renderDashboardCounts(); // NOVO: Conta provas da semana
     renderTasks();          // NOVO: Renderiza trabalhos se existirem
     renderSemesterNav();    // Desenha os botões de navegação dos semestres no topo
-    
+    renderAnkiCard();
     
     // ----------------------------------------------------------
     // 2. Inicializar configurações e rotas
