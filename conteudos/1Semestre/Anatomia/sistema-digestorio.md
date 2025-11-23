@@ -42,7 +42,7 @@ Canal compartilhado com o sistema respiratório. É para onde o alimento vai ass
 1.  **Nasofaringe:** Atrás do nariz (só passa ar).
 2.  **Orofaringe:** Atrás da boca (passa ar e comida).
 3.  **Laringofaringe:** Parte final, encaminha o alimento para o esôfago.
-
+![Faringe](https://static.mundoeducacao.uol.com.br/mundoeducacao/2020/11/faringe.jpg)
 ---
 
 ## 3. Esôfago (O Transporte)
@@ -52,6 +52,8 @@ Tubo muscular que leva a comida da faringe até o estômago. Só faz transporte.
 * Cervical (Pescoço).
 * Torácica (Peito - a maior parte).
 * Abdominal (Pedaço curto após o diafragma).
+
+"[esofago](https://i.imgur.com/Ym4gvgI.png)
 
 **Proteção e Localização:** No tórax, ele fica **atrás da traqueia** e **na frente da coluna vertebral**.
 
@@ -70,6 +72,7 @@ Funciona como um reservatório temporário. Inicia a digestão de **Proteínas**
 3.  **Corpo Gástrico:** A maior parte.
 4.  **Piloro (Parte Pilórica):** Porta de saída que conecta com o intestino delgado.
 
+![estomago](https://upload.wikimedia.org/wikipedia/commons/6/63/Estomago.svg)
 ---
 
 ## 5. Intestino Delgado (O Processador)
@@ -80,20 +83,20 @@ Local da **real digestão** e **absorção** (passagem para o sangue). A comida 
 2.  **Jejuno:** Parte do meio (início da absorção pesada).
 3.  **Íleo:** Parte final (continua absorvendo).
     * Conecta-se ao Intestino Grosso no **Ceco**.
-
+![delgago](https://www.infoescola.com/wp-content/uploads/2010/01/intestino-delgado.jpg)
 ---
 
 ## 6. Intestino Grosso (O Compactador)
 Recebe água e restos não digeridos. Sua função é **reabsorver a água** para secar a mistura e formar **fezes sólidas**. É mais curto que o delgado e forma uma "moldura" no abdome.
 
-**Divisão dos Segmentos:**
+### **Divisão dos Segmentos: Colos do intestino grosso**
 1.  **Ceco:** Fundo do saco inicial. O **Apêndice Vermiforme** fica pendurado aqui.
 2.  **Colo Ascendente:** Sobe pelo lado direito (em direção ao fígado).
 3.  **Colo Transverso:** Atravessa por cima (parte de cima da moldura).
 4.  **Colo Descendente:** Desce pelo lado esquerdo.
 5.  **Colo Sigmóide:** Faz uma curva em "S".
 6.  **Reto e Canal Anal:** A saída final.
-
+![grosso](https://s1.static.brasilescola.uol.com.br/be/conteudo/images/observe-as-principais-partes-intestino-grosso-5899c8f010933.jpg)
 ---
 
 ### 🔄 Caminho Total do Alimento
@@ -141,3 +144,6 @@ Glândula mista localizada **posteriormente** ao estômago (retroperitoneal).
 * **Função Endócrina:** Produz **Insulina e Glucagon** (hormônios) → joga no sangue.
 * **Divisão:** Cabeça (encaixa no duodeno), Corpo e Cauda (encosta no baço).
 * **Ductos:** O Ducto Pancreático se junta com o Ducto Colédoco (da bile) e desembocam juntos no Duodeno.
+
+## Links Auxiliares
+* Video da Manual MSD que explica o caminho [aqui](https://www.msdmanuals.com/pt/casa/multimedia/video/digest%C3%A3o)
