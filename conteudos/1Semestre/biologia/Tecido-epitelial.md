@@ -1,6 +1,6 @@
 # Tecido epitelial <br>
 
-## Tipos de tecidos <br>
+## 1. Tipos de tecidos <br>
 * Nervoso.
 * Epitelial.
 * Muscular.
@@ -10,7 +10,7 @@ São constituídos por células e matriz extracelular. <br>
 
 <br>
 
-## Funções tecido epitelial <br>
+## 2. Funções tecido epitelial <br>
 
 ### Revestimento <br>
 * Superfície internas e externas.
@@ -25,7 +25,7 @@ São constituídos por células e matriz extracelular. <br>
 
 <br>
 
-## Características das células Epiteliais <br>
+## 3. Características das células Epiteliais <br>
 * São **Poliedricas** (muitas faces) com **pouca substancia extracelular** (o que tem entre uma célula e outra). <br>
 * São justapostas ficam bem perto uma da outra. <br>
 * Não possuem vascularização, são avascularizado. <br>
@@ -42,7 +42,7 @@ São constituídos por células e matriz extracelular. <br>
 
 <br>
 
-## Todos os epitélios estão apoiados sobre a lâmina própria: <br>
+## 4. Todos os epitélios estão apoiados sobre a lâmina própria: <br>
 * **Lâmina própria**: quando o tecido conjuntivo da apoio ao tecido epitelial e faz a nutrição. <br>
 
 ![Histologia Epitélios](https://i.imgur.com/AO9tzCY.jpeg) <br>
@@ -52,7 +52,7 @@ Pode se ter uma célula estratificada com várias camadas e mesmo assim estar em
 
 <br>
 
-## Especializações da Superfície Apical <br>
+## 5. Especializações da Superfície Apical <br>
 
 ### Microvilos <br>
 * Curtas projeções do citoplasma.
@@ -82,7 +82,7 @@ Pode se ter uma célula estratificada com várias camadas e mesmo assim estar em
 
 <br>
 
-## Especializações da Superfície Basolateral <br>
+## 5. Especializações da Superfície Basolateral <br>
 
 ### Interdigitações: <br>
 * Dobras das membranas das células que se se encaixam. Para as células se encaixar. <br>
@@ -105,7 +105,7 @@ Pode se ter uma célula estratificada com várias camadas e mesmo assim estar em
 
 <br>
 
-## Classificação dos Epitélios de Revestimento <br>
+## 7. Classificação dos Epitélios de Revestimento <br>
 São classificados conforme a quantidade de camadas celulares: <br>
 * **Simples** - uma única camada de células;
 * **Estratificado** - mais de uma camada de células;
@@ -118,21 +118,21 @@ Também é classificado de acordo com o formato de suas células: IDENTIFICAR PE
 
 <br>
 
-## Epitélio Simples - Exemplos <br>
-**Pavimentoso Simples**:
+## 8. Epitélio Simples - Exemplos <br>
+### Pavimentoso Simples**:
 * Lúmen dos vasos sanguíneos e linfáticos - endotélio;
 * Cavidades pleural, pericárdica e peritoneal - mesotélio. <br>
 
-**Cúbico Simples**:
+### Cúbico Simples**:
 * Superfície externa dos ovários;
 * Paredes de pequenos ductos excretores de glândulas. <br>
 
-**Prismático (colunar ou cilíndrico)**:
+### Prismático (colunar ou cilíndrico)**:
 * Revestimento do lúmen intestinal e da tuba uterina. <br>
 
 <br>
 
-## Epitélio estratificado <br>
+## 9. Epitélio estratificado <br>
 * Tem **duas ou mais camadas de células**. <br>
 * A classificação é feita **pela forma da camada mais superficial**:
     * **Estratificado pavimentoso** → o mais comum (ex.: pele, mucosa oral, esôfago).
@@ -141,7 +141,7 @@ Também é classificado de acordo com o formato de suas células: IDENTIFICAR PE
 
 <br>
 
-## Epitélios Estratificado Pavimentoso <br>
+### Epitélios Estratificado Pavimentoso <br>
 Suas células basais são geralmente cúbicas ou prismáticas e as células da superfície do epitélio são pavimentosas (migração); <br>
 
 ### Estratificado transitório <br>
@@ -159,34 +159,34 @@ Suas células basais são geralmente cúbicas ou prismáticas e as células da s
 
 <br>
 
-## Pseudoestratificado: <br>
+## 10. Pseudoestratificado: <br>
 * É formado por uma única camada de células, porém os núcleos são vistos em diferentes alturas, parecendo estar em várias camadas; <br>
 * Todas as células se apoiam na lâmina basal, mas nem todas alcançam a superfície do epitélio; <br>
 * O epitélio pseudoestratificado prismático ciliado é o mais conhecido, reveste as passagens respiratórias mais calibrosas, do nariz aos brônquios, e o epidídimo; <br>
 
 <br>
 
-## Neuroepitélios: <br>
+## 11. Neuroepitélios: <br>
 * Constituído por células neuroepiteliais, especializadas para um órgão sensorial; <br>
 * Células das papilas gustativas e da mucosa olfatória. <br>
 
 <br>
 
-## Epitélio Glandular <br>
+## 12. Epitélio Glandular <br>
 É formado por células epiteliais especializadas em **produzir e liberar substâncias**. <br>
 
 Pode sintetizar, armazenar e eliminar proteínas (pâncreas), lipídeos (adrenal, gl. sebáceas) ou complexos de carboidratos e proteínas (gl. salivares); <br>
 * As moléculas a serem secretadas geralmente são armazenadas temporariamente nas células em pequenas vesículas, os grânulos de secreção. <br>
 
-**Glândulas unicelulares**
+### Glândulas unicelulares
 * células caliciformes (intestino delgado e S. Respiratório); secretam muco. <br>
 
-**Glândulas multicelulares**:
+### Glândulas multicelulares:
 * Glândulas exócrinas e endócrina. <br>
 
 <br>
 
-## Formação das Glândulas <br>
+## 13. Formação das Glândulas <br>
 
 ### Exócrinas: <br>
 * Mantêm a sua conexão com o epitélio. <br>
@@ -202,16 +202,16 @@ Pode sintetizar, armazenar e eliminar proteínas (pâncreas), lipídeos (adrenal
 
 <br>
 
-## Glândulas Exócrinas <br>
+## 14. Glândulas Exócrinas <br>
 **Duas porções**:
 * Porção secretora;
 * Ductos excretores. <br>
 
-**Glândulas simples** - somente um ducto não ramificado;
+### Glândulas simples - somente um ducto não ramificado;
 * Tubulares - porção secretora em formato de tubo;
 * Tubulares enoveladas (ramificadas ou acinosas) - porção secretora esférica ou arredondada. <br>
 
-**Glândulas compostas** - ductos ramificados;
+### Glândulas compostas - ductos ramificados;
 * Tubulares, acinosas ou mistas tubuloacinosas. <br>
 
 Em azul claro é porção secretora, azul escura é o ducto, quando tem ele no meio é uma divisão. <br>
@@ -220,7 +220,7 @@ Em azul claro é porção secretora, azul escura é o ducto, quando tem ele no m
 
 <br>
 
-## O que é um ácino? <br>
+## 15. O que é um ácino? <br>
 * O ácino é a **porção secretora** de algumas glândulas exócrinas. <br>
 * Tem formato de “cacho de uva” (por isso o nome ácino, de *acinus* = bago de uva). <br>
 * Cada ácino é formado por um grupo de células secretoras em volta de um pequeno espaço chamado **lúmen** (onde a secreção é lançada). <br>
@@ -240,7 +240,7 @@ Exemplo clássico: glândula **parótida** (salivar), que produz secreção **se
 
 <br>
 
-### Túbulos Mucosos <br>
+## 16. Túbulos Mucosos <br>
 * Estrutura **alongada, tubular** (ramificada ou não). <br>
 * **Células colunares** (prismáticas). <br>
 * **Núcleos achatados** próximos ao **pólo basal**. PRINCIPAL CARACTERÍSTICA. <br>
@@ -251,7 +251,7 @@ Exemplo clássico: glândula **parótida** (salivar), que produz secreção **se
 
 <br>
 
-## Células Mioepiteliais <br>
+## 17. Células Mioepiteliais <br>
 * Células ramificadas que contêm miosina e filamentos de actina; <br>
 * **Função**: contração que **auxilia na expulsão da secreção** para os ductos glandulares. <br>
 * **Presença**: glândulas **mamárias**, **salivares** e **sudoríparas** (principais). <br>

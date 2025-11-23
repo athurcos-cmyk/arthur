@@ -1,20 +1,20 @@
 # Membrana plasmatica, Organelas e Citoesqueleto <br>
 
-## Membranas Celulares / Membrana Plasmática <br>
+## 1. Membranas Celulares / Membrana Plasmática <br>
 * Todas as membranas celulares/ plasmatica são compostas por lipídeos e proteínas, formando uma estrutura geral em comum, uma bicamada lipídica:
     * Arranjos de lipídios em duas lâminas justapostas;
     * As proteínas estão inseridas na bicamada lipídica. <br>
 
 ![Bicamada Lipídica](https://i.imgur.com/FhEud4L.png) <br>
 
-## Célula eucarionte - Membrana Celular / Plasmática <br>
+## 2. Célula eucarionte - Membrana Celular / Plasmática <br>
 * Células eucariontes possuem membranas internas, delimitando compartimentos intracelulares. <br>
 * As membranas internas formam diversas organelas. <br>
 * Nas células eucarióticas, as proteínas representam cerca de 50% da massa das membranas, desempenhando a maior parte de suas funções; <br>
 
 <br>
 
-## Funções da membrana plasmática <br>
+## 3. Funções da membrana plasmática <br>
 * Separa o meio intracelular do meio extracelular; <br>
 * Controle de entrada e saída de substâncias da célula; <br>
 * Constância do meio intracelular; <br>
@@ -24,12 +24,12 @@
 
 <br>
 
-## Proteínas de membrana <br>
+## 4. Proteínas de membrana <br>
 * Cada tipo de membrana celular possui um conjunto diferente de proteínas, devido à função específica de cada célula. <br>
 
 ![Proteínas de Membrana](https://i.imgur.com/TQ3WX9w.png) <br>
 
-## Transporte <br>
+## 5. Transporte <br>
 O transporte serve para levar íons, nutrientes e sinais químicos para a célula, e ela passa pela membrana plasmática, assim, tendo que passar pela bicamada lipídica. <br>
 
 As substâncias tem que entrar na célula para realizar o metabolismo. <br>
@@ -39,7 +39,7 @@ As substâncias tem que entrar na célula para realizar o metabolismo. <br>
 
 <br>
 
-## Tipos de transporte <br>
+## 6. Tipos de transporte <br>
 
 ### Transporte Passivo <br>
 * Não gasta ATP. <br>

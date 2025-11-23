@@ -2,14 +2,14 @@
 
 ---
 
-## A Célula <br>
+## 1. A Célula <br>
 * Unidade que constitui os seres vivos: <br>
     * unicelulares. <br>
     * pluricelulares. <br>
 
 <br>
 
-## Membrana plasmática <br>
+## 2. Membrana plasmática <br>
 **Tem em todas as células** <br>
 
 * Película que envolve a célula <br>
@@ -19,7 +19,7 @@
 
 <br>
 
-## Citoplasma <br>
+## 3. Citoplasma <br>
 * O **citoplasma** é **tudo que está entre a membrana plasmática e o núcleo (quando existe núcleo)**. <br>
 * No caso da **procarionte**, como **não tem núcleo**, o citoplasma ocupa todo o interior da célula. <br>
 * No caso da **eucarionte**, o núcleo fica de fora da definição; o citoplasma é o espaço ao redor dele. <br>
@@ -35,7 +35,7 @@
 
 ---
 
-## Tipos de células <br>
+## 4. Tipos de células <br>
 
 * **Células procariontes**:
     * Material genético livre no citoplasma (**nucleóide**). <br>
@@ -52,7 +52,7 @@
 
 ---
 
-# Célula Procarionte <br>
+ ## 5. Célula Procarionte <br>
 
 ### Estruturas principais <br>
 * **Membrana plasmática**: <br>
@@ -90,9 +90,10 @@
     * *Escherichia coli*. <br>
     * Cianobactéria. <br>
 
+![procarionte](https://i0.wp.com/noic.com.br/wp-content/uploads/2024/03/bacteria.jpg?ssl=1)
 ---
 
-# Célula Eucarionte <br>
+## 6. Célula Eucarionte <br>
 
 ### Estrutura geral <br>
 * Apresenta duas partes bem distintas: <br>
@@ -131,3 +132,4 @@
     * Corpúsculos geralmente esféricos. <br>
     * Contêm grande quantidade de RNA e proteínas básicas. <br>
     * Podem conter DNA em menor quantidade. <br>
+![eucarionte](https://s2.static.brasilescola.uol.com.br/be/2025/04/1-celula-eucarionte-estrutura-organelas.jpg)

@@ -20,7 +20,7 @@
 
 ### Cromossomos <br>
 * Representam o **maior nível de compactação do DNA**. <br>
-* **Estrutura**:
+* #### **Estrutura**:
     * **Cromossomo duplicado** → cromátides homólogas.
     * **Centrômero**: mantém as cromátides unidas.
     * **Telômeros**: protegem as extremidades. <br>
@@ -72,7 +72,7 @@
 
 <br>
 
-## Ciclo Celular <br>
+### Ciclo Celular <br>
 * **Fase S**: síntese de DNA e duplicação dos cromossomos. <br>
 * **Fase M**:
     * Mitose → distribuição igual dos cromossomos.
