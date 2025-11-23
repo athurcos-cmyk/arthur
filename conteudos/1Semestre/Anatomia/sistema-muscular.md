@@ -18,6 +18,7 @@
 * **Estriado cardíaco** → involuntário; estriado; forma o coração. <br>
 * **Liso** → involuntário; não estriado; paredes de vísceras e vasos. <br>
 
+![tipos_musculo](https://www.unifal-mg.edu.br/histologiainterativa/wp-content/uploads/sites/38/2018/04/tecido-muscular-768x482.jpg)
 <br>
 
 ## 3. Conceito (músculo estriado esquelético) <br>

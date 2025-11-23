@@ -31,7 +31,7 @@
 * **Gonfose** — articulação no dente.
     * Ex.: articulação dentoalveolar <br>
 
-![articulação_fibrosa](https://drive.google.com/file/d/1AgP11ZwHDkFpHROK8Vu0fJFXxSVHrl-x/view)
+![articulação_fibrosa](https://i.imgur.com/lbmeUUb.png)
 <br>
 
 ### Articulações Cartilagíneas <br>
@@ -44,6 +44,7 @@
     * Ex.: sínfise púbica <br>
     * Ex.: sínfise intervertebral <br>
 
+![articulação_cartilagineas](https://i.imgur.com/CwxvBS2.png)
 <br>
 
 ### Articulações Sinoviais <br>
@@ -60,3 +61,7 @@
 * **Discos e meniscos articulares**: fibrocartilagem (localizado entre as faces articulares) gera → **congruência** + **amortecimento** de choque mecânico.
     * **Meniscos**: formato meia-lua (ex.: joelho). <br>
     * **Discos**: formato elipsóide (ex.: articulação temporomandibular – ATM). <br>
+
+IMAGEM GERADA POR IA, CONFERIR ANATOMICAMENTE EM ATLAS E SITES DE CONFIANÇA
+
+![articulação_sinovial](https://i.imgur.com/4PhgWvU.png)

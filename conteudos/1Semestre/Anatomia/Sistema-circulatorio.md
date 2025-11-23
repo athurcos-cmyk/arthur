@@ -40,7 +40,7 @@
         * **Pericárdio** - Reveste externamente o miocárdio <br>
         * **Miocárdio** - constituída de musculo estriado cardíaco, camada média <br>
         * **Endocárdio** - Reveste o miocárdio por dentro <br>
-
+![vasos_coracao](https://i.imgur.com/3sP5nVM.png)
 <br>
 
 ## 5. Morfologia externa do Coração <br>
@@ -73,6 +73,8 @@
 ### Artéria coronário <br>
 
 * Faz a irrigação do coração. <br>
+
+![morfologia](https://i.imgur.com/5SkHba9.png)
 
 <br>
 
@@ -115,6 +117,8 @@ Providos valvas atrioventriculares - passagem sangue somente do átrio para o ve
     * Prende as valvas aos **músculos papilares** <br>
     * **músculos papilares** - projeções da parede do miocárdio encontradas nas paredes internas dos ventrículos <br>
 
+![valva](https://i.imgur.com/iCaofUp.png)
+
 ### Vasos da base <br>
 
 * Vasos de grande calibre, chegam e saem do coração <br>
@@ -123,6 +127,7 @@ Providos valvas atrioventriculares - passagem sangue somente do átrio para o ve
 * **Veias cava superior e inferior** - Chegam no átrio direito <br>
 * **Veias pulmonares direitas e esquerda** - chegam no átrio esquerdo, vem dos pulmão com oxigênio <br>
 
+![vasos_base](https://i.imgur.com/npJKzAI.png)
 <br>
 
 ### Pequena Circulação (Circulação Pulmonar) <br>
@@ -134,7 +139,11 @@ Transformar sangue venoso em arterial <br>
 * **Pulmões:** ocorre **hematose** (sangue “impuro”/venoso ganha O₂ e perde CO₂). <br>
 * **Retorno ao coração:** **veias pulmonares** (direitas e esquerdas, sangue arterial) → **átrio esquerdo**. <br>
 * **Ideia-chave:** é um circuito **coração → pulmões → coração**, começando no VD e terminando no AE. <br>
-
+Setas azuis = sangue venoso, rico em CO2
+Setas vermelhas = sangue arteial, rico em O2 
+Nota-se que as veias pulmonares recebem o sangue com O2, a arteria tronco pulmonar vai sangue sem O2 cheio de CO2 
+iMAGEM GERADA POR IA, CONFERIR EM ATLAS ANATOMICO
+![pequnea_circulacao](https://i.imgur.com/PPysEi9.png)
 <br>
 
 ### Grande circulação (Circulação Sistêmica) <br>
@@ -145,6 +154,8 @@ Transformar sangue venoso em arterial <br>
 * **Retorno ao coração:** **veias cavas superior e inferior** → **átrio direito**. <br>
 * **Ideia-chave:** é um circuito **coração → tecidos → coração**, começando no VE e terminando no AD. <br>
 
+iMAGEM GERADA POR IA, CONFERIR EM ATLAS ANATOMICO
+![grande_circulacao](https://i.imgur.com/DH6apth.png)
 <br>
 
  ## 8. Pericárdio <br>
