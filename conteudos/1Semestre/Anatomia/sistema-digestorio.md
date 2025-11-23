@@ -80,9 +80,14 @@ as vezes se cham jejuno-ileo
 ele se conmecta no instestino grosso no final do ileo e se conecta com o Ceco que é o começo do intestino grosso
 
 Intestino grosso 
-[intestino grosso](https://s1.static.brasilescola.uol.com.br/be/conteudo/images/observe-as-principais-partes-intestino-grosso-5899c8f010933.jpg)
+![intestino grosso](https://s1.static.brasilescola.uol.com.br/be/conteudo/images/observe-as-principais-partes-intestino-grosso-5899c8f010933.jpg)
 só chega agua e resto de comida que nao foi digerido, sua função é reabsorver a agua, para secar essa mistura toda e formas fezes solida, e depois armazena ate a eliminação 
 o intestino grosso é mais curto que o delgado e se utrajeto forma uma moldura
 
 divisão 
-Ceco
+Ceco fundo do saco inicial, o apendice vermiforme fica pendurado
+colo ascendente sobe pelo lado direito
+colo transverso é a parte de cima da moldura
+colo descedente desce pelo lado esquerdo
+colo sigmoide
+faz uma curva em S
