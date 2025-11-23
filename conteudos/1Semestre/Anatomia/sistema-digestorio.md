@@ -69,3 +69,14 @@ a sopa que a comida vira se chama quimio
 
 Intestino Delgado
 serve para fazer a real digestão, e absorção para passar para o sangue 
+lembrando que a comida sai do estomago e vai pelo piloro para chegar no instetino delgado
+
+é dividio em 3 partes
+Duodena logo apois o estomago parece um C é onde o figado e pancraeas jogam bile e suco pancratico para terminar de dissolver a comida
+jejuno fica no meior onde começa absorção
+ileio o final continua absorvendo até se conectar com o intestino grosso
+as vezes se cham jejuno-ileo
+
+ele se conmecta no instestino grosso no final do ileo e se conecta com o Ceco que é o começo do intestino grosso
+
+Intestino grosso
