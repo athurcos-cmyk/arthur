@@ -33,6 +33,8 @@
     * **Artérias** - levar o sangue do coração para periferia <br>
     * **Veias** - trazem o sangue da periferia para o coração <br>
     * **Capilares sanguíneos** - levam sangue para os tecidos <br>
+ ![vasos](https://i.imgur.com/Yblw4dU.png)
+
 * **Coração**:
     * Órgão muscular oco <br>
     * Atua como uma bomba contrátil <br>
@@ -143,7 +145,7 @@ Setas azuis = sangue venoso, rico em CO2
 Setas vermelhas = sangue arteial, rico em O2 
 Nota-se que as veias pulmonares recebem o sangue com O2, a arteria tronco pulmonar vai sangue sem O2 cheio de CO2 
 iMAGEM GERADA POR IA, CONFERIR EM ATLAS ANATOMICO
-![pequnea_circulacao](https://i.imgur.com/PPysEi9.png)
+![pequena_circulacao](https://i.imgur.com/PPysEi9.png)
 <br>
 
 ### Grande circulação (Circulação Sistêmica) <br>
