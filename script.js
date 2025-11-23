@@ -812,28 +812,40 @@ function saveNotes() {
 // UTILITÁRIOS DE UI (ABAS E DASHBOARD)
 // ==============================================================
 function switchTab(name) {
-    // Pára o timer do quiz se sair da aba
+    // 1. PAUSA O TIMER (Segurança: sempre limpa antes de trocar)
     if(quizTimerInterval) clearInterval(quizTimerInterval);
 
-    // Esconde todos os painéis de conteúdo
+    // Esconde todos os painéis
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    // Desativa visualmente todas as abas
+    // Desativa abas
     document.querySelectorAll('.tab').forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
     });
     
-    // Ativa o painel solicitado (text, slides, video ou quiz)
+    // Ativa o painel solicitado
     const panel = document.getElementById(`tab-${name}`);
     if(panel) panel.classList.add('active');
     
-    // Ativa a aba correspondente
-    // 0=Text, 1=Slides, 2=Video, 3=Quiz
+    // Ativa o botão da aba
     const tabIndex = name === 'text' ? 0 : name === 'slides' ? 1 : name === 'video' ? 2 : 3;
     const btn = document.querySelectorAll('.tab')[tabIndex];
     if(btn) {
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
+    }
+
+    // --- CORREÇÃO DO TIMER ---
+    // Se a aba escolhida for 'quiz', RETOMAMOS O TIMER
+    if (name === 'quiz') {
+        // Verifica se o quiz existe e não acabou (não tem tela de resultado)
+        const display = document.getElementById('q-timer');
+        const isResult = document.querySelector('.quiz-result');
+        
+        // Só inicia se tiver o reloginho na tela, não for resultado e não tiver respondido ainda
+        if(display && !isResult && !isQuizAnswered) {
+            startQuizTimer();
+        }
     }
 }
 
@@ -1244,17 +1256,26 @@ function nextQuestion() {
 }
 
 function startQuizTimer() {
+    // Limpa qualquer timer anterior
     if(quizTimerInterval) clearInterval(quizTimerInterval);
+    
     const display = document.getElementById('q-timer');
     
+    // SEGURANÇA: Se não tem o elemento do relógio na tela, cancela.
+    if (!display) return; 
+
     quizTimerInterval = setInterval(() => {
         quizTimeLeft--;
+        // Atualiza o texto na tela
         if(display) display.innerText = quizTimeLeft;
 
+        // Se o tempo acabar
         if (quizTimeLeft <= 0) {
             clearInterval(quizTimerInterval);
-            handleQuizAnswer(-1, { classList: { add: ()=>{} } }); // Timeout
-            // Marca a correta visualmente
+            // Chama a função de resposta com -1 (indica tempo esgotado)
+            handleQuizAnswer(-1, { classList: { add: ()=>{} } }); 
+            
+            // Marca visualmente a resposta certa para o usuário ver
             const options = document.querySelectorAll('.quiz-btn');
             const q = currentQuizData[currentQIndex];
             if(options[q.c]) options[q.c].classList.add('correct');
