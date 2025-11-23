@@ -14,7 +14,7 @@ const exams = [
 // ==============================================================
 // type: "group" | "individual"
 const tasks = [
-    { name: "Estudo de Caso - Saúde Mental", date: "30/11/2025", type: "individual" }
+    // { name: "Estudo de Caso - Saúde Mental", date: "30/11/2025", type: "individual" }
 ];
 
 // ==============================================================
