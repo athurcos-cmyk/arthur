@@ -35,6 +35,7 @@ window.onload = () => {
     renderSemesterNav();    // Desenha os botões de navegação dos semestres no topo
     
     
+    
     // ----------------------------------------------------------
     // 2. Inicializar configurações e rotas
     // ----------------------------------------------------------
@@ -52,6 +53,7 @@ window.onload = () => {
     initNotes();                // Inicializa o sistema de anotações pessoais
     initPomodoro();             // NOVO: Inicializa o timer Pomodoro
     initTracker();              // NOVO: Inicializa o botão de concluir tópico
+    initGuideModal();
 
     // OBS: O Zoom de imagem (initImageZoom) é chamado dentro de openTopic 
     // porque as imagens só existem depois que o conteúdo carrega.
@@ -1312,4 +1314,38 @@ function finishQuiz() {
             </button>
         </div>
     `;
+}
+// ==============================================================
+// ℹ️ MODAL DE GUIA
+// ==============================================================
+function initGuideModal() {
+    const btn = document.getElementById('info-btn');
+    const modal = document.getElementById('info-modal');
+    const close = document.getElementById('close-info-modal');
+    
+    if(!btn || !modal) return;
+    
+    // Abrir
+    btn.onclick = () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Trava rolagem do fundo
+    };
+    
+    // Fechar (Função auxiliar)
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+    
+    close.onclick = closeModal;
+    
+    // Fechar clicando fora
+    modal.onclick = (e) => {
+        if(e.target === modal) closeModal();
+    };
+    
+    // Fechar com ESC
+    window.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
 }

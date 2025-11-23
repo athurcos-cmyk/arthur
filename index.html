@@ -52,6 +52,10 @@
         </div>
 
         <div class="nav-right">
+            <button class="theme-toggle-btn" id="info-btn" aria-label="Guia do Sistema" title="Como usar">
+                <i class="fas fa-question"></i>
+            </button>
+
             <button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
                 <i class="fas fa-moon"></i>
             </button>
@@ -166,6 +170,60 @@
         <button id="pomodoro-action" aria-label="Iniciar Pomodoro"><i class="fas fa-play"></i></button>
         <button id="pomodoro-reset" aria-label="Resetar Pomodoro"><i class="fas fa-redo"></i></button>
     </div>
+
+    <div id="info-modal" class="modal-overlay">
+        <div class="modal-content animate-fade-up">
+            <div class="modal-header">
+                <h2>📚 Como usar o Painel</h2>
+                <button id="close-info-modal" class="close-modal-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="guide-item">
+                    <i class="fas fa-columns guide-icon" style="color: var(--text-accent)"></i>
+                    <div>
+                        <strong>Navegação</strong>
+                        <p>Use a barra lateral para navegar entre matérias e tópicos. Use os botões no topo para trocar de semestre.</p>
+                    </div>
+                </div>
+                
+                <div class="guide-item">
+                    <i class="fas fa-check-circle guide-icon" style="color: var(--priority-green)"></i>
+                    <div>
+                        <strong>Rastreador</strong>
+                        <p>Ao terminar um estudo, clique no botão de "Check" (✔) no topo para marcar como concluído.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <i class="fas fa-stopwatch guide-icon" style="color: var(--priority-orange)"></i>
+                    <div>
+                        <strong>Pomodoro</strong>
+                        <p>Use o timer no canto inferior direito para ciclos de foco (25min). Ele não para quando você navega!</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <i class="fas fa-brain guide-icon" style="color: #a855f7"></i>
+                    <div>
+                        <strong>Quiz & Revisão</strong>
+                        <p>Acesse a aba "Quiz" dentro dos tópicos para testar seu conhecimento com perguntas aleatórias.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <i class="fas fa-file-pdf guide-icon" style="color: var(--priority-red)"></i>
+                    <div>
+                        <strong>Conteúdos</strong>
+                        <p>Cada tópico possui Resumo (Texto), Slides (PDF) e Vídeos selecionados.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small>Versão 4.0.0 • Desenvolvido por Arthur para estudos da Enfermagem</small>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         const time = new Date().getTime();
