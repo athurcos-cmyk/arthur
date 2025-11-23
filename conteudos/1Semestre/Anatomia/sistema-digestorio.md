@@ -137,6 +137,7 @@ A maior glândula/órgão anexo. Produz a **Bile** (detergente de gordura).
     * *Vista Superior:* Direito e Esquerdo (separados pelo Ligamento Falciforme).
     * *Vista Inferior:* Direito, Esquerdo, Caudado e Quadrado.
 * **Vesícula Biliar:** Saco verde abaixo do fígado. Função: **Armazenar** a bile.
+![figado](https://med.estrategia.com/portal/wp-content/uploads/2021/02/anatomia-do-figado-1024x737.jpg)
 
 ### Pâncreas
 Glândula mista localizada **posteriormente** ao estômago (retroperitoneal).
