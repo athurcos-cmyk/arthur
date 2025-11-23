@@ -25,7 +25,7 @@ window.onload = () => {
     renderDashboardCounts(); // NOVO: Conta provas da semana
     renderTasks();          // NOVO: Renderiza trabalhos se existirem
     renderSemesterNav();    // Desenha os botões de navegação dos semestres no topo
-    renderAnkiCard();
+    
     
     // ----------------------------------------------------------
     // 2. Inicializar configurações e rotas
@@ -1104,49 +1104,3 @@ function showToast(msg) {
 }
 
 
-// ==============================================================
-// FEATURE: ANKI CARD (INTEGRAÇÃO COM APP)
-// ==============================================================
-function renderAnkiCard() {
-    const container = document.getElementById('calendar-container');
-    if(!container) return;
-
-    // 1. Detecta qual é o dispositivo
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isAndroid = /android/i.test(userAgent);
-    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-    // 2. Define o link padrão (Web)
-    let ankiUrl = "https://ankiweb.net/decks";
-    let actionText = "Acessar Web";
-    let icon = "fa-globe"; // Ícone de globo para web
-
-    // 3. Se for Android, tenta abrir o App AnkiDroid diretamente
-    if (isAndroid) {
-        // Esse comando estranho diz pro Android: "Abra o pacote com.ichi2.anki"
-        ankiUrl = "intent://#Intent;package=com.ichi2.anki;end";
-        actionText = "Abrir App";
-        icon = "fa-mobile-alt"; // Ícone de celular
-    } 
-    // 4. Se for iPhone (iOS), tenta abrir o AnkiMobile
-    else if (isIOS) {
-        ankiUrl = "anki://";
-        actionText = "Abrir App";
-        icon = "fa-mobile-alt";
-    }
-
-    const ankiCard = `
-        <a href="${ankiUrl}" ${isAndroid ? '' : 'target="_blank"'} class="card animate-fade-up" style="text-decoration: none; border-top: 4px solid #2da0f2; cursor: pointer;">
-            <div style="display:flex; justify-content:space-between; align-items:start;">
-                <h3 style="color: #2da0f2; margin:0;">Anki Revisão</h3>
-                <i class="fas fa-star" style="color: #2da0f2;"></i>
-            </div>
-            <div class="days-left" style="color: var(--text-main); font-size: 1.5rem; margin: 15px 0;">
-                <i class="fas ${icon}"></i> ${actionText}
-            </div>
-            <small style="color: var(--text-muted);">Não esqueça de zerar os cards hoje!</small>
-        </a>
-    `;
-    
-    container.insertAdjacentHTML('beforeend', ankiCard);
-}
