@@ -13,7 +13,7 @@ O Sistema Nervoso (SN) tem a função de controlar e coordenar o corpo. Para iss
 * **Neurônio Eferente (Motor):** **E**XECUTA. Leva o impulso do *Centro → Periferia*. (Via de Saída/Comando).
 * **Interneurônio (Associação):** Faz a **conexão** entre o aferente e o eferente dentro do SNC.
 
----
+
 
 ## 2. A Origem de Tudo (Embriogênese)
 O sistema se forma a partir do Ectoderma. As estruturas embrionárias definem a divisão final:
@@ -21,20 +21,20 @@ O sistema se forma a partir do Ectoderma. As estruturas embrionárias definem a 
 * **Crista Neural:** Dá origem ao **SNP** (Nervos e Gânglios).
 * **Sulco Neural:** É o espaço "oco" inicial que, após o fechamento do tubo, dará origem aos **Ventrículos**.
 
----
+
 
 ## 3. Divisão Anatômica
 A divisão anatômica é baseada na **localização** e **proteção**:
 
-* **SNC (Sistema Nervoso Central):**
-    * **Estruturas:** Encéfalo e Medula Espinal.
-    * **Critério:** São os centros de processamento localizados **dentro** do esqueleto axial (protegidos por Crânio e Coluna Vertebral).
+### SNC (Sistema Nervoso Central):
+ * **Estruturas:** Encéfalo e Medula Espinal.
+ * **Critério:** São os centros de processamento localizados **dentro** do esqueleto axial (protegidos por Crânio e Coluna Vertebral).
 
-* **SNP (Sistema Nervoso Periférico):**
-    * **Estruturas:** Nervos (cranianos e espinais), Gânglios e Terminações Nervosas.
-    * **Critério:** São os "cabos" que estão **fora** do esqueleto axial, conectando o SNC ao resto do corpo.
+### SNP (Sistema Nervoso Periférico):
+* **Estruturas:** Nervos (cranianos e espinais), Gânglios e Terminações Nervosas.
+* **Critério:** São os "cabos" que estão **fora** do esqueleto axial, conectando o SNC ao resto do corpo.
 
----
+
 
 ## 4. O Organograma do Encéfalo (SNC)
 O Encéfalo (parte do SNC dentro do crânio) divide-se em 3 grandes partes:
@@ -43,7 +43,7 @@ O Encéfalo (parte do SNC dentro do crânio) divide-se em 3 grandes partes:
 2.  **Tronco Encefálico** 
 3.  **Cerebelo** 
 
----
+
 
 ## 5. Cérebro e Tronco Encefálico
 Cada cada parte do cerebro e do tronco tem suas subdivisões:
@@ -64,7 +64,7 @@ Cada cada parte do cerebro e do tronco tem suas subdivisões:
 ### Cerebelo
 * **Função:** Controle do **Equilíbrio** e **Coordenação Motora** fina.
 
----
+
 
 ## 6. Lobos do Telencéfalo 
 O Telencéfalo é dividido em lobos com funções específicas:
@@ -75,7 +75,7 @@ O Telencéfalo é dividido em lobos com funções específicas:
 * **Lobo Temporal:** **AUDIÇÃO** e **LINGUAGEM**.
 * **Lobo da Ínsula:** (Escondido) **INTEROCEPÇÃO** (percepção interna do corpo, vícios, emoções viscerais).
 
----
+
 
 ## 7. Ventrículos e Líquor
 * **Ventrículos:** São os espaços ocos dentro do cérebro (resquício do Tubo Neural). Incluem os Ventrículos Laterais, III Ventrículo, Aqueduto e IV Ventrículo.
@@ -84,8 +84,6 @@ O Telencéfalo é dividido em lobos com funções específicas:
 * **Clínica:**
     * Bloqueio na circulação = **Hidrocefalia**.
     * Infecção no líquido = **Meningite**.
-
----
 
 ## 8. Meninges
 São 3 membranas de tecido conjuntivo que protegem o SNC (de fora para dentro):
@@ -97,15 +95,12 @@ São 3 membranas de tecido conjuntivo que protegem o SNC (de fora para dentro):
 ### O Espaço Vital
 * **Espaço Subaracnóide:** Localizado **abaixo da Aracnoide**. É o espaço real onde circula o **Líquor**. É aqui que ocorre a meningite e onde se coleta líquor na punção lombar.
 
----
-
 ## 9. Relevo do Cérebro
 Para aumentar a área de superfície (córtex) dentro do crânio, o cérebro se dobra:
 * **Giros:** As "montanhas" (dobras).
 * **Sulcos:** Os "vales" (depressões).
 *(Lembre-se da analogia do "Papel Amassado": a mesma área de superfície cabendo num volume menor).*
 
----
 
 ## 10. Divisão Funcional (Os Modos de Operação)
 Classificação baseada no funcionamento, não na anatomia:

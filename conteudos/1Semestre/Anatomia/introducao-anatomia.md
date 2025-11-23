@@ -13,11 +13,11 @@
 
 ## 3. Conceito de Variação Anatômica e Normalidade <br>
 
-**Variação Anatômica** <br>
+### Variação Anatômica <br>
 
 * Diferença morfológica que **não causa prejuízo funcional** ao indivíduo. <br>
 
-**Normal** <br>
+### Normal <br>
 
 * Morfologia mais frequente (estatística). <br>
 

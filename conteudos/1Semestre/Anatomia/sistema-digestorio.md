@@ -5,7 +5,7 @@ O sistema é como um tubo contínuo. A comida passa por: Boca → Faringe → Es
 Existem **órgãos auxiliares (anexos)** que produzem substâncias (enzimas, bile, etc.) jogadas nesse tubo para ajudar na digestão.
 * **Auxiliares:** Dentes, Língua, Glândulas Salivares, Fígado, Vesícula Biliar e Pâncreas.
 
----
+
 
 ## 1. Boca (A Recepção)
 É a porta de entrada e recepção do alimento.
@@ -15,7 +15,7 @@ A boca é dividida em duas partes:
 1.  **Vestíbulo da Boca:** Espaço entre lábios/bochechas e os dentes.
 2.  **Cavidade Própria:** O espaço atrás dos dentes (onde fica a língua).
 
-**Limites da Cavidade:**
+### Limites da Cavidade:
 * **Frente:** Lábios (Músculo Orbicular).
 * **Laterais:** Bochechas (Músculo Bucinador).
 * **Teto (Palato):**
@@ -33,7 +33,7 @@ A boca é dividida em duas partes:
     * *Caninos (Pontiagudos):* Rasgam.
     * *Pré-molares e Molares (Fundo):* Trituram.
 
----
+
 
 ## 2. Faringe (O Corredor Compartilhado)
 Canal compartilhado com o sistema respiratório. É para onde o alimento vai assim que engolimos (deglutição).
@@ -43,7 +43,7 @@ Canal compartilhado com o sistema respiratório. É para onde o alimento vai ass
 2.  **Orofaringe:** Atrás da boca (passa ar e comida).
 3.  **Laringofaringe:** Parte final, encaminha o alimento para o esôfago.
 ![Faringe](https://static.mundoeducacao.uol.com.br/mundoeducacao/2020/11/faringe.jpg)
----
+
 
 ## 3. Esôfago (O Transporte)
 Tubo muscular que leva a comida da faringe até o estômago. Só faz transporte.
@@ -59,7 +59,7 @@ Tubo muscular que leva a comida da faringe até o estômago. Só faz transporte.
 
 **Movimento:** A comida não desce por gravidade. O esôfago (e o sistema todo) faz contrações musculares para empurrar o bolo alimentar, chamadas de **Movimentos Peristálticos**.
 
----
+
 
 ## 4. Estômago (O Tanque de Mistura)
 Funciona como um reservatório temporário. Inicia a digestão de **Proteínas** usando ácido e enzimas. Bate a comida ("liquidificador") até virar uma sopa ácida chamada **QUIMO**.
@@ -73,7 +73,7 @@ Funciona como um reservatório temporário. Inicia a digestão de **Proteínas**
 4.  **Piloro (Parte Pilórica):** Porta de saída que conecta com o intestino delgado.
 
 ![estomago](https://upload.wikimedia.org/wikipedia/commons/6/63/Estomago.svg)
----
+
 
 ## 5. Intestino Delgado (O Processador)
 Local da **real digestão** e **absorção** (passagem para o sangue). A comida sai do estômago pelo piloro e entra aqui.
@@ -84,7 +84,7 @@ Local da **real digestão** e **absorção** (passagem para o sangue). A comida 
 3.  **Íleo:** Parte final (continua absorvendo).
     * Conecta-se ao Intestino Grosso no **Ceco**.
 ![delgago](https://www.infoescola.com/wp-content/uploads/2010/01/intestino-delgado.jpg)
----
+
 
 ## 6. Intestino Grosso (O Compactador)
 Recebe água e restos não digeridos. Sua função é **reabsorver a água** para secar a mistura e formar **fezes sólidas**. É mais curto que o delgado e forma uma "moldura" no abdome.
@@ -97,13 +97,13 @@ Recebe água e restos não digeridos. Sua função é **reabsorver a água** par
 5.  **Colo Sigmóide:** Faz uma curva em "S".
 6.  **Reto e Canal Anal:** A saída final.
 ![grosso](https://s1.static.brasilescola.uol.com.br/be/conteudo/images/observe-as-principais-partes-intestino-grosso-5899c8f010933.jpg)
----
+
 
 ### 🔄 Caminho Total do Alimento
 > Boca → Faringe → Esôfago → Estômago → Intestino Delgado → Intestino Grosso → Reto/Ânus.
 > *(O alimento NÃO passa por dentro do Fígado ou Pâncreas).*
 
----
+
 
 ## 7. Peritônio (A Embalagem)
 Membrana serosa que envolve os órgãos abdominais e produz líquido lubrificante para evitar atrito.
@@ -115,7 +115,7 @@ Membrana serosa que envolve os órgãos abdominais e produz líquido lubrificant
 **Atenção:** Nem todos os órgãos ficam envoltos. Órgãos como **Rins e Pâncreas** são **Retroperitoneais** (o peritônio passa na frente, mas eles ficam colados na parede posterior).
 * **Peritonite:** Infecção grave se essa membrana se romper ou inflamar.
 
----
+
 
 ## 8. Órgãos Anexos
 

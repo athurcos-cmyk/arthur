@@ -1,6 +1,6 @@
 # Fisiologia Muscular: O Sarcômero <br>
 
-### **🏗️ Do Músculo ao Sarcômero: A Estrutura Hierárquica** <br>
+## 1. Do Músculo ao Sarcômero: A Estrutura Hierárquica <br>
 
 Para entender o sarcômero, é preciso visualizar a organização do músculo em camadas, do maior para o menor. <br>
 
@@ -12,7 +12,7 @@ Para entender o sarcômero, é preciso visualizar a organização do músculo em
 
 <br>
 
-### **🎯 O Que é o Sarcômero? A Definição** <br>
+## 2. O Que é o Sarcômero? A Definição <br>
 
 * É a **menor unidade funcional e contrátil** do músculo estriado. <br>
 * Em resumo: quando pensamos em "contração muscular", é o sarcômero que está, de fato, encurtando. <br>
@@ -20,7 +20,7 @@ Para entender o sarcômero, é preciso visualizar a organização do músculo em
 
 <br>
 
-### **🔬 Anatomia do Sarcômero: As Partes** <br>
+## 3. Anatomia do Sarcômero: As Partes <br>
 
 O sarcômero é o compartimento organizado de miofilamentos, delimitado por: <br>
 
@@ -32,7 +32,7 @@ O sarcômero é o compartimento organizado de miofilamentos, delimitado por: <br
 
 <br>
 
-### **🧬 Os Miofilamentos: As Proteínas da Ação** <br>
+## 4. Os Miofilamentos: As Proteínas da Ação <br>
 
 * **Filamento Fino:** <br>
     * **Actina:** A proteína principal, que forma a estrutura principal do filamento. <br>
@@ -42,7 +42,7 @@ O sarcômero é o compartimento organizado de miofilamentos, delimitado por: <br
 
 <br>
 
-### **⚙️ O Mecanismo Básico da Contração** <br>
+## 5. O Mecanismo Básico da Contração <br>
 
 * **Para Contrair:** As **cabeças da Miosina** se conectam aos sítios de ligação da **Actina** e a puxam em direção ao centro do sarcômero (Linha M). Isso faz com que as Linhas Z se aproximem e o sarcômero se encurte. <br>
 * **Para Relaxar:** O Cálcio ($\text{Ca}^{2+}$) é bombeado de volta para o Retículo Sarcoplasmático. As proteínas reguladoras (Tropomiosina e Troponina) voltam a bloquear os sítios da Actina, e a Miosina se desconecta. <br>

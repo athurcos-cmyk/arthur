@@ -1,12 +1,12 @@
-# Tópico 5: O Mecanismo da Contração – O Efeito Dominó <br>
+# O Mecanismo da Contração – O Efeito Dominó <br>
 
-## 🎯 O Que é o Mecanismo? A Definição <br>
+##  1. O Que é o Mecanismo? A Definição <br>
 
 É o processo que conecta a excitação elétrica que chegou na JNM com a contração mecânica do sarcômero. É a sequência de eventos que leva o sinal da superfície da célula até as proteínas contráteis. <br>
 
 <br>
 
-## **⚙️ O Passo a Passo da Contração:** <br>
+## 2. Passo a Passo da Contração: <br>
 
 1. **O Sinal se Espalha:** O potencial de ação gerado na placa motora viaja por toda a superfície da fibra (Sarcolema) e mergulha para o interior da célula através dos **Túbulos T**. <br>
 2. **Liberação do Cálcio:** A passagem do sinal elétrico pelos Túbulos T aciona o **Retículo Sarcoplasmático**, que libera uma grande quantidade de íons **Cálcio ($\text{Ca}^{2+}$)** no sarcoplasma. <br>

@@ -1,6 +1,5 @@
 # Introdução à Biologia Celular <br>
 
----
 
 ## 1. A Célula <br>
 * Unidade que constitui os seres vivos: <br>
@@ -33,11 +32,11 @@
 * **Depósitos**: grânulos de glicogênio, gotículas lipídicas. <br>
 * **Estruturas genéticas**: no caso da procarionte, o nucleóide com DNA e os ribossomos. <br>
 
----
+
 
 ## 4. Tipos de células <br>
 
-* **Células procariontes**:
+* ### Células procariontes**:
     * Material genético livre no citoplasma (**nucleóide**). <br>
     * Citoplasma Homogêneo sem divisão. <br>
     * Tudo fica no mesmo espaço (DNA, ribossomos, enzimas). <br>
@@ -45,12 +44,12 @@
 
 <br>
 
-* **Células eucariontes**:
+* ### Células eucariontes**:
     * Material genético delimitado pela membrana nuclear (**núcleo**). <br>
     * Ricas em organelas. <br>
     * Em desenhos são mais desenvolvidas. <br>
 
----
+
 
  ## 5. Célula Procarionte <br>
 
@@ -91,7 +90,7 @@
     * Cianobactéria. <br>
 
 ![procarionte](https://i0.wp.com/noic.com.br/wp-content/uploads/2024/03/bacteria.jpg?ssl=1)
----
+
 
 ## 6. Célula Eucarionte <br>
 

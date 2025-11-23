@@ -1,12 +1,12 @@
-# Tópico 4: A Junção Neuromuscular (JNM) – O Interruptor <br>
+# Junção Neuromuscular (JNM) – O  <br>
 
-## 🎯 O Que é a JNM? A Definição <br>
+## 1. O Que é a JNM? A Definição <br>
 
 É o ponto de encontro e comunicação entre o sistema nervoso e o sistema muscular. É uma sinapse especializada onde um neurônio motor libera um sinal químico para "ordenar" que a fibra muscular contraia. **É o gatilho que inicia todo o processo.** <br>
 
 <br>
 
-## **🔬 Os Personagens Principais:** <br>
+## 2. Os Personagens Principais: <br>
 
 * **Neurônio Motor:** A célula nervosa que traz a ordem do cérebro ou da medula espinhal. <br>
 * **Terminal Axônico:** A extremidade final do neurônio motor. <br>
@@ -16,7 +16,7 @@
 
 <br>
 
-## **⚙️ O Passo a Passo da "Ordem":** <br>
+## 3. O Passo a Passo da "Ordem":  <br>
 
 1. **Chegada do Sinal:** Um impulso nervoso (potencial de ação) viaja pelo neurônio motor e chega ao terminal axônico. <br>
 2. **Liberação do Mensageiro:** A chegada do impulso provoca a liberação de **Acetilcolina (ACh)** na fenda sináptica. <br>

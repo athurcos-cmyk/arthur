@@ -1,13 +1,13 @@
 # Sistema muscular <br>
 
-## Histologia e Funções <br>
+## 1. Histologia e Funções <br>
 
 Principal função é **gerar movimento**. <br>
 Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular. <br>
 
 <br>
 
-### Tipos de Músculo (Revisão) <br>
+## 2. Tipos de Músculo (Revisão) <br>
 
 * **Estriado esquelético**: voluntário; contração forte. <br>
 * **Estriado cardíaco**: involuntário; possui estrias; contração vigorosa (Miocárdio). <br>
@@ -15,7 +15,7 @@ Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular.
 
 <br>
 
-## Estrutura Celular (Estriado Esquelético) <br>
+## 3. Estrutura Celular (Estriado Esquelético) <br>
 
 * As células também são chamadas de **fibras musculares** (ou miócitos). <br>
 * **Membrana plasmática**: chamada de **sarcolema** e forma os **túbulos T** (para condução do impulso). <br>
@@ -24,7 +24,7 @@ Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular.
 
 <br>
 
-## Sarcômero <br>
+## 4. Sarcômero <br>
 
 * Unidade funcional de contração. <br>
 * Tem **alinhamento de miofilamentos**; essas unidades alinhadas são chamadas de **sarcômero**. <br>
@@ -32,7 +32,7 @@ Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular.
 
 <br>
 
-## Fontes de Energia do Músculo Estriado Esquelético <br>
+## 5. Fontes de Energia do Músculo Estriado Esquelético <br>
 
 * ATP <br>
 * Fosfocreatina <br>
@@ -42,27 +42,27 @@ Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular.
 
 <br>
 
-## Crescimento Muscular (Hipertrofia) <br>
+## 6. Crescimento Muscular (Hipertrofia) <br>
 
 * A célula não se divide (exceto o liso), acontece o **aumento de volume** dela. <br>
 * Acontece **microlesão** e depois regeneração por **células satélites** (regeneração limitada). <br>
 
 <br>
 
-## Intensidade Muscular <br>
+## 7. Intensidade Muscular <br>
 
 * Quanto mais células se excitam, mais terminação nervosa, **mais força** = mais miócitos recrutados. <br>
 
 <br>
 
-## Tipos de Fibras (Cor) <br>
+## 8. Tipos de Fibras (Cor) <br>
 
 * **Vermelhas** (Tipo I / Lentas): **menos força**, mais resistência, mais lenta. São vermelhas por conta da **mioglobina** (armazena O₂). <br>
 * **Brancas** (Tipo II / Rápidas): **mais força**, menos resistência, mais rápida. <br>
 
 <br>
 
-## Características Específicas <br>
+## 9. Características Específicas <br>
 
 ### Músculo Estriado Cardíaco <br>
 * É o Miocárdio. <br>

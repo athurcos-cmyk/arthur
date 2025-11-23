@@ -1,6 +1,6 @@
 # Sistema Nervoso Periférico (SNP) <br>
 
-## Gânglios nervosos <br>
+## 1. Gânglios nervosos <br>
 
 * **Definição:** aglomerados de corpos celulares de neurônios localizados **fora do SNC**, próximos à coluna vertebral. <br>
 * **Função:**
@@ -10,7 +10,7 @@
 
 <br>
 
-## Controle no local-alvo <br>
+## 2. Controle no local-alvo <br>
 
 * O SNP, por meio dos gânglios, alcança diretamente o **órgão/tecido alvo**. <br>
 * **Exemplo funcional:**
@@ -24,7 +24,7 @@
 
 <br>
 
-## Receptores autonômicos <br>
+## 3. Receptores autonômicos <br>
 
 ### Colinaérgicos <br>
 
@@ -47,14 +47,14 @@ Receptores de membrana que respondem à **acetilcolina (ACh)**. <br>
 
 <br>
 
-## Sensibilidade visceral <br>
+## 4. Sensibilidade visceral <br>
 
 * Informações dos órgãos internos chegam ao SNC. <br>
 * Muitas vezes percebidas de forma **inconsciente**, mas podem gerar reflexos. <br>
 
 <br>
 
-## Dor visceral <br>
+### Dor visceral <br>
 
 * Sensação difusa, mal localizada. <br>
 * Pode ser referida (ex.: dor no braço esquerdo durante infarto). <br>
@@ -62,7 +62,7 @@ Receptores de membrana que respondem à **acetilcolina (ACh)**. <br>
 
 <br>
 
-## Vias de sensibilidade <br>
+## 5. Vias de sensibilidade <br>
 
 Existem dois caminhos principais que as sensações do nosso corpo usam para chegar ao cérebro: a **Via Epicrítica** e a **Via Protopática**. Elas fazem parte do **Sistema Nervoso Periférico** (na coleta de informações) e do **Sistema Nervoso Central** (no processamento). <br>
 

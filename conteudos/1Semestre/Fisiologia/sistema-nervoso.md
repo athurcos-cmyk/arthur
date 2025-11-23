@@ -1,6 +1,6 @@
 # Sistema nervoso <br>
 
-## 🔹 Sistema Nervoso Funcional <br>
+## 1. Sistema Nervoso Funcional <br>
 
 ### Sensitivo (aferente) <br>
 * Recebe informações do meio externo (visão, audição, tato, dor) <br>
@@ -19,7 +19,7 @@
 
 <br>
 
-## 🧠 Sistema Nervoso <br>
+## 2. Sistema Nervoso <br>
 
 ### Divisão Geral <br>
 * Sistema Nervoso Central (SNC) <br>
@@ -27,7 +27,7 @@
 
 <br>
 
-## 🔹 Sistema Nervoso Central (SNC) <br>
+## 3. Sistema Nervoso Central (SNC) <br>
 
 * **Composição**: Encéfalo e medula espinhal <br>
 * **Proteção**: encéfalo (caixa craniana), medula (coluna vertebral) <br>
@@ -36,7 +36,7 @@
 
 <br>
 
-## Encéfalo (Cérebro + Tronco encefálico + Cerebelo) <br>
+## 4. Encéfalo (Cérebro + Tronco encefálico + Cerebelo) <br>
 
 ### Cérebro <br>
 
@@ -64,8 +64,8 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## Medula Espinhal <br>
-**Principal função** <br>
+## 5. Medula Espinhal <br>
+### Principal função <br>
 * Condução dos impulsos nervosos entre o corpo e o encéfalo. <br>
 * Centro integrador de reflexos simples. <br>
 * Função: leva e traz informações SNC ↔ SNP <br>
@@ -84,7 +84,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Sistema Nervoso Periférico (SNP) <br>
+## 6. Sistema Nervoso Periférico (SNP) <br>
 
 * **Composição**: nervos e gânglios <br>
 * **Função**: transmitir informações entre SNC e periferia <br>
@@ -100,7 +100,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Subdivisão das vias eferentes <br>
+## 7. Subdivisão das vias eferentes <br>
 
 ### Sistema Nervoso Somático <br>
 * Neurônios motores <br>
@@ -116,7 +116,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Sistema Nervoso Autônomo <br>
+## 8. Sistema Nervoso Autônomo <br>
 
 ### Simpático <br>
 * Nervos simpáticos colocam o organismo em modo de alerta e estresse (situações de quase morte) <br>
@@ -136,7 +136,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Meninges <br>
+## 9. Meninges <br>
 
 * **Três camadas**:
     * Dura-máter (externa). <br>
@@ -147,12 +147,12 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Neurônios – Composição celular <br>
+## 10. Neurônios – Composição celular <br>
 
-* **Funções básicas**:
-    * Receber sinais. <br>
-    * Integrar sinais de entrada. <br>
-    * Comunicar sinais às células alvo. <br>
+### Funções básicas**:
+* Receber sinais. <br>
+* Integrar sinais de entrada. <br>
+* Comunicar sinais às células alvo. <br>
 * **Soma (corpo celular)**: produz proteínas neuronais. <br>
 
 ### Zona de disparo (ou cone axonal) <br>
@@ -179,14 +179,14 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Neurotransmissão <br>
+## 11. Neurotransmissão <br>
 1. Geração do potencial de ação no axônio. <br>
 2. Transmissão via sinapse, com neurotransmissores. <br>
 3. Neurotransmissores excitam outro neurônio ou célula efetora. <br>
 
 <br>
 
-## 🔹 Classes de Neurônios <br>
+## 12. Classes de Neurônios <br>
 
 * **Sensoriais:** levam info ao SNC (aferentes). <br>
 * **Motores:** levam comandos a músculos/órgãos (eferentes). <br>
@@ -195,7 +195,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Células da Glia <br>
+## 13. Células da Glia <br>
 
 * **Astrócitos:** mais numerosos; regulam fluxo sanguíneo, ambiente extracelular, comunicação sináptica. <br>
 * **Microglia:** defesa, funcionam como macrófagos do sistema imune, removem células mortas (fagocitose). <br>
@@ -206,7 +206,7 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Bainha de Mielina <br>
+## 14. Bainha de Mielina <br>
 
 * Estrutura lipídica que recobre axônios. <br>
 * **Funções**: isolante elétrico, aumenta velocidade de condução. <br>
@@ -223,8 +223,8 @@ Conecta encéfalo a medula espinhal <br>
 
 <br>
 
-## 🔹 Impulso Nervoso <br>
-**Definição de impulso nervoso** <br>
+## 15. Impulso Nervoso <br>
+### Definição de impulso nervoso <br>
 * É o **sinal elétrico** que corre ao longo do neurônio. <br>
 * Serve para transmitir informações sensitivas (ver luz, tocar fogo) e motoras (mover músculos, contrair órgãos). <br>
 * Ele não é uma corrente elétrica “igual fio de cobre”, mas sim uma mudança na **carga elétrica da membrana** do neurônio. <br>
@@ -262,7 +262,7 @@ Ele tem diversas fases e no fim essas fases é pra liberação de neurotransmiss
 
 <br>
 
-## Características Importantes <br>
+### Características Importantes <br>
 
 * **Lei do tudo ou nada**:
     * Se o estímulo for forte o bastante → ocorre o potencial de ação. <br>
@@ -279,12 +279,12 @@ Ele tem diversas fases e no fim essas fases é pra liberação de neurotransmiss
 
 <br>
 
-## 🔹 Sinapses <br>
+## 16. Sinapses <br>
 
 * Comunicação entre neurônios ou neurônio ↔ órgão. <br>
-* **Tipos**:
-    * Elétrica: junções comunicantes → resposta imediata (ex.: músculo cardíaco). <br>
-    * Química: liberação de neurotransmissores. <br>
+### Tipos:
+* Elétrica: junções comunicantes → resposta imediata (ex.: músculo cardíaco). <br>
+* Química: liberação de neurotransmissores. <br>
 * **Neurotransmissores**: acetilcolina, dopamina, serotonina, noradrenalina, adrenalina, GABA, glutamato, histamina, neuropeptídeos. <br>
 * **Receptores**:
     * Ionotrópicos: rápidos. <br>
@@ -292,7 +292,7 @@ Ele tem diversas fases e no fim essas fases é pra liberação de neurotransmiss
 
 <br>
 
-## 🔹 Neurotransmissores – Exemplos <br>
+##  17. Neurotransmissores – Exemplos <br>
 
 * **GABA:** principal inibitório (20–30% das sinapses). → calma, relaxamento, sono. <br>
 * **Glutamato:** principal excitatório do SNC; derivado de glutamina. <br>

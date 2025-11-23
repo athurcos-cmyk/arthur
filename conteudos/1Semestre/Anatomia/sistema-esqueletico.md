@@ -28,14 +28,14 @@ O corpo humano é formado por **206 ossos**. Este número pode variar devido à 
 
 ## 5. Divisão do Esqueleto <br>
 
-**Esqueleto Axial: 80 ossos** <br>
+### Esqueleto Axial: 80 ossos <br>
 * Ossos da **cabeça**, **pescoço** e **tronco**. <br>
 
-**Esqueleto Apendicular Superior** <br>
+### Esqueleto Apendicular Superior <br>
 * **Cíngulo do membro superior:** escápula, clavícula. <br>
 * **Componentes:** úmero, rádio, ulna, ossos do carpo, metacarpos, falanges (I a V). <br>
 
-**Esqueleto Apendicular Inferior** <br>
+### Esqueleto Apendicular Inferior <br>
 * **Cíngulo do membro inferior:** ossos do quadril (ílio, ísquio, púbis). <br>
 * **Componentes:** fêmur, tíbia, fíbula, patela, ossos do tarso, metatarsos, falanges (I a V). <br>
 
