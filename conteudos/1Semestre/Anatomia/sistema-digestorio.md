@@ -1,93 +1,113 @@
-# Sistema Digestorio
+# 🍎 Resumo Estratégico: Sistema Digestório
 
-é como se fosse um tubo por si só a comida passa pela bca, faringe, esofago, estomago, intestino delgado e intestino grosso
-existem orgoas auxiliares que produzem substancias que são jogadas para esse tubo, enzimas, bile etc 
-os auxiliares são , dnte lingua, glandua salivar, figado, visucula biliar e pancreas 
+## 1. A Fábrica: Função e Divisão Geral
+O sistema funciona como uma linha de desmontagem para transformar alimentos complexos em nutrientes simples.
 
-a boca é a recpção do alimento 
+### Divisão Anatômica
+* **Tubo Digestório (O Caminho):** O alimento **passa por dentro**.
+    * [cite_start]*Trajeto:* Boca → Faringe → Esôfago → Estômago → Intestino Delgado → Intestino Grosso → Reto/Ânus [cite: 761-762].
+* **Órgãos Anexos (Os Ajudantes):** O alimento **NÃO** entra; eles produzem secreções.
+    * [cite_start]*Exemplos:* Dentes, Língua, Glândulas Salivares, Fígado, Vesícula Biliar e Pâncreas[cite: 763].
 
-limite de divisão da boca 
-a boca tem o vestibulo da boca  ente labio bocheca e dente
-cavidade que é a propria boca
+### Fluxo de Funções
+1.  **Digestão:** Quebra mecânica e química.
+2.  **Absorção:** Passagem dos nutrientes para o sangue.
+3.  **Eliminação:** Saída dos resíduos (fezes).
 
-ela é bem dividida, tem seus limites, 
-frente: labio
-laterai s bocheca musculo bucinador
-o teto tem o palato duro que é anterior e o palato mole que é posterior
-conexão posterior da boca com faringe é istmo das fauces
+---
 
-soalho da boca
-contem o frenyulo da lingua é a pelinha de baixo da lingua o freio da lingua conhecido 
+## 2. A Recepção: Cavidade Oral (Boca)
+O início da digestão (mecânica pelos dentes e química pela saliva).
 
-Lingua
-não é lisa 
-tem papulas linguas proçeões no dorso que tao aspecto aveludado, é pra sentir sabor e ter atrito 
-tonsilas linguais fica no fundo são para defesa contra infeclção
+### Espaços
+* [cite_start]**Vestíbulo:** Espaço entre lábios/bochechas e os dentes[cite: 773].
+* [cite_start]**Cavidade Própria:** Espaço atrás dos dentes (onde fica a língua)[cite: 774].
 
+### Estruturas
+* **Palato (O Teto):**
+    * **Duro:** Anterior (Ósseo).
+    * [cite_start]**Mole:** Posterior (Muscular) → termina na Úvula [cite: 782-785].
+* **Língua e Soalho:**
+    * [cite_start]**Frênulo:** Prega que fixa a língua no chão da boca[cite: 787].
+    * [cite_start]**Papilas:** No dorso da língua (atrito e paladar)[cite: 790].
+* **Dentes (As Ferramentas):**
+    * **Incisivos:** Cortar.
+    * **Caninos:** Rasgar.
+    * [cite_start]**Pré-molares/Molares:** Triturar [cite: 798-800].
 
-Dentes
-incisivo da frente eles cortam
-canino os pontuto eles rangas
-os pre e molares ele trituram 
+---
 
+## 3. O Corredor: Faringe
+Canal comum aos sistemas digestório e respiratório.
+* [cite_start]**Divisão:** Nasofaringe (ar), Orofaringe (comum) e Laringofaringe (comum) [cite: 806-808].
+* **Conexão:** A Laringofaringe encaminha o alimento para o **Esôfago**.
 
-Faringe
-é compartilhada junto com o sistema respiratorio, é pra onde vai o alimento assim que engole 
-ela é dividida em 3 partes
-nasofaringe fica atras do naris passsa so ar
-oroganginge atras da boca passa ar e comida 
-laringo faringe é o caminho para o estomago
+---
 
-Esofago
-quando chega no esofago é só transporte até a evacuação
-esofoga é um tubo muscular ele leva a comida do pesço até o estomago 
+## 4. O Transportador: Esôfago
+Tubo muscular de transporte (25-30 cm).
+* [cite_start]**Posição no Tórax:** Fica **posterior à Traqueia** e **anterior à Coluna Vertebral** (protegido no meio).
+* [cite_start]**Movimento:** Realiza **Movimentos Peristálticos** (ondas de contração) para empurrar o bolo alimentar[cite: 817].
 
-dividido em 3 partes 
-cervical fica no pescoço
-toracica no peito e é a maior parte
-abdopminal um pedaço pequeno curto 
+---
 
-no torax ele fica atras da traqueia e na frente da coluna vertebral 
-para ter proteção, ele é protegido pela coluna vertebral 
+## 5. O Tanque de Mistura: Estômago
+Reservatório que inicia a digestão de **Proteínas** e transforma o bolo alimentar em uma sopa ácida chamada **Quimo**.
+* [cite_start]**Localização:** Abaixo do diafragma, deslocado para a **Esquerda**[cite: 820].
+* **4 Regiões Anatômicas:**
+    1.  [cite_start]**Cárdia:** Entrada (junção com esôfago)[cite: 822].
+    2.  [cite_start]**Fundo Gástrico:** Cúpula superior (o "teto" acima da entrada)[cite: 823].
+    3.  [cite_start]**Corpo:** Maior parte central[cite: 824].
+    4.  [cite_start]**Parte Pilórica (Piloro):** Saída (conecta ao intestino)[cite: 825].
 
-a comida não desce por movimento da gravidade, o esofago e em geral todo o sistema digestorio pela parte do transporte faz contração muscular para emburrar o bolo alimentar o nome disso é movimento peristaltico 
+---
 
-Estomago 
-funciona como um grande reservatorio temporario
-ele começa disgestoa de proteina usando acido e enzimas
-ele bate a comida como um liquidificador ate ela virar sopa acida
+## 6. O Processador: Intestino Delgado
+[cite_start]Local da principal **Digestão** e **Absorção** de nutrientes[cite: 830]. Dividido em 3 partes:
 
-ele é dividido em 4 partes
-cardia é junção com esofago, porta de entrada, chama assim pq fica perto do coração (cardia tipo cardiaco)
-fundo gastrico é o teto 
-corpo gastrico é a maior parte 
-piloro porta de saida que conecta com instetino delgado 
+1.  **Duodeno:** Formato de "C". [cite_start]Recebe a Bile e o Suco Pancreático pela **Papila Maior** [cite: 832-834].
+2.  **Jejuno:** Parte média.
+3.  **Íleo:** Parte final, conecta-se ao intestino grosso.
 
-o estomago fica abixo do diafragma com maior para para o lado esquerdo
+---
 
-a sopa que a comida vira se chama quimio
+## 7. O Compactador: Intestino Grosso
+[cite_start]Função principal: **Reabsorção de água** e formação das fezes[cite: 840].
 
-Intestino Delgado
-serve para fazer a real digestão, e absorção para passar para o sangue 
-lembrando que a comida sai do estomago e vai pelo piloro para chegar no instetino delgado
+### Segmentos
+1.  **Ceco:** Fundo cego inicial. [cite_start]É onde fica o **Apêndice Vermiforme** [cite: 842-843].
+2.  [cite_start]**Colos:** Ascendente → Transverso → Descendente → Sigmóide (curva em S) [cite: 844-846].
+3.  **Reto e Canal Anal:** Saída.
 
-é dividio em 3 partes
-Duodena logo apois o estomago parece um C é onde o figado e pancraeas jogam bile e suco pancratico para terminar de dissolver a comida
-jejuno fica no meior onde começa absorção
-ileio o final continua absorvendo até se conectar com o intestino grosso
-as vezes se cham jejuno-ileo
+---
 
-ele se conmecta no instestino grosso no final do ileo e se conecta com o Ceco que é o começo do intestino grosso
+## 8. A Embalagem: Peritônio
+[cite_start]Membrana serosa que reveste o abdome[cite: 848].
+* **Parietal:** Reveste a parede abdominal.
+* **Visceral:** Envolve os órgãos.
+* [cite_start]**Órgãos Retroperitoneais:** Ficam **atrás** do peritônio (ex: Rins e Pâncreas)[cite: 850].
+* **Patologia:** Inflamação = **Peritonite**.
 
-Intestino grosso 
-![intestino grosso](https://s1.static.brasilescola.uol.com.br/be/conteudo/images/observe-as-principais-partes-intestino-grosso-5899c8f010933.jpg)
-só chega agua e resto de comida que nao foi digerido, sua função é reabsorver a agua, para secar essa mistura toda e formas fezes solida, e depois armazena ate a eliminação 
-o intestino grosso é mais curto que o delgado e se utrajeto forma uma moldura
+---
 
-divisão 
-Ceco fundo do saco inicial, o apendice vermiforme fica pendurado
-colo ascendente sobe pelo lado direito
-colo transverso é a parte de cima da moldura
-colo descedente desce pelo lado esquerdo
-colo sigmoide
-faz uma curva em S
+## 9. Os Lubrificantes: Glândulas Salivares
+[cite_start]Produzem saliva para umedecer (função física) e iniciar a digestão com enzimas (função química) [cite: 858-859].
+* [cite_start]**Maiores:** Parótidas, Submandibulares, Sublinguais[cite: 853].
+* **Menores:** Espalhadas pela mucosa da boca.
+
+---
+
+## 10. A Usina: Fígado e Vesícula
+* **Fígado:** Maior glândula, localizada no quadrante superior **Direito**, protegido pelas costelas.
+    * **Função Digestiva:** Produzir **Bile** (emulsifica gorduras).
+    * [cite_start]**Lobos (Visão Inferior):** Direito, Esquerdo, Caudado e Quadrado[cite: 867].
+* **Vesícula Biliar:** Saco verde abaixo do fígado. [cite_start]Função: **Armazenar** a bile[cite: 868].
+
+---
+
+## 11. A Glândula Mista: Pâncreas
+[cite_start]Localizado **posteriormente ao estômago** (retroperitoneal)[cite: 870].
+* **Função Exócrina:** Produz **Suco Pancreático** (enzimas digestivas) → Duodeno.
+* [cite_start]**Função Endócrina:** Produz **Insulina/Glucagon** → Sangue[cite: 872].
+* **Anatomia:** Cabeça (encaixada no duodeno), Corpo e Cauda (encosta no baço).
+* **Ductos:** O Ducto Pancreático se junta ao Colédoco (bile) e desembocam juntos no Duodeno.
