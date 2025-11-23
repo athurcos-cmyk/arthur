@@ -1100,7 +1100,13 @@ function startPomodoro(timeLeft) {
             clearInterval(pomodoroInterval);
             sessionStorage.setItem('pomodoroRunning', 'false');
             sessionStorage.setItem('pomodoroRemaining', POMODORO_DEFAULT);
-            alert("Pomodoro finalizado! Hora de descansar.");
+            
+            // AQUI ESTÁ A ALTERAÇÃO:
+            showToast("⏰ Pomodoro finalizado! Hora de descansar.");
+            
+            // (Opcional) Som:
+            new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg').play();
+
             document.getElementById('pomodoro-action').innerHTML = '<i class="fas fa-play"></i>';
             document.getElementById('pomodoro-pill').classList.remove('pomodoro-running');
             updatePomodoroDisplay(POMODORO_DEFAULT);
