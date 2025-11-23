@@ -109,6 +109,7 @@
                     <button class="tab active" onclick="switchTab('text')" role="tab" aria-selected="true"><i class="fas fa-align-left"></i> Resumo</button>
                     <button class="tab" onclick="switchTab('slides')" role="tab" aria-selected="false"><i class="fas fa-file-pdf"></i> Slides</button>
                     <button class="tab" onclick="switchTab('video')" role="tab" aria-selected="false"><i class="fas fa-play-circle"></i> Vídeos</button>
+                    <button class="tab" onclick="switchTab('quiz')" role="tab" aria-selected="false"><i class="fas fa-brain"></i> Quiz</button>
                 </div>
 
                 <div class="content-wrapper">
@@ -142,10 +143,17 @@
                     </div>
 
                     <div id="tab-slides" class="tab-panel" role="tabpanel">
-                        <div id="slides-container" class="slides-grid"></div> </div>
+                        <div id="slides-container" class="slides-grid"></div> 
+                    </div>
 
                     <div id="tab-video" class="tab-panel" role="tabpanel">
                         <div id="videos-container" class="video-grid"></div>
+                    </div>
+
+                    <div id="tab-quiz" class="tab-panel" role="tabpanel">
+                        <div id="quiz-container" class="quiz-wrapper">
+                            <div class="quiz-placeholder">Selecione um tópico com Quiz disponível.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,6 +170,8 @@
     <script>
         const time = new Date().getTime();
         document.write('<script src="data.js?v=' + time + '"><\/script>');
+        // IMPORTANTE: Carrega o banco de questões antes do script principal
+        document.write('<script src="quiz.js?v=' + time + '"><\/script>');
         document.write('<script src="script.js?v=' + time + '"><\/script>');
     </script>
 </body>

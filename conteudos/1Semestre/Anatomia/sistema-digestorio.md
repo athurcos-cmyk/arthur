@@ -53,7 +53,7 @@ Tubo muscular que leva a comida da faringe até o estômago. Só faz transporte.
 * Torácica (Peito - a maior parte).
 * Abdominal (Pedaço curto após o diafragma).
 
-"[esofago](https://i.imgur.com/Ym4gvgI.png)
+![esofago](https://i.imgur.com/Ym4gvgI.png)
 
 **Proteção e Localização:** No tórax, ele fica **atrás da traqueia** e **na frente da coluna vertebral**.
 

@@ -8,9 +8,17 @@ let currentSemIndex = 0;   // Guarda qual semestre está sendo visualizado (0 = 
 let notesTimeout = null;   // Timer usado para o "debounce" do salvamento de notas (evita salvar a cada tecla)
 let tocObserver = null;    // Guarda a instância do IntersectionObserver do índice (TOC)
 
-// Variáveis do Pomodoro (Nova Feature)
+// Variáveis do Pomodoro
 let pomodoroTimer = null;
 const POMODORO_DEFAULT = 25 * 60; // 25 minutos em segundos
+
+// Variáveis do Quiz (NOVO)
+let currentQuizData = [];
+let currentQIndex = 0;
+let quizScore = 0;
+let quizTimerInterval = null;
+let quizTimeLeft = 60;
+let isQuizAnswered = false;
 
 // ==============================================================
 // 🚀 INICIALIZAÇÃO (BOOTSTRAP)
@@ -433,7 +441,7 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     // Carrega as notas salvas para este tópico específico
     loadNotes(semIdx, subIdx, topIdx);
 
-    // NOVO: Verifica se o tópico está concluído e atualiza o botão
+    // Verifica se o tópico está concluído e atualiza o botão
     checkCurrentTopicStatus(semIdx, subIdx, topIdx);
 
     // --- 1. CARREGA O TEXTO (MARKDOWN) ---
@@ -510,6 +518,9 @@ async function openTopic(semIdx, subIdx, topIdx, updateHash = true) {
     } else {
         videoArea.innerHTML = '<p style="color:var(--text-muted)">Nenhum vídeo disponível.</p>';
     }
+
+    // --- 4. CARREGA O QUIZ (FEATURE NOVA) ---
+    loadQuiz(semIdx, subIdx, topIdx);
 
     // Reseta a visualização para a aba de texto
     switchTab('text');
@@ -801,6 +812,9 @@ function saveNotes() {
 // UTILITÁRIOS DE UI (ABAS E DASHBOARD)
 // ==============================================================
 function switchTab(name) {
+    // Pára o timer do quiz se sair da aba
+    if(quizTimerInterval) clearInterval(quizTimerInterval);
+
     // Esconde todos os painéis de conteúdo
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     // Desativa visualmente todas as abas
@@ -809,12 +823,13 @@ function switchTab(name) {
         t.setAttribute('aria-selected', 'false');
     });
     
-    // Ativa o painel solicitado (text, slides ou video)
+    // Ativa o painel solicitado (text, slides, video ou quiz)
     const panel = document.getElementById(`tab-${name}`);
     if(panel) panel.classList.add('active');
     
     // Ativa a aba correspondente
-    const tabIndex = name === 'text' ? 0 : name === 'slides' ? 1 : 2;
+    // 0=Text, 1=Slides, 2=Video, 3=Quiz
+    const tabIndex = name === 'text' ? 0 : name === 'slides' ? 1 : name === 'video' ? 2 : 3;
     const btn = document.querySelectorAll('.tab')[tabIndex];
     if(btn) {
         btn.classList.add('active');
@@ -1103,4 +1118,174 @@ function showToast(msg) {
     }, 2000);
 }
 
+// ==============================================================
+// 🧠 LÓGICA DO QUIZ (ATUALIZADA: DOUBLE SHUFFLE)
+// ==============================================================
 
+// Algoritmo de Embaralhamento (Fisher-Yates Shuffle)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function loadQuiz(semIdx, subIdx, topIdx) {
+    const container = document.getElementById('quiz-container');
+    
+    // Reseta estado
+    clearInterval(quizTimerInterval);
+    currentQIndex = 0;
+    quizScore = 0;
+    
+    // Gera a chave única
+    const quizKey = `${semIdx}-${subIdx}-${topIdx}`;
+    
+    // Verifica se existe quiz no quizDb (global do quiz.js)
+    if (typeof quizDb !== 'undefined' && quizDb[quizKey] && quizDb[quizKey].length > 0) {
+        
+        // 1. Clona o array original para não estragar a ordem fixa do arquivo
+        let rawQuestions = JSON.parse(JSON.stringify(quizDb[quizKey]));
+        
+        // 2. EMBARALHA AS PERGUNTAS
+        let shuffledQuestions = shuffleArray(rawQuestions);
+
+        // 3. PARA CADA PERGUNTA, EMBARALHA AS RESPOSTAS (Double Shuffle)
+        currentQuizData = shuffledQuestions.map(q => {
+            // Guarda o texto da resposta certa antes de misturar
+            const correctAnswerText = q.a[q.c];
+            
+            // Mistura as opções
+            const shuffledOptions = shuffleArray([...q.a]);
+            
+            // Descobre onde foi parar a resposta certa
+            const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+            
+            return {
+                q: q.q,
+                a: shuffledOptions,
+                c: newCorrectIndex
+            };
+        });
+
+        renderQuestion();
+    } else {
+        container.innerHTML = `
+            <div style="text-align:center; padding:40px; color:var(--text-muted)">
+                <i class="fas fa-brain fa-3x" style="margin-bottom:20px; opacity:0.3"></i>
+                <p>Não há quiz cadastrado para este tópico ainda.</p>
+                <small style="opacity:0.5; display:block; margin-top:10px;">ID deste tópico: ${quizKey}</small>
+            </div>`;
+    }
+}
+
+function renderQuestion() {
+    const container = document.getElementById('quiz-container');
+    const q = currentQuizData[currentQIndex];
+    
+    // Reinicia timer
+    quizTimeLeft = 60; 
+    isQuizAnswered = false;
+    startQuizTimer();
+
+    container.innerHTML = `
+        <div class="quiz-header">
+            <span>Pergunta ${currentQIndex + 1} de ${currentQuizData.length}</span>
+            <div class="quiz-timer"><i class="fas fa-stopwatch"></i> <span id="q-timer">60</span>s</div>
+        </div>
+        <div class="quiz-question animate-fade-up">${q.q}</div>
+        <div class="quiz-options animate-fade-up" id="q-options">
+            ${q.a.map((opt, i) => `
+                <button class="quiz-btn" onclick="handleQuizAnswer(${i}, this)">${opt}</button>
+            `).join('')}
+        </div>
+        <div id="q-footer" style="height: 50px;"></div>
+    `;
+}
+
+function handleQuizAnswer(selectedIndex, btnElement) {
+    if (isQuizAnswered) return; // Trava se já respondeu
+    isQuizAnswered = true;
+    clearInterval(quizTimerInterval); // Para o tempo
+
+    const q = currentQuizData[currentQIndex];
+    const options = document.querySelectorAll('.quiz-btn');
+    const footer = document.getElementById('q-footer');
+
+    // Verifica acerto
+    if (selectedIndex === q.c) {
+        quizScore++;
+        btnElement.classList.add('correct');
+    } else {
+        btnElement.classList.add('wrong');
+        // Mostra a correta
+        if(selectedIndex !== -1) { 
+            options[q.c].classList.add('correct');
+        }
+    }
+
+    // Desabilita botões
+    options.forEach(btn => btn.disabled = true);
+
+    // Botão de próxima
+    footer.innerHTML = `<button class="quiz-next-btn" onclick="nextQuestion()">
+        ${currentQIndex < currentQuizData.length - 1 ? 'Próxima Pergunta' : 'Ver Resultado'} <i class="fas fa-arrow-right"></i>
+    </button>`;
+}
+
+function nextQuestion() {
+    if (currentQIndex < currentQuizData.length - 1) {
+        currentQIndex++;
+        renderQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function startQuizTimer() {
+    if(quizTimerInterval) clearInterval(quizTimerInterval);
+    const display = document.getElementById('q-timer');
+    
+    quizTimerInterval = setInterval(() => {
+        quizTimeLeft--;
+        if(display) display.innerText = quizTimeLeft;
+
+        if (quizTimeLeft <= 0) {
+            clearInterval(quizTimerInterval);
+            handleQuizAnswer(-1, { classList: { add: ()=>{} } }); // Timeout
+            // Marca a correta visualmente
+            const options = document.querySelectorAll('.quiz-btn');
+            const q = currentQuizData[currentQIndex];
+            if(options[q.c]) options[q.c].classList.add('correct');
+        }
+    }, 1000);
+}
+
+function finishQuiz() {
+    const container = document.getElementById('quiz-container');
+    const percent = Math.round((quizScore / currentQuizData.length) * 100);
+    
+    let msg = "Bom esforço!";
+    let color = "var(--priority-orange)";
+    if(percent >= 70) { msg = "Excelente!"; color = "var(--priority-green)"; }
+    if(percent < 50) { msg = "Precisa estudar mais!"; color = "var(--priority-red)"; }
+
+    // Pega IDs da URL para o botão de Tentar Novamente
+    const hash = location.hash.slice(1);
+    const semIdx = hash.match(/sem-(\d+)/)?.[1];
+    const matIdx = hash.match(/mat-(\d+)/)?.[1];
+    const topIdx = hash.match(/top-(\d+)/)?.[1];
+
+    container.innerHTML = `
+        <div class="quiz-result animate-fade-up">
+            <h2>Quiz Finalizado!</h2>
+            <div class="quiz-score-big" style="color:${color}">${percent}%</div>
+            <p style="font-size:1.2rem; margin-bottom:10px;">Você acertou <b>${quizScore}</b> de <b>${currentQuizData.length}</b></p>
+            <p style="color:var(--text-muted)">${msg}</p>
+            <button class="quiz-next-btn" onclick="loadQuiz(${semIdx}, ${matIdx}, ${topIdx})" style="float:none; margin-top:30px">
+                <i class="fas fa-redo"></i> Tentar Novamente
+            </button>
+        </div>
+    `;
+}
