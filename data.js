@@ -107,6 +107,14 @@ const db = [
                         videos: []
                     },
                     {
+                        title: "Sistema Urinario",
+                        file: "conteudos/1Semestre/Anatomia/sistema-urinario.md",
+                        slides: [
+                            { title: "Roteiro de apoio - Sistema Urinario", url: "https://drive.google.com/file/d/1AC-Ht-cCExpSNHwsy-f-1ypiJ2HXyuVv/view?usp=drive_link" }
+                        ],
+                        videos: []
+                    },
+                    {
                         title: "Sistema Urogenital",
                         file: "conteudos/1Semestre/Anatomia/sistema-urogenital.md",
                         slides: [
@@ -115,15 +123,12 @@ const db = [
                             { title: "Roteiro de apoio - Sistema Urogenital Feminino", url: "https://drive.google.com/file/d/1PD1zGxGU60oyOhchi3oDw4fXRLgcUyZw/view?usp=drive_link" }
                         ],
                         videos: []
-                    },
-                    {
-                        title: "Sistema Urinario",
-                        file: "conteudos/1Semestre/Anatomia/sistema-urinario.md",
-                        slides: [
-                            { title: "Roteiro de apoio - Sistema Urinario", url: "https://drive.google.com/file/d/1AC-Ht-cCExpSNHwsy-f-1ypiJ2HXyuVv/view?usp=drive_link" }
-                        ],
-                        videos: []
                     }
+
+
+
+
+
                 ]
             },
 //BIOLOGIA CELULAR E TECIDUAL // //BIOLOGIA CELULAR E TECIDUAL ////BIOLOGIA CELULAR E TECIDUAL // //BIOLOGIA CELULAR E TECIDUAL ////BIOLOGIA CELULAR E TECIDUAL // //BIOLOGIA CELULAR E TECIDUAL // 
