@@ -29,7 +29,7 @@ O sarcômero é o compartimento organizado de miofilamentos, delimitado por: <br
 * **Banda A (Região Escura):** A região central e mais escura. Contém a totalidade do **filamento grosso (Miosina)** e uma área de sobreposição com os filamentos finos. <br>
 * **Zona H:** Uma área um pouco mais clara no centro da Banda A. Contém **apenas filamentos grossos (Miosina)**. <br>
 * **Linha M:** Uma linha fina vertical que fica exatamente no meio da Zona H, servindo de âncora para os filamentos grossos. <br>
-
+![sarcomero](https://upload.wikimedia.org/wikipedia/commons/a/a2/Sarc%C3%B3mero.jpg)
 <br>
 
 ## 4. Os Miofilamentos: As Proteínas da Ação <br>
@@ -46,3 +46,5 @@ O sarcômero é o compartimento organizado de miofilamentos, delimitado por: <br
 
 * **Para Contrair:** As **cabeças da Miosina** se conectam aos sítios de ligação da **Actina** e a puxam em direção ao centro do sarcômero (Linha M). Isso faz com que as Linhas Z se aproximem e o sarcômero se encurte. <br>
 * **Para Relaxar:** O Cálcio ($\text{Ca}^{2+}$) é bombeado de volta para o Retículo Sarcoplasmático. As proteínas reguladoras (Tropomiosina e Troponina) voltam a bloquear os sítios da Actina, e a Miosina se desconecta. <br>
+
+![sarcomero_contraido](https://euestudofisio.wordpress.com/wp-content/uploads/2017/11/contracao-muscular.jpg)

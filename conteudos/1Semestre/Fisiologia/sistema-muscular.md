@@ -13,6 +13,8 @@ Possuem células alongadas para poder contrair e têm pouca Matriz Extracelular.
 * **Estriado cardíaco**: involuntário; possui estrias; contração vigorosa (Miocárdio). <br>
 * **Liso**: involuntário; lento e sem estrias; ocorre nas vísceras. <br>
 
+![tipos_musculo](https://www.unifal-mg.edu.br/histologiainterativa/wp-content/uploads/sites/38/2018/04/tecido-muscular-768x482.jpg)
+
 <br>
 
 ## 3. Estrutura Celular (Estriado Esquelético) <br>

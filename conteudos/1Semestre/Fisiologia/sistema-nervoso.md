@@ -61,6 +61,7 @@ Conecta encéfalo a medula espinhal <br>
 * Coordenação motora <br>
 * Equilíbrio e postura <br>
 * Aprendizado motor (andar de bicicleta) <br>
+![snc_detalhado](https://www.auladeanatomia.com/upload/htmleditor/snc3.jpg)
 
 <br>
 
@@ -145,6 +146,8 @@ Conecta encéfalo a medula espinhal <br>
 * Formadas por tecido conjuntivo. <br>
 * Revestem SNC → função de **proteção**. <br>
 
+![Meninges](https://lh4.googleusercontent.com/HhDihn_H-WVojzkAmQwi5ptSEXA1ps9Z0UsOxtFkuFFws1d-C8d9cwbo9l5c6eSpRVwAR2ybcFlstNfXrQN5a_dQ_xuPpsgnFp4KqCvvAYiWloj_92NsV78bItzz2RQNk9VLIzPJ)
+
 <br>
 
 ## 10. Neurônios – Composição celular <br>
@@ -177,6 +180,8 @@ Conecta encéfalo a medula espinhal <br>
 * Estrutura geral: comunicação e transmissão. <br>
 * Estimativa: **100 bilhões de neurônios**. <br>
 
+![neuronio](https://i0.wp.com/d3043uog1ad1l6.cloudfront.net/uploads/2021/04/1.png?w=640&ssl=1)
+
 <br>
 
 ## 11. Neurotransmissão <br>
@@ -203,7 +208,7 @@ Conecta encéfalo a medula espinhal <br>
 * Células da glia são células diferentes de neurônios, presentes no sistema nervoso. <br>
 * Proporção aproximada: **10 células da glia para cada 1 neurônio**. <br>
 * **Funções**: suporte, nutrição e estrutura para os neurônios existirem. Sem células da glia, os neurônios não sobrevivem. <br>
-
+![celulas_glia](https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/839424baa58c220cdd52b2eb0aef8be1.jpg)
 <br>
 
 ## 14. Bainha de Mielina <br>
@@ -290,6 +295,7 @@ Ele tem diversas fases e no fim essas fases é pra liberação de neurotransmiss
     * Ionotrópicos: rápidos. <br>
     * Metabotrópicos: lentos, via segundos mensageiros. <br>
 
+![sinapse](https://atin.icb.usp.br/wp-content/uploads/2022/04/fig3-sinapses-quimicas.png)
 <br>
 
 ##  17. Neurotransmissores – Exemplos <br>
