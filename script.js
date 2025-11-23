@@ -1196,11 +1196,11 @@ function renderQuestion() {
     const container = document.getElementById('quiz-container');
     const q = currentQuizData[currentQIndex];
     
-    // Reinicia timer
+    // 1. Configura as variáveis, mas NÃO inicia o timer ainda
     quizTimeLeft = 60; 
     isQuizAnswered = false;
-    startQuizTimer();
 
+    // 2. Desenha o HTML (Cria o elemento visual do relógio na tela)
     container.innerHTML = `
         <div class="quiz-header">
             <span>Pergunta ${currentQIndex + 1} de ${currentQuizData.length}</span>
@@ -1214,6 +1214,9 @@ function renderQuestion() {
         </div>
         <div id="q-footer" style="height: 50px;"></div>
     `;
+
+    // 3. AGORA SIM: Inicia o timer (porque o elemento #q-timer já existe no HTML acima)
+    startQuizTimer();
 }
 
 function handleQuizAnswer(selectedIndex, btnElement) {
