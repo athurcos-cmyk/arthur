@@ -1,11 +1,11 @@
 # Sistema esquelético <br>
 
 
-## Conceito de Osteologia <br>
+## 1. Conceito de Osteologia <br>
 Ciência que faz o estudo dos ossos. <br>
 
 
-## Tipos de Substância Óssea <br>
+## 2. Tipos de Substância Óssea <br>
 
 * **Compacta ou cortical**. <br>
     As células ósseas estão em contato íntimo, não havendo espaço entre elas, dessa forma o osso é mais denso e resistente. Está localizada na periferia dos ossos. <br>
@@ -13,7 +13,7 @@ Ciência que faz o estudo dos ossos. <br>
     Os elementos constituintes deixam entre si lacunas que se comunicam entre as outras, sendo preenchidas por medula óssea. <br>
 
 
-## Funções dos Ossos e do Esqueleto <br>
+## 3. Funções dos Ossos e do Esqueleto <br>
 
 * **Proteção** de órgãos importantes (cérebro, coração, pulmões, medula espinal). <br>
 * **Sustentação** (músculos) e **conformação** (suporte para as partes moles). <br>
@@ -22,11 +22,11 @@ Ciência que faz o estudo dos ossos. <br>
 * **Hematopoese** (armazena/produz células sanguíneas). <br>
 
 
-## Número de ossos <br>
+## 4. Número de ossos <br>
 O corpo humano é formado por **206 ossos**. Este número pode variar devido à idade, fatores individuais e o critério de contagem. <br>
 
 
-## Divisão do Esqueleto <br>
+## 5. Divisão do Esqueleto <br>
 
 **Esqueleto Axial: 80 ossos** <br>
 * Ossos da **cabeça**, **pescoço** e **tronco**. <br>
@@ -40,7 +40,7 @@ O corpo humano é formado por **206 ossos**. Este número pode variar devido à 
 * **Componentes:** fêmur, tíbia, fíbula, patela, ossos do tarso, metatarsos, falanges (I a V). <br>
 
 
-## Classificação dos Ossos <br>
+## 6. Classificação dos Ossos <br>
 
 * **Ossos longos** — todo osso que tem **comprimento maior que largura e espessura**. Ossos do esqueleto apendicular (Tíbia, Úmero). <br>
     * Tem algumas extremidades e um corpo:
@@ -64,7 +64,7 @@ O corpo humano é formado por **206 ossos**. Este número pode variar devido à 
 * **Ossos sesamóides** — osso que se desenvolve dentro de um tendão (ex.: **patela** e **hioide**). <br>
 
 
-## Periósteo <br>
+## 7. Periósteo <br>
 Delgada membrana que reveste externamente todos ossos. <br>
 
 * Constituído por dois folhetos:

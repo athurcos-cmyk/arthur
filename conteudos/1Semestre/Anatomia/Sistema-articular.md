@@ -1,5 +1,5 @@
 # Sistema de articulação <br>
-## Conceito <br>
+1. Conceito <br>
 
 * **Artrologia**: ciência que estuda as articulações. <br>
 * A **estrutura** de uma articulação determina a **direção** e a **amplitude** do movimento. <br>
@@ -7,7 +7,7 @@
 
 <br>
 
-## Classificação das articulações <br>
+## 2. Classificação das articulações <br>
 
 ### Tipos de articulações <br>
 

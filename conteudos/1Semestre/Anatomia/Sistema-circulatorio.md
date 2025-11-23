@@ -1,6 +1,6 @@
 # Sistema circulatório <br>
 
-## Componentes principais <br>
+## 1. Componentes principais <br>
 
 * Sangue <br>
 * Coração <br>
@@ -8,7 +8,7 @@
 
 <br>
 
-## Funções <br>
+## 2. Funções <br>
 
 * **Transporte**:
     * de suprimento nutritivo para todas células <br>
@@ -18,7 +18,7 @@
 
 <br>
 
-## Características <br>
+## 3. Características <br>
 
 ### Sistema de Vasos sanguíneos <br>
 
@@ -27,7 +27,7 @@
 
 <br>
 
-## Divisão do sistema circulatório <br>
+## 4. Divisão do sistema circulatório <br>
 
 * **Vasos Sanguíneos**:
     * **Artérias** - levar o sangue do coração para periferia <br>
@@ -43,7 +43,7 @@
 
 <br>
 
-## Morfologia externa do Coração <br>
+## 5. Morfologia externa do Coração <br>
 
 * Forma de pirâmide invertida:
     * **Base**, **ápice** e **faces** <br>
@@ -86,7 +86,7 @@
 
 <br>
 
-## Morfologia Interna <br>
+## 6. Morfologia Interna <br>
 
 ### Septos dividem em 4 câmeras <br>
 
@@ -107,7 +107,7 @@ Providos valvas atrioventriculares - passagem sangue somente do átrio para o ve
 
 <br>
 
-## Valvas e cúspides <br>
+## 7. Valvas e cúspides <br>
 
 * No ostio atrioventricular direita - 3 Cúspide, chamado de **tricúspide** <br>
 * No ostio Atrioventricular esquerda - 2 Valvula, chama **Bicúspide ou mitral** <br>
@@ -147,7 +147,7 @@ Transformar sangue venoso em arterial <br>
 
 <br>
 
-# Pericárdio <br>
+ ## 8. Pericárdio <br>
 
 * **Definição** - Saco **fibrosseroso** que envolve o coração. <br>
 * **Porções**:

@@ -1,23 +1,17 @@
 # Introdução anatomia <br>
 
-
-
-## 🔹 Considerações Gerais <br>
+## 1. Considerações Gerais <br>
 
 **Definição de anatomia** <br>
 
 * Ciência que estuda **macro e microscopicamente** a constituição (forma e estrutura) e o desenvolvimento dos seres organizados. <br>
 
-
-
-## 🔹 Divisões da Anatomia <br>
+## 2. Divisões da Anatomia <br>
 
 * **Microscópica** <br>
 * **Macroscópica** <br>
 
-
-
-## 🔹 Conceito de Variação Anatômica e Normalidade <br>
+## 3. Conceito de Variação Anatômica e Normalidade <br>
 
 **Variação Anatômica** <br>
 
@@ -27,16 +21,12 @@
 
 * Morfologia mais frequente (estatística). <br>
 
-
-
-## 🔹 Anomalia e Monstruosidade <br>
+## 4. Anomalia e Monstruosidade <br>
 
 * **Anomalia:** diferença morfológica que **causa prejuízo funcional**. <br>
 * **Monstruosidade:** diferença morfológica **incompatível com a vida**. <br>
 
-
-
-## 🔹 Fatores Gerais de Variação <br>
+## 5. Fatores Gerais de Variação <br>
 
 * Idade <br>
 * Sexo <br>
@@ -49,7 +39,7 @@
 
 
 
-## 🔹 Nomenclatura Anatômica <br>
+## 6. Nomenclatura Anatômica <br>
 
 **Abreviações:** <br>
 
@@ -64,7 +54,7 @@
 
 
 
-## 🔹 Divisão do Corpo Humano <br>
+## 7. Divisão do Corpo Humano <br>
 
 * Cabeça
     * Face
@@ -84,7 +74,7 @@
 
 
 
-## 🔹 Posição Anatômica <br>
+## 8. Posição Anatômica <br>
 
 * Indivíduo ereto (em pé, ortostática, bípede) <br>
 * Face voltada para frente <br>
@@ -96,7 +86,7 @@
 
 
 
-## 🔹 Outras Posições <br>
+## 9. Outras Posições <br>
 
 * **Supina ou Decúbito Dorsal** - o corpo está deitado com a face voltada para cima <br>
 * **Prona ou Decúbito Ventral** – o corpo está deitado com a face voltada para baixo <br>
@@ -104,7 +94,7 @@
 
 
 
-## 🔹 Planos de Delimitação <br>
+## 10. Planos de Delimitação <br>
 
 São aqueles planos que tangenciam a superfície do corpo do indivíduo quando este se encontra na posição anatômica <br>
 
@@ -126,7 +116,7 @@ o nariz é anterior aos olhos; os olhos são posteriores ao nariz; os olhos são
 
 
 
-## 🔹 Planos de Secção do Corpo Humano <br>
+## 11. Planos de Secção do Corpo Humano <br>
 
 Secção é sinônimo de corte <br>
 
@@ -148,7 +138,7 @@ Secção é sinônimo de corte <br>
 
 
 
-## 🔹 Termos de Posição e Direção <br>
+## 12. Termos de Posição e Direção <br>
 
 * **Anterior / Ventral:** voltado para frente <br>
 * **Posterior / Dorsal:** voltado para trás <br>
