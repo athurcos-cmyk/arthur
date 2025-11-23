@@ -15,9 +15,4 @@ A contração muscular é um processo que consome muita energia. O **ATP (Adenos
 
 ## 3. As Fontes de Energia (Em ordem de uso): <br>
 
-| Fonte de Energia | Mecanismo | Duração (Aprox.) | Vantagem | Desvantagem |
-| :---- | :---- | :---- | :---- | :---- |
-| **ATP livre no citosol** | Já está pronto | 2 segundos | Mais rápido | Muito limitada |
-| **Fosfocreatina** | Doa fosfato para regenerar ATP (ADP + > ATP) | 15 segundos | Rápida regeneração de ATP | Duração limitada |
-| **Glicólise Anaeróbica** | Quebra de glicogênio/glicose **sem oxigênio** | 30 segundos a 2 minutos | Fornece ATP rápido para explosão | Gera **Ácido Lático** (fadiga) |
-| **Respiração Celular Aeróbica** | Quebra de glicose, gordura e proteínas **com oxigênio** | Horas (contínuo) | Maior produção de ATP | Mais lento para iniciar |
+![tabela_atp](https://i.imgur.com/NvhQdq2.png)
