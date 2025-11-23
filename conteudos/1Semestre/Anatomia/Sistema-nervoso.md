@@ -64,8 +64,9 @@ Cada cada parte do cerebro e do tronco tem suas subdivisões:
 ### Cerebelo
 * **Função:** Controle do **Equilíbrio** e **Coordenação Motora** fina.
 
+![SNC_e_SNP](https://lh5.googleusercontent.com/o22UeQiyXQPb-CT4D_-I9ixY9Sf33neDHDBDKPYo6Qg_rGDgJbzHVyFpb4XNlCDj4S_l6RQu_hb7AI2NehKththcrXJ1WmeE_wPy-W5Tmtf_NhGSPjPWtuAhjxlnBW-DepvhOAuS)
 
-
+![snc_detalhado](https://www.auladeanatomia.com/upload/htmleditor/snc3.jpg)
 ## 6. Lobos do Telencéfalo 
 O Telencéfalo é dividido em lobos com funções específicas:
 
@@ -75,6 +76,7 @@ O Telencéfalo é dividido em lobos com funções específicas:
 * **Lobo Temporal:** **AUDIÇÃO** e **LINGUAGEM**.
 * **Lobo da Ínsula:** (Escondido) **INTEROCEPÇÃO** (percepção interna do corpo, vícios, emoções viscerais).
 
+![lobos](https://www.researchgate.net/profile/Danilo-De-Meneses/publication/371724530/figure/fig6/AS:11431281169322998@1687288260872/Lobos-cerebrais-Fonte-http-slideplayercombr-slide-1670159.jpg)
 
 
 ## 7. Ventrículos e Líquor
@@ -94,7 +96,7 @@ São 3 membranas de tecido conjuntivo que protegem o SNC (de fora para dentro):
 
 ### O Espaço Vital
 * **Espaço Subaracnóide:** Localizado **abaixo da Aracnoide**. É o espaço real onde circula o **Líquor**. É aqui que ocorre a meningite e onde se coleta líquor na punção lombar.
-
+![Meninges](https://lh4.googleusercontent.com/HhDihn_H-WVojzkAmQwi5ptSEXA1ps9Z0UsOxtFkuFFws1d-C8d9cwbo9l5c6eSpRVwAR2ybcFlstNfXrQN5a_dQ_xuPpsgnFp4KqCvvAYiWloj_92NsV78bItzz2RQNk9VLIzPJ)
 ## 9. Relevo do Cérebro
 Para aumentar a área de superfície (córtex) dentro do crânio, o cérebro se dobra:
 * **Giros:** As "montanhas" (dobras).

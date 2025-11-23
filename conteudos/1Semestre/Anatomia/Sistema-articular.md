@@ -31,6 +31,7 @@
 * **Gonfose** — articulação no dente.
     * Ex.: articulação dentoalveolar <br>
 
+![articulação_fibrosa](https://drive.google.com/file/d/1AgP11ZwHDkFpHROK8Vu0fJFXxSVHrl-x/view)
 <br>
 
 ### Articulações Cartilagíneas <br>
