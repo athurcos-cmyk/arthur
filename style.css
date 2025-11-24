@@ -463,7 +463,7 @@ body.sidebar-hidden .sidebar-disciplines { margin-left: -280px; }
     line-height: 1.8; 
     font-size: 0.95rem;
     color: var(--text-main); 
-    opacity: 0;
+    /* Deixar em 0 para tirar a opacidade e funcionar em todos os lugares ///opacity: 0;/// */
     animation: fadeSimply 180ms ease-in forwards; 
 }
 
