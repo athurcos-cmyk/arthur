@@ -183,7 +183,9 @@ const db = [
                         slides: [
                             { title: "Aula 6 e 7 - Tecido Conjuntivo", url: "https://drive.google.com/file/d/1B3h5IageMYw1i4jjrMhvj3cAFZv4y3Ic/view?usp=drive_link" }
                         ],
-                        videos: []
+                        videos: [
+                            {title: "Teciido Conjuntivo | Histologia", url: "https://www.youtube.com/embed/P-HqclcMOpg"}
+                        ]
                     },
                     {
                         title: "Tecido Muscular",

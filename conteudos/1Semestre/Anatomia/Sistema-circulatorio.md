@@ -141,8 +141,8 @@ Transformar sangue venoso em arterial <br>
 * **Pulmões:** ocorre **hematose** (sangue “impuro”/venoso ganha O₂ e perde CO₂). <br>
 * **Retorno ao coração:** **veias pulmonares** (direitas e esquerdas, sangue arterial) → **átrio esquerdo**. <br>
 * **Ideia-chave:** é um circuito **coração → pulmões → coração**, começando no VD e terminando no AE. <br>
-Setas azuis = sangue venoso, rico em CO2
 
+Setas azuis = sangue venoso, rico em CO2
 Setas vermelhas = sangue arteial, rico em O2 
 Nota-se que as veias pulmonares recebem o sangue com O2, a arteria tronco pulmonar vai sangue sem O2 cheio de CO2 
 iMAGEM GERADA POR IA, CONFERIR EM ATLAS ANATOMICO
